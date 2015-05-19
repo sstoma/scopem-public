@@ -1,0 +1,598 @@
+* export settings						   :noexport:
+#+TITLE:     Introduction to FIJI - workflows v. 1.2
+#+AUTHOR:    Simon Noerrelykke & Szymon Stoma
+#+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
+#+DATE:      <2015-04-29 Wed>
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:nil mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+* working with single channel images 
+** create new image
+   1. target: create a sketch of a cell as in [cell.tif]
+   2. file > new > image (IJ:26.1)
+	  - Type: 8bit
+	  - Slices: 2
+	  - Fill with: black
+   3. [palete > brush] (IJ:19.4)
+	  - right click on the [palete > brush]
+		- uncheck: "Paint in overlay"
+   4. [palete > color picker] (IJ:19.11)
+	  - choose red as foreground
+   5. Draw an outline of a cell ;)
+   6. image > color > channel tool (ctrl-z) (IJ:28.5.3)
+	  - make composite (IJ:28.5.5)
+   7. Switch a slice with a slider
+   8. [palete > color picker] (IJ:19.11)
+	  - choose blue as foreground
+   9. Draw cell nuclei
+   10. [palete > brush] (IJ:19.4)
+	   - right click on the [palete > brush]
+		 - check: "Paint in overlay"
+   11. [palete > color picker] (IJ:19.11)
+	   - choose blue as foreground
+   12. Draw cell vesicles
+   13. Inspect pixel values (IJ:p.28:Toolbar)
+	   - alternatively use Pixel Inspector (IJ:19.20)
+	   - switch a slice with a slider
+	   - move inspector between: outline | nuclei | vesicles
+   14. image > color > channel tool (ctrl-z) (IJ:28.5.3)
+	   - switch between composite | color | grey
+   15.  file > save as > tif : my-cell.tif (IJ:26.10.1)
+
+** opening the image and basic info
+   1. file > open > HeLa (IJ:26.2)
+   2. image > show info (ctrl-i) (IJ:28.3)
+   3. analyze > tools > scale bar (IJ:30.14.6)
+
+** opening the image and basic drawing
+   1. file > open samples > Clown (IJ:26.4)
+   2. [palete > color picker] (IJ:19.11)
+	  - choose green as foreground and red as background colors
+   3. [palete > rectangular selection] (IJ:19.1)
+	  - select a rectangular shape
+	  - apply Fill (f), Draw (d), Clear tools (IJ:27.2 IJ:27.9-10) 
+	  - apply Copy (ctrl-c), Paste (ctrl-v), Cut (ctrl-x)
+
+** copy pasting from image to image
+   1. target: create a figure illustrating the difference in C. elegans
+      phenotype (see elegance-fig.tif) based on elegans.tif example
+   2. file > new > image (IJ:26.1)
+	  - Type: 8bit
+	  - Slices: 1
+	  - Fill with: black
+   3. file > save as > tif : my-elegance-fig.tif (IJ:26.10.1)
+   4. [palete > color picker] (IJ:19.11)
+	  - choose white as foreground and black as background
+   5. file > open : [elegance.tif] (IJ:26.2)
+   6. find two different phenotypes of a worm; for each worm
+	  1. select worm with [palete > rectangular selection]
+         (IJ:19.1)
+	  2. edit > selection > add to manager (ctrl-t) (IJ:27.12.22)
+		 - analyze > tools > ROI manager
+   7. prepare the template as in elegance example (see elegance-fig.tif)
+	  1. [palete > streight line] (ctrl-click to select *straight* mode) (IJ:19.2)
+		 - use line selection to create two horizontal lines (use shift
+			while drawing)
+		 - create line; Draw (d); move line down; Draw (d); add to
+           selection for future
+	  2. [palete > text tool] (IJ:19.8)
+		 - add text for "GFP" and "Brightfield"
+		 - confirm with ctrl-d (or edit > draw)
+	  3. use ROI manager to put ROIs into right places (analogous to
+         elegance-fig.tif); for each ROI from original image:
+		 - paste ROI into new image
+		 - move it to desired location
+		 - add it to the ROI manager
+   8. copy paste selected worms to the new images (two channel per worm)
+	  - use ROI to find a worm position
+	  - choose channel: GFP or Brightfield
+	  - copy selection
+	  - choose my-elegance-fig.tif window
+	  - use ROI to select desired paste location
+	  - paste
+	  - repeat procedure for all four images
+   9. file > save (IJ:26.10.1)
+
+** file handling and non-invasive editing
+   1. file > open samples > blobs (shift-b) (IJ:26.4)
+   2. analyze > tools > scale bar (IJ:30.14.6)
+	  - set color, background, position
+	  - check: overlay, bold
+   3. file > save as > tiff : blobs1.tif (IJ:26.10.1)
+	  - saving the image as tiff keeps the scale bar as an overlay, so pixel-values below it are kept 
+
+** file handling and invasive editing
+   1. file > open : [blobs1.tif] (IJ:26.2)
+   2. image > info (i) (IJ:28.3)
+   3. image > overlay > remove overlay (IJ:28.14.7)
+   4. analyze > set scale  (IJ:30.8)
+	  - set scale such as image is 100 um long in each dimension
+   5. analyze > tools > scale bar (IJ:30.14.6)
+	  - set color, background, position
+	  - check: NO overlay
+   6. file > save as > tiff : blobs2.tif (IJ:26.10.1)
+	  - load again to check the difference (e.g. check info)
+
+** 8-bit and 16-bit pseudocolor images
+   1. file > open samples > blobs (shift-b) (IJ:26.4)
+   2. inspect pixel values (IJ:p.28:Toolbar)
+   3. image > lookup table > invert LUT (IJ:28.15.1)
+   4. analyze > tools > calibration bar (IJ:30.14.7)
+
+   5. file > open > [blobs16bit.tif] (IJ:26.2)
+   6. inspect pixel values (IJ:p.28:Toolbar)
+	  - alternatively use Pixel Inspector (IJ:19.20)
+   7. analyze > tools > calibration bar (IJ:30.14.7)
+
+   8. file > open samples > blobs (shift-b) (IJ:26.4)
+   9. add arrow in overlay (IJ:19.13)
+	  - play with the look of the arrow (i.e. colors, thickness)
+	  - indicate a blob which you like
+	  - confirm by ctrl-b (IJ:19.8)
+   10. add arrow in draw (IJ:19.13)
+	   - confirm by ctrl-d (IJ:19.8)
+   11. mark a part of image with overlay brush (IJ:19.18)
+	   - play with transparency
+	   - cover blobs marked by arrows with red paint
+
+** pseudocolor image to RGB conversion
+   1. file > open samples > blobs (shift-b) (IJ:26.4)
+   2. image > duplicate (IJ:28.9)
+   3. rename images: left and right
+	  - image > rename (IJ:28.10)
+   4. change color lookup table for left and right
+	  - Image > Look up table > Fire | green
+   5. duplicate both images (IJ:28.9)
+	  - name them left-1 and right-1
+   6. image > stack > tools > combine (IJ:28.6.15.1)
+	  - select left and right
+   7. select left-1
+	  - image > type > Color RGB (IJ:7)
+	  - check with picker what are the values in pixels (IJ:p.28:Toolbar)
+   8. select left-2
+	  - image > type > Color RGB (IJ:7)
+   9. image > stack > tools > combine (IJ:28.6.15.1)
+	  - select left-1 and right-1
+
+** color spaces
+   1. file > open : [blob-combined.tif] (IJ:26.2)
+   2. plugins > Color Inspector 3D
+   3. switch "Display mode" to histogram
+   4. play with color: rotation | saturation | brightness
+	  - compare RGB space with e.g. LAB
+
+** histogram operations
+   1. file > open samples > blobs (shift-b) (IJ:26.4)
+   2. image > lookup tables > invert LUT (IJ:28.15.1)
+   3. analyze > histogram (IJ:30.10)
+	  - mark live
+   4. select line tool (IJ:19.2) (IJ:p.28:Interface)
+   5. analyze > plot profile (IJ:30.11)
+	  - mark Live
+	  - move line
+	  - double click on line icon
+	  - change line thickness (move line)
+   6. edit > selection > select none 
+   7. image > adjust > brightness/contrast (IJ:28.2.1)
+	  - play with settings to achieve white blobs and black background (actually you almost thresholded image)
+	  - apply when finished (note: pixel values are altered)
+
+   8. file > open samples > M51 galaxy (IJ:26.4)
+   9. (2x) image > duplicate (IJ:28.9)
+   10. (3x) analyze > histogram (IJ:30.10)
+	   - mark live
+	   - check log button
+   11. on each image
+	   - process > enhance contrast (IJ:29.5)
+		 - equalize checked
+	   - process > enhance contrast (IJ:29.5)
+		 - normalize checked
+	   - process > enhance local contrast (CLAHE)
+		 - http://fiji.sc/wiki/index.php/Enhance_Local_Contrast_(CLAHE)
+   12. compare the results
+
+** using 16 bit images to increase precision
+   1. file > open samples > M51 galaxy (IJ:26.4)
+   2. image > lookup tables > fire (IJ:28.15)
+   3. image > duplicate (IJ:28.9)
+   4. (2x) analyze > histogram (IJ:30.10)
+	  - mark live
+	  - check log button
+   5. on first image:
+	  - image > type > 8 bit
+	  - process > enhance contrast (IJ:29.5)
+		- equalize checked
+   6. on second image:
+	  - process > enhance contrast (IJ:29.5)
+   7. for both img.: image > lookup tables > fire (IJ:28.15)
+   8. select center of the galaxy with [palete > rectangular
+      selection] (IJ:19.1)
+   9. edit > selection > add to manager (ctrl-t) (IJ:27.12.22)
+	  - analyze > tools > ROI manager
+	  - switch window to second image
+	  - click ROI you just added that it appears in the second image
+   10. analyze > set measurements (IJ:30.7)
+	   - check: mean gray value / standard deviation
+   11. for both img.: analyze > measure (m) (IJ:29.12.1)
+   12. for both img.: image > lookup tables > glasbey (IJ:28.15)
+   13. compare the results
+
+* working with multichannel images
+** composite images - splitting and merging
+   1. file > open samples > fluorescent cells (IJ:26.4)
+   2. image > color > arrange channels 
+	  - click on New 1, and select magenta
+   3. image > color > split channels (IJ:28.5.1)
+   4. merge channels to composite
+	  - image > color > channels tool (shift-z) (IJ:28.7.5)
+	  - check "create composite" box (IJ:28.5.2)
+   5. color blindness
+	  - image > color > simulate color blindness 
+	  - image > color > dichromacy
+
+** composite images - individual channel corrections
+   1. target: create an image with brightfield / red / cyan channels
+      which shows locations with strongest expression of these fluorophores 
+   2. file > open samples > neuron (IJ:26.4)
+   3. image > color > channel tool (IJ:28.7.5)
+   4. for each channel 
+	  - adjust contrast such as final image "conveys the message" (IJ:28.2.1)
+
+** microscopy stacks handling 
+   1. target: make a video and a picture for publication showing progression of mitosis in time (see: mitosis-montage.tif)
+   2. open : [mitosis-mixedStack.tif] (IJ:26.2)
+   3. image > hyperstacks > reorder hyperstacks
+	  - swap z with t
+   4. image > stacks > tools > make substack (IJ:28.6.15.7)
+   5. image > duplicate (IJ:28.9)
+	  - check duplicate hyperstack
+   6. image > color > channels tool (shift-z) (IJ:28.7.5)
+	  - split channels (IJ:28.5.1)
+   7. for both C1 and C2 images
+	  - choose LUT Fire (IJ:19.7)
+	  - create channel label (IJ:19.8)
+	  - image > type > color RGB (IJ:7)
+   8. for original two channel image
+	  - image > type > color RGB (IJ:7)
+   9. image > stacks > tools > combine (IJ:28.6.15.1)
+	  - choose left: 2 channel image
+	  - choose right: C1
+   10. image > stacks > tools > combine (IJ:28.6.15.1)
+	   - choose left: merged image
+	   - choose right: C2
+   11. image > stacks > series labeller
+	   - select time and other options; use preview to peek
+   12. file > save as > avi (IJ:26.10.1)
+	   - e.g. 10 frames per sec.
+   13. image > stacks > make montage (IJ:28.6.8)
+	   - play with settings:
+		 - columns 1
+		 - rows 5
+		 - increment 12
+   14. file > save as > tiff (IJ:26.10.1)
+
+* image processing: thresholding & filters
+** basic concept of thresholding
+   1. file > open samples > blobs (IJ:26.4)
+   2. image > lookup table > invert LUT (IJ:28.15.1)
+   3. image > duplicate (IJ:28.9)
+   4. image > adjust > threshold (IJ:28.2.4)
+	  - play, confirm by apply (note: pixel values are altered)
+   5. image > adjust > auto threshold
+
+** basic concept of filtering: binary filters  
+   1. open : [blobs-thr.tif] (IJ:26.2)
+   2. image > duplicate (IJ:28.9)
+   3. process > binary > watershed (IJ:29.8.12)
+   4. process > noise > remove outliers (IJ:29.6.5)
+	  - check preview
+	  - list bright
+   5. (process > find maxima) (IJ:29.4)
+   6. (2x) process > binary > erode (IJ:29.8.3)
+   7. process > find edges (IJ:29.3)
+   8. process > binary > fill holes (IJ:29.8.8)
+
+** basic concept of filters: sharpen
+   1. file > open samples > hela cells (IJ:26.4)
+   2. process > filters > unsharp mask (IJ:29.11.8)
+	  - check how it behaves when image is composite / color (use channel tool for this purpose) (IJ:28.7.5)
+
+** basics mathematical operations on single image
+   1. open : [f2.tif] (IJ:26.2)
+   2. process > math > add (IJ:29.9.1)
+	  - play with different functions
+	  - check what happens when image is 32 bit
+
+** basics mathematical operations on two images
+   1. open : [f2.tif] and [f1.tif] (IJ:26.2)
+   2. process > calculator (IJ:29.13)
+	  - start with add
+	  - check what happens when image is 32 bit
+	  - play with different functions
+
+* background elimination   
+** background elimination - flat field correction
+   1. file > open > cell colony (IJ:26.4)
+   2. use selection to draw a horizontal line across the image (IJ:19.2)
+   3. analyze > plot profile
+	  - check live
+   4. process > subtract background
+	  - click: preview
+	  - click: create background
+	  - vary: rolling ball radius 
+	  - try: sliding paraboloid
+
+** background elimination - flat field correction using Image calculator
+   1. file > open samples > cell colony (IJ:26.4)
+   2. image > duplicate (IJ:28.9)
+   3. process > filters > gaussian blur % sigma ~= 30 (IJ:29.11.2)
+   4. measure mean of blurred image (select it, "a", "m") (IJ:29.12.1)
+   5. process > calculator plus > divide (i1 = image, i2 = blurred image, k1 = mean, k2 = 0)
+
+* manual measurements and working with rois
+** measuring fluorescence within a selection
+   1. task : measure average flu. in Red channel in neuron
+   2. file > open samples > neuron (IJ:26.4)
+   3. image > color > channel tool (IJ:28.7.5)
+	  - split channels (IJ:28.5.1)
+   4. close all but green and red
+   5. work on green image
+	  - image > duplicate (IJ:28.9) 
+	  - process > filters > gaussian blur (IJ:29.11.2)
+		- use preview to set parameters
+	  - image > adjust > threshold (IJ:28.2.4)
+		- threshold to create neuron mask (avoid false negatives)
+	  - use wand tool to select main part of the neuron (IJ:19.7)
+	  - analyze > tools > roi manager (IJ:30.14.5)
+		- roi manager > add (t) (IJ:27.12.22)
+   6. choose second copy of green
+	  - image > adjust > threshold (IJ:28.2.4)
+		- threshold to create neuron mask (avoid false negatives)
+	  - edit > selection > create selection (IJ:27.12.11)
+	  - roi manager > add (t) (IJ:27.12.22)
+	  - edit > selection > select none (ctrl-shift-a) (IJ:27.12.2)
+	  - process > noise > remove outliers (IJ:29.6.5)
+		- use preview; remove some of the outliers outside of neuron
+	  - edit > selection > create selection (IJ:27.12.11)
+	  - roi manager > add (t) (IJ:27.12.22)
+   7. analyze > set measurements (IJ:30.7)
+	  - check: area / area fraction / mean gray value
+   8. work on red image
+	  - choose multi point tool (IJ:19.5)
+		- select some points in the neuron
+		- edit > selection > enlarge (IJ:27.12.14)
+		- roi manager > add (t) (IJ:27.12.22)
+   9. for each selection
+	  - analyze > measure (m) (IJ:29.12.1)
+   10. roi manager > more > save selection (IJ:30.14.5)
+
+** measuring geometical properties in the image
+   1. task : measure average flu. in Red channel in neuron
+   2. file > open samples > neuron (IJ:26.4)
+   3. use polygon selection tool to measure cell body area (IJ:19.1.6)
+	  - use measure to get the read out after creating polygon (IJ:29.12.1)
+		- roi manager > add (t) (IJ:27.12.22)
+   4. use segmented line tool (IJ:19.2.2) to measure length of few
+	  dendrits
+	  - test shift and alt while adding points (with mouse over a point)
+	  - use measure to get the read out after creating a line
+        (IJ:29.12.1)
+	  - roi manager > add (t) (IJ:27.12.22)
+   5. use angle tool (IJ:19.2.2) to measure length of few dendrits
+	  - use measure to get the read out after creating an angle (IJ:29.12.1)
+	  - roi manager > add (t) (IJ:27.12.22)
+   6. roi manager > more > save selection (IJ:30.14.5)
+
+* automatic measurements
+** identifying and measuring objects - basics
+   1. open : [blobs-thr.tif] (IJ:26.2)
+   2. image > duplicate (IJ:28.9)
+   3. process > binary > watershed (IJ:29.8.12)
+   4. process > noise > remove outliers (IJ:29.6.5)
+	  - check preview
+   5. analyze > set measurements (IJ:30.7)
+	  - check: area / area fraction / mean gray value
+   6. analyze > analyze particles  (IJ:30.2)
+	  - test different options
+
+** identifying and measuring objects - cells
+   1. target : measure distribution of RFP signal inside nucleus across cell population
+   2. open : [hela1.tif] (IJ:26.2)
+   3. image > adjust > threshold (IJ:28.2.4)
+	  - test different option to isolate cells
+
+   4. open : [hela2.tif] (IJ:26.2)
+   5. image > color > split channel (IJ:28.5.1)
+   6. work on blue channel (DAPI)
+	  - image > adjust > threshold (IJ:28.2.4)
+	  - process > binary > watershed (IJ:29.8.12)
+	  - process > noise > remove outliers (IJ:29.6.5)
+		- check preview
+   7. analyze > set measurements (IJ:30.7)
+	  - check: area / area fraction / mean gray value
+	  - redirect to: RFP
+   8. analyze > analyze particles  (IJ:30.2)
+   9. analyze > distribution (IJ:30.4)
+	  - choose: gray value
+
+* scripting
+** macro recorder and adding the macro to the menu
+   1. target: calculate the change of fluorescence during the mitosis  
+   2. file > open samples > mitosis (IJ:26.4)
+   3. image > color > split channel (IJ:28.5.1)
+   4. close red channel window
+   5. image > stacks > z project (IJ:28.6.11)
+   6. plugins > macro > recorder (IJ:31.1.4)
+   7. analyse > measure (IJ:29.12.1)
+   8. image > stacks > next slice (IJ:28.6.3)
+   9. ...
+ 
+   10. in recorder click "create" button
+   11. make sure that the code looks in the following way:
+   #+BEGIN_EXAMPLE
+   for (i=0; i<getSliceNumber();i++){
+     run("Next Slice [>]");
+     run("Measure");
+   }
+   #+END_EXAMPLE
+   12. select the window with green run the macrco
+   
+   13. crete a selction to cover only a part of the image
+   14. select the window with green run the macrco again
+
+   15. change the code to:
+   #+BEGIN_EXAMPLE
+   macro "measure stack" {
+     for (i=0; i<getSliceNumber();i++){
+       run("Next Slice [>]");
+       run("Measure");
+     }
+   }
+   #+END_EXAMPLE
+   17. switch to code editor
+   18. language > ImageJ Macro
+   19. save > .ijm
+   20. plugins > macros > install... (IJ:31.1.1) 
+       - select the macro you just saved
+
+   21. image > stacks > plot z axis profile (IJ:28.6.13)	   
+
+** iterations and variables in the macro: multi-measurement 
+   1. target: prepare the evenly distributed selection layed over the image v.1
+   2. test code:
+   #+BEGIN_EXAMPLE
+   // initialization
+   x = 20;
+   y = 20;
+   // iterations
+   for (nbr_x=0;nbr_x<5;nbr_x++){
+     for (nbr_y=0;nbr_y<5;nbr_y++){
+       makePoint(x+x*nbr_x, y+y*nbr_y);
+       run("Enlarge...", "enlarge=5 pixel");
+       roiManager("Add");
+     }
+   }
+   #+END_EXAMPLE
+
+** automatic measurement and saving to a file
+   1. target: prepare the evenly distributed selection layed over the image v.2
+   2. test code:
+   #+BEGIN_EXAMPLE
+   // initialization
+   roiManager("reset");
+   x = 20;
+   y = 20;
+   // iterations
+   for (nbr_x=0;nbr_x<5;nbr_x++){
+     for (nbr_y=0;nbr_y<5;nbr_y++){
+     makePoint(x+x*nbr_x, y+y*nbr_y);
+     run("Enlarge...", "enlarge=5 pixel");
+     roiManager("Add");
+	 }
+   }
+   // measurement and save
+   roiManager("Multi Measure");
+   fn = getInfo("image.filename");
+   saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
+   % exchange previous line with your path
+   #+END_EXAMPLE
+
+** user input via GUI
+   1. target: prepare the evenly distributed selection layed over the image v.3
+   2. test code:
+   #+BEGIN_EXAMPLE
+   // initialization
+   roiManager("reset");
+   x = 20;
+   y = 20;
+   // GUI
+   Dialog.create("Please specify parameters:");
+   Dialog.addNumber("Size [px]: ", 5);
+   Dialog.show();
+   size = Dialog.getNumber();
+   // iterations
+   for (nbr_x=0;nbr_x<5;nbr_x++){
+     for (nbr_y=0;nbr_y<5;nbr_y++){
+       makePoint(x+x*nbr_x, y+y*nbr_y);
+       run("Enlarge...", "enlarge="+ size +" pixel");
+       roiManager("Add");
+     }
+   }
+   // measurement and save
+   roiManager("Multi Measure");
+   fn = getInfo("image.filename");
+   saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
+   % exchange previous line with your path
+   #+END_EXAMPLE
+
+** batch mode - basics
+   1. open : [hela/h01.tif] (IJ:26.2)
+   2. plugins > macro > recorder (IJ:31.1.4)
+   3. image > adjust > threshold (IJ:28.2.4)
+      - select: triangle
+      - check: dark background
+   4. analyze > analyze particles  (IJ:30.2)
+   5. make sure that the code looks in the following way:
+   #+BEGIN_EXAMPLE
+   setAutoThreshold("Triangle dark");
+   run("Convert to Mask");
+   outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
+   % exchange previous line with your path
+   run("Set Measurements...", "area mean display redirect=None decimal=9");
+   run("Analyze Particles...", "show=[Overlay Masks] display exclude");
+   saveAs("Results", outPath+"Results.txt");
+   #+END_EXAMPLE
+   6. process > batch > macro
+      - input: select folder with [h01.tif]
+      - output: select folder out in the folder containing [h01.tif]
+   7. click process
+
+   8. modyfy the code (purpose: save each result in separated file):
+   #+BEGIN_EXAMPLE
+   fileName = getInfo("image.filename");
+   outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
+   % exchange previous line with your path
+   run("Clear Results");
+   setAutoThreshold("Triangle dark");
+   run("Convert to Mask");
+   run("Set Measurements...", "area mean display redirect=None decimal=9");
+   run("Analyze Particles...", "show=[Overlay Masks] display exclude");
+   saveAs("Results", outPath + "Results-" + fileName + ".txt");
+   #+END_EXAMPLE
+* various useful tools
+** installing plugins
+   1. download plugin from webpage:
+      http://bigwww.epfl.ch/algorithms/esnake/
+   2. unzip, drag and drop to FIJI
+   3. create new canvas
+   4. draw two white discs on black background
+   5. plugins > ESnake
+	  - target brightness: bright
+   6. click OK
+	  
+** using line selection to make a "straighten" image
+   1. file > open samples > nile bend (IJ:26.4)
+   2. use selection tool for freehand selection
+	  - make the line thickness adjusted to cover whole river
+   3. edit > selection > straighten (IJ:27.12.17)
+
+** using 3D viewer 
+  1. file > open samples > confocal series (IJ:26.4)
+  2. image > properties > voxel depth x10 % to get decent aspect ratio
+  3. plugins > 3D viewer
+  4. add > from image % the resampling factor is a downsampling factor
+  5. play with displayed colors
+  6. view > start/stop animation
+  7. view > change animation settings
+  8. view > record 360 degree rotation
+  9. file > save as > avi % try the different compression options uncompressed, jpg, and png 
+
