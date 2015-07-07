@@ -446,6 +446,7 @@
    5. image > adjust > threshold (IJ:28.2.4)
       - select manually threshold such as the head is separated from background
 	  - ignore small holes
+	  -  uncheck box: calculate threshold for each image
    6. process > binary > fill holes (IJ:29.8.8)
    7. (optional) use analyze > set scale to calibrate the measurement units
 	  - 200 pixels is 25 cm

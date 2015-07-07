@@ -1,4 +1,4 @@
 for (currentStep=1; currentStep<=nSlices();currentStep++){
-  setSlice(i);
+  setSlice(currentStep);
   run("Measure");
 }
