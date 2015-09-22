@@ -294,12 +294,19 @@
 
 * image processing: thresholding & filters
 ** basic concept of thresholding
-   1. file > open samples > blobs (IJ:26.4)
-   2. image > lookup table > invert LUT (IJ:28.15.1)
-   3. image > duplicate (IJ:28.9)
-   4. image > adjust > threshold (IJ:28.2.4)
-	  - play, confirm by apply (note: pixel values are altered)
-   5. image > adjust > auto threshold
+   1. *target:* Threshold blob.gif image to create a mask enabling
+      segmentation of blob-like structures (i.e. create an image where the
+      values of all pixels not belonging to blob-like structures are
+      set to 0, and all other pixel values are equal to 255).
+   2. file > open samples > blobs (IJ:26.4)
+   3. image > lookup table > invert LUT (IJ:28.15.1)
+   4. image > duplicate (IJ:28.9)
+   5. image > adjust > threshold (IJ:28.2.4)
+	  - set up sliders and Dark background checkbox and threshold the
+        image:
+		- use 126 value as threshold
+	  - note: pixel values are altered
+   6. (optional) image > adjust > auto threshold
 
 ** basic concept of filtering: binary filters  
    1. open : [blobs-thr.tif] (IJ:26.2)
@@ -323,15 +330,73 @@
    2. process > math > add (IJ:29.9.1)
 	  - play with different functions
 	  - check what happens when image is 32 bit
-
+** beyond the limits of bits
+   1. *target:* Perform consecutive addition and subtraction of the
+      same value from an image. Compare the results with original image.
+   2. open : [spooked_16bit.tif] (IJ:29.9.1)
+   3. image > duplicate (IJ:28.9)
+	  - work on the copy
+   4. process > math > add (IJ:29.9.1)
+	  - add value: 600 
+   5. process > math > subtract (IJ:29.9.2)
+	  - subtract value: 600
+   6. comapare the original and the copy: are they the same? What has happened?
 ** basics mathematical operations on two images
    1. open : [f2.tif] and [f1.tif] (IJ:26.2)
    2. process > calculator (IJ:29.13)
 	  - start with add
 	  - check what happens when image is 32 bit
 	  - play with different functions
-
+** seeing JPEG artifacts
+   1. *target:* Save the same image in TIFF and JPEG formats. Compare
+      the differences
+   2. file > open : [tulip.tif] (IJ:26.2)
+   3. image > duplicate (IJ:28.9)
+	  - work on the copy
+   4. file > save as > jpg (IJ:26.10.3)
+	  - tulip.jpg
+   5. [palete > pencil ] (IJ:19.19)
+	  - modify value of only one pixel
+   6. file > save as > jpg (IJ:26.10.3)
+	  - tulip-1px.jpg
+   7. close all jpeg files and reopen them
+   8. process > calculator (IJ:29.13)
+	  - image1: tulip.tif
+	  - operation: subtract
+	  - image2: tulip.jpg
+	  - checked: create new window
+	  - checked: 32 bit result
+   9. process > calculator (IJ:29.13)
+	  - image1: tulip-1px.jpg
+	  - operation: subtract
+	  - image2: tulip.jpg
+	  - checked: create new window
+	  - checked: 32 bit result
+   10. *questions:*
+	   - What are the differences between images tif and jpg images? Why?
+	   - How many pixels are affected by changing only 1 pixel in jpg
+         image? Why? 
 * background elimination   
+** dividing by background image
+   1. *target:* Estimate the local ratio of increase by dividing the
+      image by background. Check the impact of 32-bit image conversion
+      on the quatlity of the result.
+   2. file > open : [xxx.tif] (IJ:26.2)
+   3. file > open : [xxx_background.tif] (IJ:26.2)
+   4. process > calculator (IJ:29.13)
+	  - image1: xxx.tif
+	  - operation: subtract
+	  - image2: xxx_background.tif
+	  - checked: create new window
+	  - checked: 32 bit result
+   5. process > calculator (IJ:29.13)
+	  - image1: xxx.tif
+	  - operation: subtract
+	  - image2: xxx_background.tif
+	  - checked: create new window
+	  - unchecked: 32 bit result
+   6. *question:* what is the reason of [[https://en.wikipedia.org/wiki/Posterization][posterization]] ?
+
 ** background elimination - flat field correction
    1. file > open > cell colony (IJ:26.4)
    2. use selection to draw a horizontal line across the image (IJ:19.2)
@@ -416,24 +481,28 @@
    6. analyze > analyze particles  (IJ:30.2)
 	  - test different options
 
-** identifying and measuring objects - cells
-   1. target : measure distribution of RFP signal inside nucleus across cell population
+** identifying and measuring objects - cells #1
+   1. *target:* measure distribution of RFP signal inside nucleus across cell population
    2. open : [hela1.tif] (IJ:26.2)
    3. image > adjust > threshold (IJ:28.2.4)
 	  - test different option to isolate cells
+   4. *question:* What are the difficulties? 
 
-   4. open : [hela2.tif] (IJ:26.2)
-   5. image > color > split channel (IJ:28.5.1)
-   6. work on blue channel (DAPI)
+** identifying and measuring objects - cells #2
+   1. *target:* measure distribution of RFP signal inside nucleus
+      across cell population
+   1. open : [hela2.tif] (IJ:26.2)
+   2. image > color > split channel (IJ:28.5.1)
+   3. work on blue channel (DAPI)
 	  - image > adjust > threshold (IJ:28.2.4)
 	  - process > binary > watershed (IJ:29.8.12)
 	  - process > noise > remove outliers (IJ:29.6.5)
 		- check preview
-   7. analyze > set measurements (IJ:30.7)
+   4. analyze > set measurements (IJ:30.7)
 	  - check: area / area fraction / mean gray value
 	  - redirect to: RFP
-   8. analyze > analyze particles  (IJ:30.2)
-   9. analyze > distribution (IJ:30.4)
+   5. analyze > analyze particles  (IJ:30.2)
+   6. analyze > distribution (IJ:30.4)
 	  - choose: gray value
 
 * scripting / macros / automation basics
