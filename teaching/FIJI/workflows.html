@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Introduction to FIJI - workflows v. 1.2</title>
-<!-- 2015-08-12 Wed 12:54 -->
+<!-- 2015-12-08 Tue 11:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Simon Noerrelykke &amp; Szymon Stoma" />
@@ -184,7 +184,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-4">4. background elimination</a>
 <ul>
-<li><a href="#sec-4-1">4.1. dividing by background image to estimate local ratio of increase</a></li>
+<li><a href="#sec-4-1">4.1. dividing by background image</a></li>
 <li><a href="#sec-4-2">4.2. background elimination - flat field correction</a></li>
 <li><a href="#sec-4-3">4.3. background elimination - flat field correction using Image calculator</a></li>
 </ul>
@@ -198,7 +198,8 @@ for the JavaScript code in this tag.
 <li><a href="#sec-6">6. automatic measurements</a>
 <ul>
 <li><a href="#sec-6-1">6.1. identifying and measuring objects - basics</a></li>
-<li><a href="#sec-6-2">6.2. identifying and measuring objects - cells</a></li>
+<li><a href="#sec-6-2">6.2. identifying and measuring objects - cells #1</a></li>
+<li><a href="#sec-6-3">6.3. identifying and measuring objects - cells #2</a></li>
 </ul>
 </li>
 <li><a href="#sec-7">7. scripting / macros / automation basics</a>
@@ -999,6 +1000,11 @@ which shows locations with strongest expression of these fluorophores
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> basic concept of thresholding</h3>
 <div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
+<li><b>target:</b> Threshold blob.gif image to create a mask enabling
+segmentation of blob-like structures (i.e. create an image where the
+values of all pixels not belonging to blob-like structures are
+set to 0, and all other pixel values are equal to 255).
+</li>
 <li>file &gt; open samples &gt; blobs (IJ:26.4)
 </li>
 <li>image &gt; lookup table &gt; invert LUT (IJ:28.15.1)
@@ -1007,11 +1013,18 @@ which shows locations with strongest expression of these fluorophores
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
 <ul class="org-ul">
-<li>play, confirm by apply (note: pixel values are altered)
+<li>set up sliders and Dark background checkbox and threshold the
+image:
+<ul class="org-ul">
+<li>use 126 value as threshold
 </li>
 </ul>
 </li>
-<li>image &gt; adjust &gt; auto threshold
+<li>note: pixel values are altered
+</li>
+</ul>
+</li>
+<li>(optional) image &gt; adjust &gt; auto threshold
 </li>
 </ol>
 </div>
@@ -1211,7 +1224,7 @@ image? Why?
 <h2 id="sec-4"><span class="section-number-2">4</span> background elimination</h2>
 <div class="outline-text-2" id="text-4">
 </div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> dividing by background image to estimate local ratio of increase</h3>
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> dividing by background image</h3>
 <div class="outline-text-3" id="text-4-1">
 <ol class="org-ol">
 <li><b>target:</b> Estimate the local ratio of increase by dividing the
@@ -1489,10 +1502,10 @@ dendrits
 </div>
 
 <div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> identifying and measuring objects - cells</h3>
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> identifying and measuring objects - cells #1</h3>
 <div class="outline-text-3" id="text-6-2">
 <ol class="org-ol">
-<li>target : measure distribution of RFP signal inside nucleus across cell population
+<li><b>target:</b> measure distribution of RFP signal inside nucleus across cell population
 </li>
 <li>open : [hela1.tif] (IJ:26.2)
 </li>
@@ -1502,7 +1515,19 @@ dendrits
 </li>
 </ul>
 </li>
+<li><b>question:</b> What are the difficulties? 
+</li>
+</ol>
+</div>
+</div>
 
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> identifying and measuring objects - cells #2</h3>
+<div class="outline-text-3" id="text-6-3">
+<ol class="org-ol">
+<li><b>target:</b> measure distribution of RFP signal inside nucleus
+across cell population
+</li>
 <li>open : [hela2.tif] (IJ:26.2)
 </li>
 <li>image &gt; color &gt; split channel (IJ:28.5.1)
@@ -2393,9 +2418,9 @@ to chromatin
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2015-04-29 Wed&gt;</span></span></p>
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2015-12-08 Tue&gt;</span></span></p>
 <p class="author">Author: Simon Noerrelykke &amp; Szymon Stoma</p>
-<p class="date">Created: 2015-08-12 Wed 12:54</p>
+<p class="date">Created: 2015-12-08 Tue 11:29</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.51.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
