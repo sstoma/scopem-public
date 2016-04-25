@@ -1,0 +1,1428 @@
+% Created 2016-04-18 Mon 18:36
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Simon Noerrelykke \& Szymon Stoma}
+\date{\textit{<2015-12-08 Tue>}}
+\title{Introduction to FIJI - workflows v. 1.2}
+\hypersetup{
+  pdfkeywords={fiji, imagej, teaching},
+  pdfsubject={},
+  pdfcreator={Emacs 25.0.50.4 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{working with single channel images}
+\label{sec-1}
+\subsection{opening the image and basic info}
+\label{sec-1-1}
+\begin{enumerate}
+\item file > open > HeLa (IJ:26.2)
+\item image > show info (ctrl-i) (IJ:28.3)
+\item analyze > tools > scale bar (IJ:30.14.6)
+\end{enumerate}
+
+\subsection{opening the image and basic drawing}
+\label{sec-1-2}
+\begin{enumerate}
+\item \textbf{target:} "convert" [geometry-source.tif] into [geometry-target.tif]
+\item file > open : [geometry-source.tif] (IJ:26.2)
+\item use following tools to convert source into target:
+\begin{enumerate}
+\item\relax [palete > straight line] (IJ:19.12.1)
+\begin{itemize}
+\item try shift
+\end{itemize}
+\item\relax [palete > color picker] (IJ:19.11)
+\begin{itemize}
+\item e.g. choose black as foreground
+\item try Draw (d) (IJ:27.9-10)
+\end{itemize}
+\item\relax [palete > flood fill tool] (IJ:19.16)
+\begin{itemize}
+\item use again: color or picker to choose right color for filling
+\end{itemize}
+\item\relax [palete > wand tracking tool] (IJ:19.7)
+\begin{itemize}
+\item use to select shapes
+\item apply Copy (ctrl-c), Paste (ctrl-v), Cut (ctrl-x)
+\item alternatively select, move selection, choose color and try Fill (f), Draw (d), Clear tools (IJ:27.2 IJ:27.9-10)
+\end{itemize}
+\item\relax [palete > rectangular selection] (IJ:19.1)
+\begin{enumerate}
+\item select a rectangular shape around blue rectangle
+\item apply Copy (ctrl-c), Paste (ctrl-v)
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+\subsection{copy pasting from image to image}
+\label{sec-1-3}
+\begin{enumerate}
+\item \textbf{target:} create a figure illustrating the difference in C. elegans
+phenotype (see elegance-fig.tif) based on elegans.tif example
+\item file > new > image (IJ:26.1)
+\begin{itemize}
+\item Type: 8bit
+\item Slices: 1
+\item Fill with: black
+\end{itemize}
+\item file > save as > tif : my-elegance-fig.tif (IJ:26.10.1)
+\item\relax [palete > color picker] (IJ:19.11)
+\begin{itemize}
+\item choose white as foreground and black as background
+\end{itemize}
+\item file > open : [elegance.tif] (IJ:26.2)
+\item find two different phenotypes of a worm; for each worm
+\begin{enumerate}
+\item select worm with [palete > rectangular selection]
+(IJ:19.1)
+\item edit > selection > add to manager (ctrl-t) (IJ:27.12.22)
+\begin{itemize}
+\item analyze > tools > ROI manager
+\end{itemize}
+\end{enumerate}
+\item prepare the template as in elegance example (see elegance-fig.tif)
+\begin{enumerate}
+\item\relax [palete > straight line] (ctrl-click to select \textbf{straight} mode) (IJ:19.2)
+\begin{itemize}
+\item use line selection to create two horizontal lines (use shift
+while drawing)
+\item create line; Draw (d); move line down; Draw (d); add to
+selection for future
+\end{itemize}
+\item\relax [palete > text tool] (IJ:19.8)
+\begin{itemize}
+\item add text for "GFP" and "Brightfield"
+\item confirm with ctrl-d (or edit > draw)
+\end{itemize}
+\item use ROI manager to put ROIs into right places (analogous to
+elegance-fig.tif); for each ROI from original image:
+\begin{itemize}
+\item paste ROI into new image
+\item move it to desired location
+\item add it to the ROI manager
+\end{itemize}
+\end{enumerate}
+\item copy paste selected worms to the new images (two channel per worm)
+\begin{itemize}
+\item use ROI to find a worm position
+\item choose channel: GFP or Brightfield
+\item copy selection
+\item choose my-elegance-fig.tif window
+\item use ROI to select desired paste location
+\item paste
+\item repeat procedure for all four images
+\end{itemize}
+\item file > save (IJ:26.10.1)
+\end{enumerate}
+
+\subsection{file handling and non-invasive editing}
+\label{sec-1-4}
+\begin{enumerate}
+\item file > open samples > blobs (shift-b) (IJ:26.4)
+\item analyze > tools > scale bar (IJ:30.14.6)
+\begin{itemize}
+\item set color, background, position
+\item check: overlay, bold
+\end{itemize}
+\item file > save as > tiff : blobs1.tif (IJ:26.10.1)
+\begin{itemize}
+\item saving the image as tiff keeps the scale bar as an overlay, so pixel-values below it are kept
+\end{itemize}
+\end{enumerate}
+
+\subsection{file handling and invasive editing}
+\label{sec-1-5}
+\begin{enumerate}
+\item file > open : [blobs1.tif] (IJ:26.2)
+\item image > info (i) (IJ:28.3)
+\item image > overlay > remove overlay (IJ:28.14.7)
+\item analyze > set scale  (IJ:30.8)
+\begin{itemize}
+\item set scale such as image is 100 um long in each dimension
+\end{itemize}
+\item analyze > tools > scale bar (IJ:30.14.6)
+\begin{itemize}
+\item set color, background, position
+\item check: NO overlay
+\end{itemize}
+\item file > save as > tiff : blobs2.tif (IJ:26.10.1)
+\begin{itemize}
+\item load again to check the difference (e.g. check info)
+\end{itemize}
+\end{enumerate}
+
+\subsection{8-bit and 16-bit pseudocolor images}
+\label{sec-1-6}
+\begin{enumerate}
+\item file > open samples > blobs (shift-b) (IJ:26.4)
+\item inspect pixel values (IJ:p.28:Toolbar)
+\item image > lookup table > invert LUT (IJ:28.15.1)
+\item analyze > tools > calibration bar (IJ:30.14.7)
+
+\item file > open > [blobs16bit.tif] (IJ:26.2)
+\item inspect pixel values (IJ:p.28:Toolbar)
+\begin{itemize}
+\item alternatively use Pixel Inspector (IJ:19.20)
+\end{itemize}
+\item analyze > tools > calibration bar (IJ:30.14.7)
+
+\item file > open samples > blobs (shift-b) (IJ:26.4)
+\item add arrow in overlay (IJ:19.13)
+\begin{itemize}
+\item play with the look of the arrow (i.e. colors, thickness)
+\item indicate a blob which you like
+\item confirm by ctrl-b (IJ:19.8)
+\end{itemize}
+\item add arrow in draw (IJ:19.13)
+\begin{itemize}
+\item confirm by ctrl-d (IJ:19.8)
+\end{itemize}
+\item mark a part of image with overlay brush (IJ:19.18)
+\begin{itemize}
+\item play with transparency
+\item cover blobs marked by arrows with red paint
+\end{itemize}
+\end{enumerate}
+
+\subsection{pseudocolor image to RGB conversion}
+\label{sec-1-7}
+\begin{enumerate}
+\item file > open samples > blobs (shift-b) (IJ:26.4)
+\item image > duplicate (IJ:28.9)
+\item rename images: left and right
+\begin{itemize}
+\item image > rename (IJ:28.10)
+\end{itemize}
+\item change color lookup table for left and right
+\begin{itemize}
+\item Image > Look up table > Fire | green
+\end{itemize}
+\item duplicate both images (IJ:28.9)
+\begin{itemize}
+\item name them left-1 and right-1
+\end{itemize}
+\item image > stack > tools > combine (IJ:28.6.15.1)
+\begin{itemize}
+\item select left and right
+\end{itemize}
+\item select left-1
+\begin{itemize}
+\item image > type > Color RGB (IJ:7)
+\item check with picker what are the values in pixels (IJ:p.28:Toolbar)
+\end{itemize}
+\item select left-2
+\begin{itemize}
+\item image > type > Color RGB (IJ:7)
+\end{itemize}
+\item image > stack > tools > combine (IJ:28.6.15.1)
+\begin{itemize}
+\item select left-1 and right-1
+\end{itemize}
+\end{enumerate}
+
+\subsection{color spaces}
+\label{sec-1-8}
+\begin{enumerate}
+\item file > open : [blob-combined.tif] (IJ:26.2)
+\item plugins > Color Inspector 3D
+\item switch "Display mode" to histogram
+\item play with color: rotation | saturation | brightness
+\begin{itemize}
+\item compare RGB space with e.g. LAB
+\end{itemize}
+\end{enumerate}
+
+\subsection{histogram operations}
+\label{sec-1-9}
+\begin{enumerate}
+\item file > open samples > blobs (shift-b) (IJ:26.4)
+\item image > lookup tables > invert LUT (IJ:28.15.1)
+\item analyze > histogram (IJ:30.10)
+\begin{itemize}
+\item mark live
+\end{itemize}
+\item select line tool (IJ:19.2) (IJ:p.28:Interface)
+\item analyze > plot profile (IJ:30.11)
+\begin{itemize}
+\item mark Live
+\item move line
+\item double click on line icon
+\item change line thickness (move line)
+\end{itemize}
+\item edit > selection > select none
+\item image > adjust > brightness/contrast (IJ:28.2.1)
+\begin{itemize}
+\item play with settings to achieve white blobs and black background (actually you almost thresholded image)
+\item apply when finished (note: pixel values are altered)
+\end{itemize}
+
+\item file > open samples > M51 galaxy (IJ:26.4)
+\item (2x) image > duplicate (IJ:28.9)
+\item (3x) analyze > histogram (IJ:30.10)
+\begin{itemize}
+\item mark live
+\item check log button
+\end{itemize}
+\item on each image
+\begin{itemize}
+\item process > enhance contrast (IJ:29.5)
+\begin{itemize}
+\item equalize checked
+\end{itemize}
+\item process > enhance contrast (IJ:29.5)
+\begin{itemize}
+\item normalize checked
+\end{itemize}
+\item process > enhance local contrast (CLAHE)
+\begin{itemize}
+\item \url{http://fiji.sc/wiki/index.php/Enhance_Local_Contrast_(CLAHE)}
+\end{itemize}
+\end{itemize}
+\item compare the results
+\end{enumerate}
+
+\subsection{using 16 bit images to increase precision}
+\label{sec-1-10}
+\begin{enumerate}
+\item file > open samples > M51 galaxy (IJ:26.4)
+\item image > lookup tables > fire (IJ:28.15)
+\item image > duplicate (IJ:28.9)
+\item (2x) analyze > histogram (IJ:30.10)
+\begin{itemize}
+\item mark live
+\item check log button
+\end{itemize}
+\item on first image:
+\begin{itemize}
+\item image > type > 8 bit
+\item process > enhance contrast (IJ:29.5)
+\begin{itemize}
+\item equalize checked
+\end{itemize}
+\end{itemize}
+\item on second image:
+\begin{itemize}
+\item process > enhance contrast (IJ:29.5)
+\begin{itemize}
+\item equalize checked
+\end{itemize}
+\end{itemize}
+\item for both img.: image > lookup tables > fire (IJ:28.15)
+\item select center of the galaxy with [palete > rectangular
+selection] (IJ:19.1)
+\item edit > selection > add to manager (ctrl-t) (IJ:27.12.22)
+\begin{itemize}
+\item analyze > tools > ROI manager
+\item switch window to second image
+\item click ROI you just added that it appears in the second image
+\end{itemize}
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: mean gray value / standard deviation
+\end{itemize}
+\item for both img.: analyze > measure (m) (IJ:29.12.1)
+\item for both img.: image > lookup tables > glasbey (IJ:28.15)
+\item compare the results
+\end{enumerate}
+
+\section{working with multichannel images}
+\label{sec-2}
+\subsection{create new image}
+\label{sec-2-1}
+\begin{enumerate}
+\item \textbf{target:} create a sketch of a cell as in [cell.tif]
+\item file > new > image (IJ:26.1)
+\begin{itemize}
+\item Type: 8bit
+\item Slices: 2
+\item Fill with: black
+\end{itemize}
+\item\relax [palete > brush] (IJ:19.4)
+\begin{itemize}
+\item right click on the [palete > brush]
+\begin{itemize}
+\item uncheck: "Paint in overlay"
+\end{itemize}
+\end{itemize}
+\item\relax [palete > color picker] (IJ:19.11)
+\begin{itemize}
+\item choose red as foreground
+\end{itemize}
+\item Draw an outline of a cell ;)
+\item image > color > channel tool (ctrl-z) (IJ:28.5.3)
+\begin{itemize}
+\item make composite (IJ:28.5.5)
+\end{itemize}
+\item Switch a slice with a slider
+\item\relax [palete > color picker] (IJ:19.11)
+\begin{itemize}
+\item choose blue as foreground
+\end{itemize}
+\item Draw cell nuclei
+\item\relax [palete > brush] (IJ:19.4)
+\begin{itemize}
+\item right click on the [palete > brush]
+\begin{itemize}
+\item check: "Paint in overlay"
+\end{itemize}
+\end{itemize}
+\item\relax [palete > color picker] (IJ:19.11)
+\begin{itemize}
+\item choose blue as foreground
+\end{itemize}
+\item Draw cell vesicles
+\item Inspect pixel values (IJ:p.28:Toolbar)
+\begin{itemize}
+\item alternatively use Pixel Inspector (IJ:19.20)
+\item switch a slice with a slider
+\item move inspector between: outline | nuclei | vesicles
+\end{itemize}
+\item image > color > channel tool (ctrl-z) (IJ:28.5.3)
+\begin{itemize}
+\item switch between composite | color | grey
+\end{itemize}
+\item file > save as > tif : my-cell.tif (IJ:26.10.1)
+\end{enumerate}
+
+\subsection{composite images - splitting and merging}
+\label{sec-2-2}
+\begin{enumerate}
+\item file > open samples > fluorescent cells (IJ:26.4)
+\item image > color > arrange channels 
+\begin{itemize}
+\item click on New 1, and select magenta
+\end{itemize}
+\item image > color > split channels (IJ:28.5.1)
+\item merge channels to composite
+\begin{itemize}
+\item image > color > channels tool (shift-z) (IJ:28.7.5)
+\item check "create composite" box (IJ:28.5.2)
+\end{itemize}
+\item color blindness
+\begin{itemize}
+\item image > color > simulate color blindness
+\item image > color > dichromacy
+\end{itemize}
+\end{enumerate}
+
+\subsection{composite images - individual channel corrections}
+\label{sec-2-3}
+\begin{enumerate}
+\item \textbf{target:} create an image with brightfield / red / cyan channels
+which shows locations with strongest expression of these fluorophores
+\item file > open samples > neuron (IJ:26.4)
+\item image > color > channel tool (IJ:28.7.5)
+\item for each channel 
+\begin{itemize}
+\item adjust contrast such as final image "conveys the message" (IJ:28.2.1)
+\end{itemize}
+\end{enumerate}
+
+\subsection{microscopy stacks handling}
+\label{sec-2-4}
+\begin{enumerate}
+\item \textbf{target:} make a video and a picture for publication showing progression of mitosis in time (see: mitosis-montage.tif)
+\item open : [mitosis-mixedStack.tif] (IJ:26.2)
+\item image > hyperstacks > reorder hyperstacks
+\begin{itemize}
+\item swap z with t
+\end{itemize}
+\item image > stacks > tools > make substack (IJ:28.6.15.7)
+\item image > duplicate (IJ:28.9)
+\begin{itemize}
+\item check duplicate hyperstack
+\end{itemize}
+\item image > color > channels tool (shift-z) (IJ:28.7.5)
+\begin{itemize}
+\item split channels (IJ:28.5.1)
+\end{itemize}
+\item for both C1 and C2 images
+\begin{itemize}
+\item choose LUT Fire (IJ:19.7)
+\item create channel label (IJ:19.8)
+\item image > type > color RGB (IJ:7)
+\end{itemize}
+\item for original two channel image
+\begin{itemize}
+\item image > type > color RGB (IJ:7)
+\end{itemize}
+\item image > stacks > tools > combine (IJ:28.6.15.1)
+\begin{itemize}
+\item choose left: 2 channel image
+\item choose right: C1
+\end{itemize}
+\item image > stacks > tools > combine (IJ:28.6.15.1)
+\begin{itemize}
+\item choose left: merged image
+\item choose right: C2
+\end{itemize}
+\item image > stacks > series labeller
+\begin{itemize}
+\item select time and other options; use preview to peek
+\end{itemize}
+\item file > save as > avi (IJ:26.10.1)
+\begin{itemize}
+\item e.g. 10 frames per sec.
+\end{itemize}
+\item image > stacks > make montage (IJ:28.6.8)
+\begin{itemize}
+\item play with settings:
+\begin{itemize}
+\item columns 1
+\item rows 5
+\item increment 12
+\end{itemize}
+\end{itemize}
+\item file > save as > tiff (IJ:26.10.1)
+\end{enumerate}
+
+\section{image processing: thresholding \& filters}
+\label{sec-3}
+\subsection{basic concept of thresholding}
+\label{sec-3-1}
+\begin{enumerate}
+\item \textbf{target:} Threshold blob.gif image to create a mask enabling
+segmentation of blob-like structures (i.e. create an image where the
+values of all pixels not belonging to blob-like structures are
+set to 0, and all other pixel values are equal to 255).
+\item file > open samples > blobs (IJ:26.4)
+\item image > lookup table > invert LUT (IJ:28.15.1)
+\item image > duplicate (IJ:28.9)
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item set up sliders and Dark background checkbox and threshold the
+image:
+\begin{itemize}
+\item use 126 value as threshold
+\end{itemize}
+\item note: pixel values are altered
+\end{itemize}
+\item (optional) image > adjust > auto threshold
+\end{enumerate}
+
+\subsection{basic concept of filtering: binary filters}
+\label{sec-3-2}
+\begin{enumerate}
+\item open : [blobs-thr.tif] (IJ:26.2)
+\item image > duplicate (IJ:28.9)
+\item process > binary > watershed (IJ:29.8.12)
+\item process > noise > remove outliers (IJ:29.6.5)
+\begin{itemize}
+\item check preview
+\item list bright
+\end{itemize}
+\item (process > find maxima) (IJ:29.4)
+\item (2x) process > binary > erode (IJ:29.8.3)
+\item process > find edges (IJ:29.3)
+\item process > binary > fill holes (IJ:29.8.8)
+\end{enumerate}
+
+\subsection{basic concept of filters: sharpen}
+\label{sec-3-3}
+\begin{enumerate}
+\item file > open samples > hela cells (IJ:26.4)
+\item process > filters > unsharp mask (IJ:29.11.8)
+\begin{itemize}
+\item check how it behaves when image is composite / color (use channel tool for this purpose) (IJ:28.7.5)
+\end{itemize}
+\end{enumerate}
+
+\subsection{basics mathematical operations on single image}
+\label{sec-3-4}
+\begin{enumerate}
+\item open : [f2.tif] (IJ:26.2)
+\item process > math > add (IJ:29.9.1)
+\begin{itemize}
+\item play with different functions
+\item check what happens when image is 32 bit
+\end{itemize}
+\end{enumerate}
+\subsection{beyond the limits of bits}
+\label{sec-3-5}
+\begin{enumerate}
+\item \textbf{target:} Perform consecutive addition and subtraction of the
+same value from an image. Compare the results with original image.
+\item open : [spooked$_{\text{16bit}}$.tif] (IJ:29.9.1)
+\item image > duplicate (IJ:28.9)
+\begin{itemize}
+\item work on the copy
+\end{itemize}
+\item process > math > add (IJ:29.9.1)
+\begin{itemize}
+\item add value: 600
+\end{itemize}
+\item process > math > subtract (IJ:29.9.2)
+\begin{itemize}
+\item subtract value: 600
+\end{itemize}
+\item comapare the original and the copy: are they the same? What has happened?
+\end{enumerate}
+\subsection{basics mathematical operations on two images}
+\label{sec-3-6}
+\begin{enumerate}
+\item open : [f2.tif] and [f1.tif] (IJ:26.2)
+\item process > calculator (IJ:29.13)
+\begin{itemize}
+\item start with add
+\item check what happens when image is 32 bit
+\item play with different functions
+\end{itemize}
+\end{enumerate}
+\subsection{seeing JPEG artifacts}
+\label{sec-3-7}
+\begin{enumerate}
+\item \textbf{target:} Save the same image in TIFF and JPEG formats. Compare
+the differences
+\item file > open : [tulip.tif] (IJ:26.2)
+\item image > duplicate (IJ:28.9)
+\begin{itemize}
+\item work on the copy
+\end{itemize}
+\item file > save as > jpg (IJ:26.10.3)
+\begin{itemize}
+\item tulip.jpg
+\end{itemize}
+\item\relax [palete > pencil ] (IJ:19.19)
+\begin{itemize}
+\item modify value of only one pixel
+\end{itemize}
+\item file > save as > jpg (IJ:26.10.3)
+\begin{itemize}
+\item tulip-1px.jpg
+\end{itemize}
+\item close all jpeg files and reopen them
+\item process > calculator (IJ:29.13)
+\begin{itemize}
+\item image1: tulip.tif
+\item operation: subtract
+\item image2: tulip.jpg
+\item checked: create new window
+\item checked: 32 bit result
+\end{itemize}
+\item process > calculator (IJ:29.13)
+\begin{itemize}
+\item image1: tulip-1px.jpg
+\item operation: subtract
+\item image2: tulip.jpg
+\item checked: create new window
+\item checked: 32 bit result
+\end{itemize}
+\item \textbf{questions:}
+\begin{itemize}
+\item What are the differences between images tif and jpg images? Why?
+\item How many pixels are affected by changing only 1 pixel in jpg
+image? Why?
+\end{itemize}
+\end{enumerate}
+\section{background elimination}
+\label{sec-4}
+\subsection{dividing by background image}
+\label{sec-4-1}
+\begin{enumerate}
+\item \textbf{target:} Estimate the local ratio of increase by dividing the
+image by background. Check the impact of 32-bit image conversion
+on the quatlity of the result.
+\item file > open : [xxx.tif] (IJ:26.2)
+\item file > open : [xxx$_{\text{background}}$.tif] (IJ:26.2)
+\item process > calculator (IJ:29.13)
+\begin{itemize}
+\item image1: xxx.tif
+\item operation: subtract
+\item image2: xxx$_{\text{background}}$.tif
+\item checked: create new window
+\item checked: 32 bit result
+\end{itemize}
+\item process > calculator (IJ:29.13)
+\begin{itemize}
+\item image1: xxx.tif
+\item operation: subtract
+\item image2: xxx$_{\text{background}}$.tif
+\item checked: create new window
+\item unchecked: 32 bit result
+\end{itemize}
+\item \textbf{question:} what is the reason of \href{https://en.wikipedia.org/wiki/Posterization}{posterization} ?
+\end{enumerate}
+
+\subsection{background elimination - flat field correction}
+\label{sec-4-2}
+\begin{enumerate}
+\item file > open > cell colony (IJ:26.4)
+\item use selection to draw a horizontal line across the image (IJ:19.2)
+\item analyze > plot profile
+\begin{itemize}
+\item check live
+\end{itemize}
+\item process > subtract background
+\begin{itemize}
+\item click: preview
+\item click: create background
+\item vary: rolling ball radius
+\item try: sliding paraboloid
+\end{itemize}
+\end{enumerate}
+
+\subsection{background elimination - flat field correction using Image calculator}
+\label{sec-4-3}
+\begin{enumerate}
+\item file > open samples > cell colony (IJ:26.4)
+\item image > duplicate (IJ:28.9)
+\item process > filters > gaussian blur \% sigma \textasciitilde{}= 30 (IJ:29.11.2)
+\item measure mean of blurred image (select it, "a", "m") (IJ:29.12.1)
+\item process > calculator plus > divide (i1 = image, i2 = blurred image, k1 = mean, k2 = 0)
+\end{enumerate}
+
+\section{manual measurements and working with rois}
+\label{sec-5}
+\subsection{measuring fluorescence within a selection}
+\label{sec-5-1}
+\begin{enumerate}
+\item task : measure average flu. in Red channel in neuron
+\item file > open samples > neuron (IJ:26.4)
+\item image > color > channel tool (IJ:28.7.5)
+\begin{itemize}
+\item split channels (IJ:28.5.1)
+\end{itemize}
+\item close all but green and red
+\item work on green image
+\begin{itemize}
+\item image > duplicate (IJ:28.9)
+\item process > filters > gaussian blur (IJ:29.11.2)
+\begin{itemize}
+\item use preview to set parameters
+\end{itemize}
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item threshold to create neuron mask (avoid false negatives)
+\end{itemize}
+\item use wand tool to select main part of the neuron (IJ:19.7)
+\item analyze > tools > roi manager (IJ:30.14.5)
+\begin{itemize}
+\item roi manager > add (t) (IJ:27.12.22)
+\end{itemize}
+\end{itemize}
+\item choose second copy of green
+\begin{itemize}
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item threshold to create neuron mask (avoid false negatives)
+\end{itemize}
+\item edit > selection > create selection (IJ:27.12.11)
+\item roi manager > add (t) (IJ:27.12.22)
+\item edit > selection > select none (ctrl-shift-a) (IJ:27.12.2)
+\item process > noise > remove outliers (IJ:29.6.5)
+\begin{itemize}
+\item use preview; remove some of the outliers outside of neuron
+\end{itemize}
+\item edit > selection > create selection (IJ:27.12.11)
+\item roi manager > add (t) (IJ:27.12.22)
+\end{itemize}
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: area / area fraction / mean gray value
+\end{itemize}
+\item work on red image
+\begin{itemize}
+\item choose multi point tool (IJ:19.5)
+\begin{itemize}
+\item select some points in the neuron
+\item edit > selection > enlarge (IJ:27.12.14)
+\item roi manager > add (t) (IJ:27.12.22)
+\end{itemize}
+\end{itemize}
+\item for each selection
+\begin{itemize}
+\item analyze > measure (m) (IJ:29.12.1)
+\end{itemize}
+\item roi manager > more > save selection (IJ:30.14.5)
+\end{enumerate}
+
+\subsection{measuring geometrical properties in the image}
+\label{sec-5-2}
+\begin{enumerate}
+\item task : measure average flu. in Red channel in neuron
+\item file > open samples > neuron (IJ:26.4)
+\item use polygon selection tool to measure cell body area (IJ:19.1.6)
+\begin{itemize}
+\item use measure to get the read out after creating polygon (IJ:29.12.1)
+\begin{itemize}
+\item roi manager > add (t) (IJ:27.12.22)
+\end{itemize}
+\end{itemize}
+\item use segmented line tool (IJ:19.2.2) to measure length of few
+dendrits
+\begin{itemize}
+\item test shift and alt while adding points (with mouse over a point)
+\item use measure to get the read out after creating a line
+(IJ:29.12.1)
+\item roi manager > add (t) (IJ:27.12.22)
+\end{itemize}
+\item use angle tool (IJ:19.2.2) to measure length of few dendrits
+\begin{itemize}
+\item use measure to get the read out after creating an angle (IJ:29.12.1)
+\item roi manager > add (t) (IJ:27.12.22)
+\end{itemize}
+\item roi manager > more > save selection (IJ:30.14.5)
+\end{enumerate}
+
+\section{automatic measurements}
+\label{sec-6}
+\subsection{identifying and measuring objects - basics}
+\label{sec-6-1}
+\begin{enumerate}
+\item open : [blobs-thr.tif] (IJ:26.2)
+\item image > duplicate (IJ:28.9)
+\item process > binary > watershed (IJ:29.8.12)
+\item process > noise > remove outliers (IJ:29.6.5)
+\begin{itemize}
+\item check preview
+\end{itemize}
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: area / area fraction / mean gray value
+\end{itemize}
+\item analyze > analyze particles  (IJ:30.2)
+\begin{itemize}
+\item test different options
+\end{itemize}
+\end{enumerate}
+
+\subsection{identifying and measuring objects - cells \#1}
+\label{sec-6-2}
+\begin{enumerate}
+\item \textbf{target:} measure distribution of RFP signal inside nucleus across cell population
+\item open : [hela1.tif] (IJ:26.2)
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item test different option to isolate cells
+\end{itemize}
+\item \textbf{question:} What are the difficulties?
+\end{enumerate}
+
+\subsection{identifying and measuring objects - cells \#2}
+\label{sec-6-3}
+\begin{enumerate}
+\item \textbf{target:} measure distribution of RFP signal inside nucleus
+across cell population
+\item open : [hela2.tif] (IJ:26.2)
+\item image > color > split channel (IJ:28.5.1)
+\item work on blue channel (DAPI)
+\begin{itemize}
+\item image > adjust > threshold (IJ:28.2.4)
+\item process > binary > watershed (IJ:29.8.12)
+\item process > noise > remove outliers (IJ:29.6.5)
+\begin{itemize}
+\item check preview
+\end{itemize}
+\end{itemize}
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: area / area fraction / mean gray value
+\item redirect to: RFP
+\end{itemize}
+\item analyze > analyze particles  (IJ:30.2)
+\item analyze > distribution (IJ:30.4)
+\begin{itemize}
+\item choose: gray value
+\end{itemize}
+\end{enumerate}
+
+\section{scripting / macros / automation basics}
+\label{sec-7}
+\subsection{macro recorder - reproducing edits}
+\label{sec-7-1}
+\begin{enumerate}
+\item \textbf{target:} save the edit chain for later (to save work and to
+document parameters used by different filters)
+\item plugins > macro > recorder (IJ:31.1.4)
+\item file > open samples > mri-stack (IJ:26.4)
+\item process > filters > gaussian blur \% sigma \textasciitilde{}= 2 (IJ:29.11.2)
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item select manually threshold such as the head is separated from background
+\item ignore small holes
+\item uncheck box: calculate threshold for each image
+\end{itemize}
+\item process > binary > fill holes (IJ:29.8.8)
+\item (optional) use analyze > set scale to calibrate the measurement units
+\begin{itemize}
+\item 200 pixels is 25 cm
+\end{itemize}
+\end{enumerate}
+\subsection{macro recorder - repeating actions on stack}
+\label{sec-7-2}
+\begin{enumerate}
+\item \textbf{target:} calculate the volume of human skull
+\item file > open samples > mri-stack (IJ:26.4)
+\begin{itemize}
+\item use steps below or macro developed in previous excercise
+\end{itemize}
+\item process > filters > gaussian blur \% sigma \textasciitilde{}= 2 (IJ:29.11.2)
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item select manually threshold such as the head is separated from background
+\item ignore small holes
+\end{itemize}
+\item process > binary > fill holes (IJ:29.8.8)
+\item (optional) use set scale to calibrate the measurement units
+\item plugins > macro > recorder (IJ:31.1.4)
+\item analyse > measure (IJ:29.12.1)
+\item image > stacks > next slice (IJ:28.6.3)
+\item in recorder click "create" button
+\item use copy paste to execute the same action many times:
+\end{enumerate}
+\begin{verbatim}
+run("Next Slice [>]");
+run("Measure");
+run("Next Slice [>]");
+run("Measure");
+run("Next Slice [>]");
+run("Measure");
+run("Next Slice [>]");
+run("Measure");
+\end{verbatim}
+\begin{enumerate}
+\item \textbf{Question:} how to compute volume of human skull based on the measurement?
+\end{enumerate}
+
+\subsection{automatic iteration}
+\label{sec-7-3}
+\begin{enumerate}
+\item \textbf{target:} avoid copy pasting - use iteration instead
+\item continue from last example or open preprocessed file
+\begin{itemize}
+\item file > open > [mri-stack-binary] (IJ:26.4)
+\end{itemize}
+\item make sure that the code looks in the following way:
+\end{enumerate}
+\begin{verbatim}
+for (currentStep=0; currentStep<100;currentStep++){
+  run("Next Slice [>]");
+  run("Measure");
+}
+\end{verbatim}
+\begin{enumerate}
+\item \textbf{Question:} what is the issue with this approach?
+\end{enumerate}
+
+\subsection{automatic iteration - introducing function for stop condition}
+\label{sec-7-4}
+\begin{enumerate}
+\item \textbf{target:} avoid fixed stop condition and exchange it by more
+accurate mechanism
+\item continue from last example or open preprocessed file
+\begin{itemize}
+\item file > open > [mri-stack-binary] (IJ:26.4)
+\end{itemize}
+\item make sure that the code looks in the following way:
+\end{enumerate}
+\begin{verbatim}
+for (currentStep=1; currentStep<=nSlices();currentStep++){
+  setSlice(currentStep);
+  run("Measure");
+}
+\end{verbatim}
+
+\subsection{adding macro to the menu}
+\label{sec-7-5}
+\begin{enumerate}
+\item \textbf{target:} add macro to the menu
+\item continue from last example or open preprocessed file
+\begin{itemize}
+\item file > open > [mri-stack-binary] (IJ:26.4)
+\end{itemize}
+\item switch to code editor and make sure that the code looks in the
+following way:
+\end{enumerate}
+\begin{verbatim}
+macro "measure stack" {
+  for (currentStep=1; currentStep<=nSlices();currentStep++){
+	setSlice(currentStep);
+	run("Measure");
+  }
+}
+\end{verbatim}
+\begin{enumerate}
+\item language > ImageJ Macro
+\item save > .ijm
+\item plugins > macros > install\ldots{} (IJ:31.1.1) 
+\begin{itemize}
+\item select the macro you just saved
+\end{itemize}
+\item (optional) test following FIJI tool
+\begin{itemize}
+\item image > stacks > plot z axis profile (IJ:28.6.13)
+\end{itemize}
+\end{enumerate}
+
+\subsection{iterations and variables in the macro: multi-measurement}
+\label{sec-7-6}
+\begin{enumerate}
+\item \textbf{target:} prepare the evenly distributed selection over the
+image v.1 This can be used e.g. in FRAP experiment analysis.
+\item open : [frap.tif] (IJ:26.2)
+\item test code:
+\end{enumerate}
+\begin{verbatim}
+// initialization
+x = 20;
+y = 20;
+
+// iterations
+for (nbr_x=0;nbr_x<5;nbr_x++){
+  for (nbr_y=0;nbr_y<5;nbr_y++){
+	makePoint(x+x*nbr_x, y+y*nbr_y);
+	run("Enlarge...", "enlarge=5 pixel");
+	roiManager("Add");
+  }
+}
+\end{verbatim}
+\subsection{automatic measurement and saving to a file}
+\label{sec-7-7}
+\begin{enumerate}
+\item \textbf{target:} prepare the evenly distributed selection over the image v.2
+\item test code:
+\end{enumerate}
+\begin{verbatim}
+// initialization
+roiManager("reset");
+x = 220;
+y = 110;
+nbr_sensors = 4;
+delta = 12;
+
+// iterations to create selection
+for (nbr_x=0;nbr_x<nbr_sensors;nbr_x++){
+  for (nbr_y=0;nbr_y<nbr_sensors;nbr_y++){
+	makePoint(x+delta*nbr_x, y+delta*nbr_y);
+	run("Enlarge...", "enlarge=5 pixel");
+	roiManager("Add");
+  }
+}
+
+// measurement and save results
+roiManager("Multi Measure");
+fn = getInfo("image.filename");
+saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
+// exchange previous line with your path
+\end{verbatim}
+
+\subsection{user input via GUI}
+\label{sec-7-8}
+\begin{enumerate}
+\item \textbf{target:} prepare the evenly distributed selection over the image v.3
+\item test code:
+\end{enumerate}
+\begin{verbatim}
+// initialization
+roiManager("reset");
+x = 20;
+y = 20;
+nbr_sensors = 4;
+delta = 12;
+
+// GUI
+Dialog.create("Please specify parameters:");
+Dialog.addNumber("Size [px]: ", 5);
+Dialog.show();
+size = Dialog.getNumber();
+
+// iterations to create selection
+for (nbr_x=0;nbr_x<nbr_sensors;nbr_x++){
+  for (nbr_y=0;nbr_y<nbr_sensors;nbr_y++){
+	makePoint(x+delta*nbr_x, y+delta*nbr_y);
+	run("Enlarge...", "enlarge="+ size +" pixel");
+	roiManager("Add");
+  }
+}
+
+// measurement and save results
+roiManager("Multi Measure");
+fn = getInfo("image.filename");
+saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
+// exchange previous line with your path
+\end{verbatim}
+
+\subsection{batch mode - basics}
+\label{sec-7-9}
+\begin{enumerate}
+\item \textbf{target:} Create a macro to segment nuclei in a single
+frame. Your macro should input a row to the Results containing
+area for each nuclei in the image. Process all files in the hela
+folder.
+\item open : [hela/h01.tif] (IJ:26.2)
+\item plugins > macro > recorder (IJ:31.1.4)
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item select: triangle
+\item check: dark background
+\end{itemize}
+\item analyze > analyze particles  (IJ:30.2)
+\item make sure that the code looks in the following way:
+\end{enumerate}
+\begin{verbatim}
+// initialization
+outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
+// exchange previous line with your path
+
+// processing
+run("Gaussian Blur...", "sigma=2 stack");
+setAutoThreshold("Triangle dark");
+run("Convert to Mask");
+run("Set Measurements...", "area mean display redirect=None decimal=9");
+run("Analyze Particles...", "show=[Overlay Masks] display exclude");
+
+// saving
+saveAs("Results", outPath+"Results.txt");
+\end{verbatim}
+\begin{enumerate}
+\item process > batch > macro
+\begin{itemize}
+\item input: select folder with [h01.tif]
+\item output: select folder out in the folder containing [h01.tif]
+\end{itemize}
+\item click process
+
+\item modify the code (\textbf{target:} save each result in separated file):
+\end{enumerate}
+\begin{verbatim}
+// initilization
+fileName = getInfo("image.filename");
+outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
+// exchange previous line with your path
+run("Clear Results");
+
+// processing
+run("Gaussian Blur...", "sigma=2 stack");
+setAutoThreshold("Triangle dark");
+run("Convert to Mask");
+run("Set Measurements...", "area mean display redirect=None decimal=9");
+run("Analyze Particles...", "show=[Overlay Masks] display exclude");
+
+// saving
+saveAs("Results", outPath + "Results-" + fileName + ".txt");
+\end{verbatim}
+\section{workflow: tracking}
+\label{sec-8}
+\subsection{create image with moving dots}
+\label{sec-8-1}
+\begin{enumerate}
+\item \textbf{target:} create an image with moving objects (dots)
+\item make sure that the code looks in the following way:
+\end{enumerate}
+\begin{verbatim}
+macro "create_image_with_moving_objects"{
+  // initial variables
+  nbr_frames = 40; // number of frames in the image
+  color1 = 150; // color of first obj.
+  color2 = 250; // color of sec. obj.
+  canvas_size = 200; // size of the image
+  step = 4; // progress in x between frames
+  delta = 15; // difference in position between two objects in x
+  x = 5; // initial position x of object
+  y = 5;  // initial position y of object
+  width = 10; // baseline size of object in x
+  height = 10; // baseline size of object in y
+
+  // empty image with noise
+  newImage("Image", "8-bit black", canvas_size, canvas_size, nbr_frames); // image will be named "Image"
+  run("Salt and Pepper", "stack");
+
+  for(i=1;i<=nbr_frames;i++){
+	setSlice(i);
+	// first dot
+	setColor(color1,color1,color1);
+	fillOval(x+i*step, y+i*step, width, height);
+	// second dot
+	setColor(color2,color2,color2);
+	fillOval(delta+x+i*step, canvas_size-(y+i*step), width*2, height*2);
+  }
+  run("glasbey");
+}
+\end{verbatim}
+
+\subsection{tracking: process single image}
+\label{sec-8-2}
+\begin{enumerate}
+\item \textbf{target:} for \textbf{current} frame of the stack find the x, y of the
+center of the dot
+\item make sure that the code looks in the following way
+\end{enumerate}
+\begin{verbatim}
+macro "tracking_process_single_image"{
+  run("Median...", "radius=2 slice");
+  setThreshold(0, 100);
+  run("Convert to Mask", "method=Otsu background=Light only");
+  run("glasbey");
+  run("Find Maxima...", "noise=25 output=List light");
+}
+\end{verbatim}
+
+\subsection{tracking: process whole stack}
+\label{sec-8-3}
+\begin{enumerate}
+\item \textbf{target:} for \textbf{all} frames of the stack find the x, y of the
+center of the dot
+\item make sure that the code looks in the following way:
+\end{enumerate}
+\begin{verbatim}
+macro "tracking_process_stack_v1"{
+  r = newArray();
+  for (i=1;i<=nSlices();i++){
+	setSlice(i);
+	run("Median...", "radius=2 slice");
+	setThreshold(0, 100);
+	run("Convert to Mask", "method=Otsu background=Light only");
+	run("glasbey");
+	run("Find Maxima...", "noise=25 output=List light");
+	run("Next Slice [>]");
+
+  // workaround for Find maxima overwriting results at each step
+	for (j=0;j<nResults();j++){
+	  x = getResult("X", j);
+	  y = getResult("Y", j);
+	  print(x, y, i);
+	  temp = newArray(x, y);
+	  r = Array.concat(r, temp);
+	}
+  }
+  Array.show( r );
+}
+\end{verbatim}
+
+\subsection{tracking: process whole stack - enabling linking of the objects}
+\label{sec-8-4}
+\begin{enumerate}
+\item \textbf{target:} for \textbf{all} frames of the stack find the x, y of the
+center of the dot as well as some object features (i.e. size,
+mean grey value).
+\item make sure that the code looks in the following way:
+\end{enumerate}
+\begin{verbatim}
+macro "tracking_process_stack_v2"{
+  // clearing previous result and preparing image copy
+  run("Clear Results"); 
+  rename("Image");
+  run("Duplicate...", "duplicate");
+  rename("orig");
+  selectWindow("Image");
+
+  // iterating for each slice in the stack
+  for (i=1;i<=nSlices();i++){
+	setSlice(i);
+	run("Median...", "radius=2 slice"); // removing noise
+	setThreshold(0, 100); // hardcoded thr. for image
+	run("Convert to Mask", "method=Otsu background=Light only");
+	run("glasbey"); // changing LUT to get false collors to better distinguish objects
+	run("Set Measurements...", "area mean standard center median skewness area_fraction stack redirect=orig decimal=2");
+	run("Analyze Particles...", "display slice");
+	run("Next Slice [>]");
+  }
+}
+\end{verbatim}
+\section{workflow: FRET}
+\label{sec-9}
+\subsection{preparation part 1 - image import}
+\label{sec-9-1}
+\begin{enumerate}
+\item \textbf{target:} open .lif image and prepare it for further editing
+\item file > open : [FRET$_{\text{biosensor}}$.lif] (IJ:26.2)
+\begin{itemize}
+\item configure the importer
+\item disable: all series
+\end{itemize}
+\item choose 3rd serie
+\item image > stacks > z project (IJ:28.6.11)
+\item image > color > split channel (IJ:28.5.1)
+\item select blue channel (ch0) 
+\begin{enumerate}
+\item file > save as > tif : cfp.tif (IJ:26.10.1)
+\end{enumerate}
+\item select yellow channel (ch1) 
+\begin{enumerate}
+\item file > save as > tif : yfp.tif (IJ:26.10.1)
+\end{enumerate}
+\end{enumerate}
+
+\subsection{preparation part 2 - averaging}
+\label{sec-9-2}
+\begin{enumerate}
+\item \textbf{target:} prepare images for further editing
+\item file > open : [cfp.tif and yfp.tif] (IJ:26.2)
+\item select blue channel (cfp.tif)
+\begin{enumerate}
+\item process > filters > gaussian blur \% sigma \textasciitilde{}= 2 (IJ:29.11.2)
+\item file > save as > tif : cfp-smoothed.tif (IJ:26.10.1)
+\end{enumerate}
+\item select yellow channel (yfp.tif)
+\begin{enumerate}
+\item process > filters > gaussian blur \% sigma \textasciitilde{}= 2 (IJ:29.11.2)
+\item file > save as > tif : yfp-smoothed.tif (IJ:26.10.1)
+\end{enumerate}
+\end{enumerate}
+
+\subsection{preparation part 3 - masks}
+\label{sec-9-3}
+\begin{enumerate}
+\item \textbf{target:} prepare masks
+\item file > open : [yfp-smoothed.tif] (IJ:26.2)
+\item image > adjust > threshold (IJ:28.2.4)
+\begin{itemize}
+\item test different option to isolate chromatine
+\end{itemize}
+\item file > save as > tif : mask.tif (IJ:26.10.1)
+\end{enumerate}
+
+\subsection{preparation part 4 - ratios}
+\label{sec-9-4}
+\begin{enumerate}
+\item \textbf{target:} prepare image with ratios
+\item file > open : [cfp-smoothed.tif and yfp-smoothed.tif] (IJ:26.2)
+\item process > calculator plus > divide (i1 = yfp, i2 = cfp, k1 = 1, k2
+= 0)
+\item file > save as > tif : ratio.tif (IJ:26.10.1)
+\end{enumerate}
+
+\subsection{analysis - problem: cell population}
+\label{sec-9-5}
+\begin{enumerate}
+\item \textbf{target:} measure the change of signal in ratio.tif image
+\item file > open : [ratio.tif] (IJ:26.2)
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: mean gray value / standard deviation
+\end{itemize}
+\item analyze > measure (m) (IJ:29.12.1)
+\item move to next time point; repeat;\ldots{}
+\item image > stacks > plot z axis profile (IJ:28.6.13)
+\begin{itemize}
+\item if does not work: image > hyperstacks > re-order hyperstack
+\begin{itemize}
+\item swap t with z
+\end{itemize}
+\end{itemize}
+\item question:  what is the problem with results?
+\end{enumerate}
+
+\subsection{preparation part 5 - cropping}
+\label{sec-9-6}
+\begin{enumerate}
+\item \textbf{target:} prepare image with ratios
+\item file > open : [all previously prepared images] (IJ:26.2)
+\item choose a cell in transition to anaphase - make sure the field of
+view keeps only this cell during all time-points
+\begin{itemize}
+\item\relax [palette > rectangular selection] (IJ:19.1)
+\item edit > selection > add to manager (ctrl-t) (IJ:27.12.22)
+\item use roi manager to move selection between images
+\begin{itemize}
+\item analyze > tools > ROI manager
+\end{itemize}
+\end{itemize}
+\item image > crop (IJ:28.8)
+\item save all files adding "-crop" postfix
+\end{enumerate}
+
+\subsection{analysis - problem: chromatin change}
+\label{sec-9-7}
+\begin{enumerate}
+\item \textbf{target:} measure the change of signal in ratio-crop.tif image
+\item file > open : [ratio-crop.tif] (IJ:26.2)
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: mean gray value / standard deviation
+\end{itemize}
+\item analyze > measure (m) (IJ:29.12.1)
+\item move to next time point; repeat;\ldots{}
+\item image > stacks > plot z axis profile (IJ:28.6.13)
+\begin{itemize}
+\item if does not work: image > hyperstacks > re-order hyperstack
+\begin{itemize}
+\item swap t with z
+\end{itemize}
+\end{itemize}
+\item question: what are the issues with results?
+\end{enumerate}
+
+\subsection{analysis - problem: manual labor}
+\label{sec-9-8}
+\begin{enumerate}
+\item \textbf{target:} measure the change of signal in ratio-crop.tif image limited
+to chromatin
+\item file > open : [mask-crop.tif] (IJ:26.2)
+\item\relax [palette > wand selection] (IJ:19.7)
+\begin{itemize}
+\item add chromatin from current time-point
+\item edit > selection > add to manager (ctrl-t) (IJ:27.12.22)
+\item move to next time-point
+\item repeat
+\end{itemize}
+\item file > open : [ratio-crop.tif] (IJ:26.2)
+\item analyze > set measurements (IJ:30.7)
+\begin{itemize}
+\item check: mean gray value / standard deviation
+\end{itemize}
+\item select the right ROI; analyze > measure (m) (IJ:29.12.1)
+\item move to next time point; repeat;\ldots{}
+\item question: what are the issues with results?
+\end{enumerate}
+\section{various useful tools}
+\label{sec-10}
+\subsection{installing plugins}
+\label{sec-10-1}
+\begin{enumerate}
+\item download plugin from webpage:
+\url{http://bigwww.epfl.ch/algorithms/esnake/}
+\item unzip, drag and drop to FIJI
+\item create new canvas
+\item draw two white discs on black background
+\item plugins > ESnake
+\begin{itemize}
+\item target brightness: bright
+\end{itemize}
+\item click OK
+\end{enumerate}
+
+\subsection{using line selection to make a "straighten" image}
+\label{sec-10-2}
+\begin{enumerate}
+\item file > open samples > nile bend (IJ:26.4)
+\item use selection tool for freehand selection
+\begin{itemize}
+\item make the line thickness adjusted to cover whole river
+\end{itemize}
+\item edit > selection > straighten (IJ:27.12.17)
+\end{enumerate}
+
+\subsection{using 3D viewer}
+\label{sec-10-3}
+\begin{enumerate}
+\item file > open samples > confocal series (IJ:26.4)
+\item image > properties > voxel depth x10 \% to get decent aspect ratio
+\item plugins > 3D viewer
+\item add > from image \% the resampling factor is a downsampling factor
+\item play with displayed colors
+\item view > start/stop animation
+\item view > change animation settings
+\item view > record 360 degree rotation
+\item file > save as > avi \% try the different compression options uncompressed, jpg, and png
+\end{enumerate}
+% Emacs 25.0.50.4 (Org mode 8.2.10)
+\end{document}

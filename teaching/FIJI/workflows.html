@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Introduction to FIJI - workflows v. 1.2</title>
-<!-- 2015-12-08 Tue 11:29 -->
+<title>Introduction to FIJI - workflows v. 1.3</title>
+<!-- 2016-04-25 Mon 19:54 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Simon Noerrelykke &amp; Szymon Stoma" />
@@ -144,7 +144,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Introduction to FIJI - workflows v. 1.2</h1>
+<h1 class="title">Introduction to FIJI - workflows v. 1.3</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -1581,7 +1581,7 @@ document parameters used by different filters)
 </li>
 <li>file &gt; open samples &gt; mri-stack (IJ:26.4)
 </li>
-<li>process &gt; filters &gt; gaussian blur % sigma ~= 2 (IJ:29.11.2)
+<li>process &gt; filters &gt; gaussian blur with sigma ~= 2 (IJ:29.11.2)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
 <ul class="org-ul">
@@ -1604,6 +1604,7 @@ document parameters used by different filters)
 </ol>
 </div>
 </div>
+
 <div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2"><span class="section-number-3">7.2</span> macro recorder - repeating actions on stack</h3>
 <div class="outline-text-3" id="text-7-2">
@@ -1629,6 +1630,10 @@ document parameters used by different filters)
 <li>process &gt; binary &gt; fill holes (IJ:29.8.8)
 </li>
 <li>(optional) use set scale to calibrate the measurement units
+<ul class="org-ul">
+<li>200 pixels is 25 cm
+</li>
+</ul>
 </li>
 <li>plugins &gt; macro &gt; recorder (IJ:31.1.4)
 </li>
@@ -1639,11 +1644,8 @@ document parameters used by different filters)
 <li>in recorder click "create" button
 </li>
 <li>use copy paste to execute the same action many times:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">run("Next Slice [&gt;]");
+<pre class="example">
+run("Next Slice [&gt;]");
 run("Measure");
 run("Next Slice [&gt;]");
 run("Measure");
@@ -1652,8 +1654,7 @@ run("Measure");
 run("Next Slice [&gt;]");
 run("Measure");
 </pre>
-</div>
-<ol class="org-ol">
+</li>
 <li><b>Question:</b> how to compute volume of human skull based on the measurement?
 </li>
 </ol>
@@ -1673,17 +1674,13 @@ run("Measure");
 </ul>
 </li>
 <li>make sure that the code looks in the following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">for (currentStep=0; currentStep&lt;100;currentStep++){
+<pre class="example">
+for (currentStep=0; currentStep&lt;100;currentStep++){
   run("Next Slice [&gt;]");
   run("Measure");
 }
 </pre>
-</div>
-<ol class="org-ol">
+</li>
 <li><b>Question:</b> what is the issue with this approach?
 </li>
 </ol>
@@ -1704,16 +1701,14 @@ accurate mechanism
 </ul>
 </li>
 <li>make sure that the code looks in the following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">for (currentStep=1; currentStep&lt;=nSlices();currentStep++){
+<pre class="example">
+for (currentStep=1; currentStep&lt;=nSlices();currentStep++){
   setSlice(currentStep);
   run("Measure");
 }
 </pre>
-</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -1731,19 +1726,15 @@ accurate mechanism
 </li>
 <li>switch to code editor and make sure that the code looks in the
 following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">macro "measure stack" {
+<pre class="example">
+macro "measure stack" {
   for (currentStep=1; currentStep&lt;=nSlices();currentStep++){
-	setSlice(currentStep);
-	run("Measure");
+    setSlice(currentStep);
+    run("Measure");
   }
 }
 </pre>
-</div>
-<ol class="org-ol">
+</li>
 <li>language &gt; ImageJ Macro
 </li>
 <li>save &gt; .ijm
@@ -1774,26 +1765,25 @@ image v.1 This can be used e.g. in FRAP experiment analysis.
 <li>open : [frap.tif] (IJ:26.2)
 </li>
 <li>test code:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">// initialization
+<pre class="example">
+// initialization
 x = 20;
 y = 20;
 
 // iterations
 for (nbr_x=0;nbr_x&lt;5;nbr_x++){
   for (nbr_y=0;nbr_y&lt;5;nbr_y++){
-	makePoint(x+x*nbr_x, y+y*nbr_y);
-	run("Enlarge...", "enlarge=5 pixel");
-	roiManager("Add");
+    makePoint(x+x*nbr_x, y+y*nbr_y);
+    run("Enlarge...", "enlarge=5 pixel");
+    roiManager("Add");
   }
 }
 </pre>
+</li>
+</ol>
 </div>
 </div>
-</div>
+
 <div id="outline-container-sec-7-7" class="outline-3">
 <h3 id="sec-7-7"><span class="section-number-3">7.7</span> automatic measurement and saving to a file</h3>
 <div class="outline-text-3" id="text-7-7">
@@ -1801,11 +1791,8 @@ for (nbr_x=0;nbr_x&lt;5;nbr_x++){
 <li><b>target:</b> prepare the evenly distributed selection over the image v.2
 </li>
 <li>test code:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">// initialization
+<pre class="example">
+// initialization
 roiManager("reset");
 x = 220;
 y = 110;
@@ -1815,9 +1802,9 @@ delta = 12;
 // iterations to create selection
 for (nbr_x=0;nbr_x&lt;nbr_sensors;nbr_x++){
   for (nbr_y=0;nbr_y&lt;nbr_sensors;nbr_y++){
-	makePoint(x+delta*nbr_x, y+delta*nbr_y);
-	run("Enlarge...", "enlarge=5 pixel");
-	roiManager("Add");
+    makePoint(x+delta*nbr_x, y+delta*nbr_y);
+    run("Enlarge...", "enlarge=5 pixel");
+    roiManager("Add");
   }
 }
 
@@ -1827,7 +1814,8 @@ fn = getInfo("image.filename");
 saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
 // exchange previous line with your path
 </pre>
-</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -1838,11 +1826,8 @@ saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
 <li><b>target:</b> prepare the evenly distributed selection over the image v.3
 </li>
 <li>test code:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">// initialization
+<pre class="example">
+// initialization
 roiManager("reset");
 x = 20;
 y = 20;
@@ -1858,9 +1843,9 @@ size = Dialog.getNumber();
 // iterations to create selection
 for (nbr_x=0;nbr_x&lt;nbr_sensors;nbr_x++){
   for (nbr_y=0;nbr_y&lt;nbr_sensors;nbr_y++){
-	makePoint(x+delta*nbr_x, y+delta*nbr_y);
-	run("Enlarge...", "enlarge="+ size +" pixel");
-	roiManager("Add");
+    makePoint(x+delta*nbr_x, y+delta*nbr_y);
+    run("Enlarge...", "enlarge="+ size +" pixel");
+    roiManager("Add");
   }
 }
 
@@ -1870,7 +1855,8 @@ fn = getInfo("image.filename");
 saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
 // exchange previous line with your path
 </pre>
-</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -1898,11 +1884,8 @@ folder.
 <li>analyze &gt; analyze particles  (IJ:30.2)
 </li>
 <li>make sure that the code looks in the following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">// initialization
+<pre class="example">
+// initialization
 outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
 // exchange previous line with your path
 
@@ -1916,8 +1899,7 @@ run("Analyze Particles...", "show=[Overlay Masks] display exclude");
 // saving
 saveAs("Results", outPath+"Results.txt");
 </pre>
-</div>
-<ol class="org-ol">
+</li>
 <li>process &gt; batch &gt; macro
 <ul class="org-ul">
 <li>input: select folder with [h01.tif]
@@ -1928,13 +1910,9 @@ saveAs("Results", outPath+"Results.txt");
 </li>
 <li>click process
 </li>
-
 <li>modify the code (<b>target:</b> save each result in separated file):
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">// initilization
+<pre class="example">
+// initilization
 fileName = getInfo("image.filename");
 outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
 // exchange previous line with your path
@@ -1950,10 +1928,12 @@ run("Analyze Particles...", "show=[Overlay Masks] display exclude");
 // saving
 saveAs("Results", outPath + "Results-" + fileName + ".txt");
 </pre>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div>
+
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8"><span class="section-number-2">8</span> workflow: tracking</h2>
 <div class="outline-text-2" id="text-8">
@@ -1964,11 +1944,8 @@ saveAs("Results", outPath + "Results-" + fileName + ".txt");
 <li><b>target:</b> create an image with moving objects (dots)
 </li>
 <li>make sure that the code looks in the following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">macro "create_image_with_moving_objects"{
+<pre class="example">
+macro "create_image_with_moving_objects"{
   // initial variables
   nbr_frames = 40; // number of frames in the image
   color1 = 150; // color of first obj.
@@ -1986,18 +1963,19 @@ saveAs("Results", outPath + "Results-" + fileName + ".txt");
   run("Salt and Pepper", "stack");
 
   for(i=1;i&lt;=nbr_frames;i++){
-	setSlice(i);
-	// first dot
-	setColor(color1,color1,color1);
-	fillOval(x+i*step, y+i*step, width, height);
-	// second dot
-	setColor(color2,color2,color2);
-	fillOval(delta+x+i*step, canvas_size-(y+i*step), width*2, height*2);
+    setSlice(i);
+    // first dot
+    setColor(color1,color1,color1);
+    fillOval(x+i*step, y+i*step, width, height);
+    // second dot
+    setColor(color2,color2,color2);
+    fillOval(delta+x+i*step, canvas_size-(y+i*step), width*2, height*2);
   }
   run("glasbey");
 }
 </pre>
-</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -2009,11 +1987,8 @@ saveAs("Results", outPath + "Results-" + fileName + ".txt");
 center of the dot
 </li>
 <li>make sure that the code looks in the following way
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">macro "tracking_process_single_image"{
+<pre class="example">
+macro "tracking_process_single_image"{
   run("Median...", "radius=2 slice");
   setThreshold(0, 100);
   run("Convert to Mask", "method=Otsu background=Light only");
@@ -2021,7 +1996,8 @@ center of the dot
   run("Find Maxima...", "noise=25 output=List light");
 }
 </pre>
-</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -2033,34 +2009,32 @@ center of the dot
 center of the dot
 </li>
 <li>make sure that the code looks in the following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">macro "tracking_process_stack_v1"{
+<pre class="example">
+macro "tracking_process_stack_v1"{
   r = newArray();
   for (i=1;i&lt;=nSlices();i++){
-	setSlice(i);
-	run("Median...", "radius=2 slice");
-	setThreshold(0, 100);
-	run("Convert to Mask", "method=Otsu background=Light only");
-	run("glasbey");
-	run("Find Maxima...", "noise=25 output=List light");
-	run("Next Slice [&gt;]");
+    setSlice(i);
+    run("Median...", "radius=2 slice");
+    setThreshold(0, 100);
+    run("Convert to Mask", "method=Otsu background=Light only");
+    run("glasbey");
+    run("Find Maxima...", "noise=25 output=List light");
+    run("Next Slice [&gt;]");
 
   // workaround for Find maxima overwriting results at each step
-	for (j=0;j&lt;nResults();j++){
-	  x = getResult("X", j);
-	  y = getResult("Y", j);
-	  print(x, y, i);
-	  temp = newArray(x, y);
-	  r = Array.concat(r, temp);
-	}
+    for (j=0;j&lt;nResults();j++){
+      x = getResult("X", j);
+      y = getResult("Y", j);
+      print(x, y, i);
+      temp = newArray(x, y);
+      r = Array.concat(r, temp);
+    }
   }
   Array.show( r );
 }
 </pre>
-</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -2073,11 +2047,8 @@ center of the dot as well as some object features (i.e. size,
 mean grey value).
 </li>
 <li>make sure that the code looks in the following way:
-</li>
-</ol>
-<div class="org-src-container">
-
-<pre class="src src-pascal">macro "tracking_process_stack_v2"{
+<pre class="example">
+macro "tracking_process_stack_v2"{
   // clearing previous result and preparing image copy
   run("Clear Results"); 
   rename("Image");
@@ -2087,21 +2058,23 @@ mean grey value).
 
   // iterating for each slice in the stack
   for (i=1;i&lt;=nSlices();i++){
-	setSlice(i);
-	run("Median...", "radius=2 slice"); // removing noise
-	setThreshold(0, 100); // hardcoded thr. for image
-	run("Convert to Mask", "method=Otsu background=Light only");
-	run("glasbey"); // changing LUT to get false collors to better distinguish objects
-	run("Set Measurements...", "area mean standard center median skewness area_fraction stack redirect=orig decimal=2");
-	run("Analyze Particles...", "display slice");
-	run("Next Slice [&gt;]");
+    setSlice(i);
+    run("Median...", "radius=2 slice"); // removing noise
+    setThreshold(0, 100); // hardcoded thr. for image
+    run("Convert to Mask", "method=Otsu background=Light only");
+    run("glasbey"); // changing LUT to get false collors to better distinguish objects
+    run("Set Measurements...", "area mean standard center median skewness area_fraction stack redirect=orig decimal=2");
+    run("Analyze Particles...", "display slice");
+    run("Next Slice [&gt;]");
   }
 }
 </pre>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9"><span class="section-number-2">9</span> workflow: FRET</h2>
 <div class="outline-text-2" id="text-9">
@@ -2175,8 +2148,11 @@ mean grey value).
 <ol class="org-ol">
 <li><b>target:</b> prepare masks
 </li>
-<li>file &gt; open : [yfp-smoothed.tif] (IJ:26.2)
-</li>
+</ol>
+<p>
+!2. file &gt; open : [yfp-smoothed.tif] (IJ:26.2)
+</p>
+<ol class="org-ol">
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
 <ul class="org-ul">
 <li>test different option to isolate chromatine
@@ -2418,10 +2394,10 @@ to chromatin
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2015-12-08 Tue&gt;</span></span></p>
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2016-04-20 Wed&gt;</span></span></p>
 <p class="author">Author: Simon Noerrelykke &amp; Szymon Stoma</p>
-<p class="date">Created: 2015-12-08 Tue 11:29</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.51.2 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-04-25 Mon 19:54</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.4 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

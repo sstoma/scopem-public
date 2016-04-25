@@ -1,8 +1,8 @@
 * export settings						   :noexport:
-#+TITLE:     Introduction to FIJI - workflows v. 1.2
+#+TITLE:     Introduction to FIJI - workflows v. 1.3
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2015-12-08 Tue>
+#+DATE:      <2016-04-20 Wed>
 #+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
@@ -15,7 +15,6 @@
 #+LINK_UP:   
 #+LINK_HOME: 
 #+XSLT:
-
 * working with single channel images 
 ** opening the image and basic info
    1. file > open > HeLa (IJ:26.2)
@@ -511,7 +510,7 @@
       document parameters used by different filters)
    2. plugins > macro > recorder (IJ:31.1.4)
    3. file > open samples > mri-stack (IJ:26.4)
-   4. process > filters > gaussian blur % sigma ~= 2 (IJ:29.11.2)
+   4. process > filters > gaussian blur with sigma ~= 2 (IJ:29.11.2)
    5. image > adjust > threshold (IJ:28.2.4)
       - select manually threshold such as the head is separated from background
 	  - ignore small holes
@@ -519,6 +518,7 @@
    6. process > binary > fill holes (IJ:29.8.8)
    7. (optional) use analyze > set scale to calibrate the measurement units
 	  - 200 pixels is 25 cm
+
 ** macro recorder - repeating actions on stack
    1. *target:* calculate the volume of human skull  
    2. file > open samples > mri-stack (IJ:26.4)
@@ -529,12 +529,13 @@
 	  - ignore small holes
    5. process > binary > fill holes (IJ:29.8.8)
    6. (optional) use set scale to calibrate the measurement units
+	  - 200 pixels is 25 cm
    7. plugins > macro > recorder (IJ:31.1.4)
    8. analyse > measure (IJ:29.12.1)
    9. image > stacks > next slice (IJ:28.6.3) 
    10. in recorder click "create" button
    11. use copy paste to execute the same action many times:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v1.ijm" src pascal
+       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v1.ijm" example 
    12. *Question:* how to compute volume of human skull based on the measurement?
 
 ** automatic iteration
@@ -542,7 +543,7 @@
    2. continue from last example or open preprocessed file
 	  - file > open > [mri-stack-binary] (IJ:26.4)
    3. make sure that the code looks in the following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v2.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v2.ijm" example
    4. *Question:* what is the issue with this approach?
 
 ** automatic iteration - introducing function for stop condition
@@ -551,7 +552,7 @@
    2. continue from last example or open preprocessed file
 	  - file > open > [mri-stack-binary] (IJ:26.4)
    3. make sure that the code looks in the following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v3.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v3.ijm" example
 
 ** adding macro to the menu
    1. *target:* add macro to the menu
@@ -559,7 +560,7 @@
 	  - file > open > [mri-stack-binary] (IJ:26.4)
    3. switch to code editor and make sure that the code looks in the
       following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v4.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring_skull_volume_v4.ijm" example
    4. language > ImageJ Macro
    5. save > .ijm
    6. plugins > macros > install... (IJ:31.1.1) 
@@ -572,16 +573,17 @@
       image v.1 This can be used e.g. in FRAP experiment analysis.
    2. open : [frap.tif] (IJ:26.2)
    3. test code:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v1.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v1.ijm" example
+
 ** automatic measurement and saving to a file
    1. *target:* prepare the evenly distributed selection over the image v.2
    2. test code:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v2.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v2.ijm  example
 
 ** user input via GUI
    1. *target:* prepare the evenly distributed selection over the image v.3
    2. test code:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v3.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v3.ijm" example
 
 ** batch mode - basics
    1. *target:* Create a macro to segment nuclei in a single
@@ -595,38 +597,39 @@
       - check: dark background
    5. analyze > analyze particles  (IJ:30.2)
    6. make sure that the code looks in the following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v1.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v1.ijm" example
    7. process > batch > macro
       - input: select folder with [h01.tif]
       - output: select folder out in the folder containing [h01.tif]
    8. click process
-
    9. modify the code (*target:* save each result in separated file):
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v2.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v2.ijm" example
+
 * workflow: tracking
 ** create image with moving dots
    1. *target:* create an image with moving objects (dots)
    2. make sure that the code looks in the following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/create_image_with_moving_objects.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/create_image_with_moving_objects.ijm" example
 
 ** tracking: process single image
    1. *target:* for *current* frame of the stack find the x, y of the
       center of the dot
    2. make sure that the code looks in the following way
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking_process_single_image.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking_process_single_image.ijm"  example
 
 ** tracking: process whole stack
    1. *target:* for *all* frames of the stack find the x, y of the
       center of the dot
    2. make sure that the code looks in the following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking_process_stack_v1.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking_process_stack_v1.ijm" example
 
 ** tracking: process whole stack - enabling linking of the objects
    1. *target:* for *all* frames of the stack find the x, y of the
       center of the dot as well as some object features (i.e. size,
       mean grey value).
    2. make sure that the code looks in the following way:
-#+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking_process_stack_v2.ijm" src pascal
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking_process_stack_v2.ijm" example
+
 * workflow: FRET
 ** preparation part 1 - image import 
 1. *target:* open .lif image and prepare it for further editing
@@ -653,7 +656,7 @@
 
 ** preparation part 3 - masks
 1. *target:* prepare masks
-2. file > open : [yfp-smoothed.tif] (IJ:26.2)
+!2. file > open : [yfp-smoothed.tif] (IJ:26.2)
 3. image > adjust > threshold (IJ:28.2.4)
    - test different option to isolate chromatine
 4. file > save as > tif : mask.tif (IJ:26.10.1)
