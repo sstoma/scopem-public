@@ -1,8 +1,8 @@
 * export settings						   :noexport:
-#+TITLE:     Introduction to FIJI - workflows v. 1.3
+#+TITLE:     Introduction to FIJI - workflows v. 1.4
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2016-04-20 Wed>
+#+DATE:      <2016-06-22 Wed>
 #+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
@@ -580,6 +580,7 @@
    2. test code:
       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v2.ijm  example
 
+
 ** user input via GUI
    1. *target:* prepare the evenly distributed selection over the image v.3
    2. test code:
@@ -590,20 +591,37 @@
       frame. Your macro should input a row to the Results containing
       area for each nuclei in the image. Process all files in the hela
       folder. 
-   2. open : [hela/h01.tif] (IJ:26.2)
+   2. open : [hela/hela-1.tif] (IJ:26.2)
    3. plugins > macro > recorder (IJ:31.1.4)
    4. image > adjust > threshold (IJ:28.2.4)
       - select: triangle
       - check: dark background
    5. analyze > analyze particles  (IJ:30.2)
    6. make sure that the code looks in the following way:
-      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v1.ijm" example
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v0.ijm" example
    7. process > batch > macro
-      - input: select folder with [h01.tif]
-      - output: select folder out in the folder containing [h01.tif]
+      - input: select folder containing [hela-1.tif]-[hela-4.tif]
+      - output: select folder out in the folder containing [hela-1.tif]-[hela-4.tif]
    8. click process
-   9. modify the code (*target:* save each result in separated file):
-      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v2.ijm" example
+   9. modify to save results
+	  #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v1.ijm" example
+   10. modify the code (*target:* save each result in separated file):
+       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v2.ijm" example
+
+** batch mode - full control on processing files
+   1. *target:* Create a macro to segment nuclei in a single
+      frame. Your macro should input a row to the Results containing
+      area for each nuclei in the image. Process all files in the hela
+      folder. Do not use the batch execution in FIJI - iterate on
+      files in the folder instead.
+   2. open : [hela/hela-1.tif] (IJ:26.2)
+   3. plugins > macro > recorder (IJ:31.1.4)
+   4. image > adjust > threshold (IJ:28.2.4)
+      - select: triangle
+      - check: dark background
+   5. analyze > analyze particles  (IJ:30.2)
+   6. make sure that the code looks in the following way:
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch_segmentation_v3.ijm" example 
 
 * workflow: tracking
 ** create image with moving dots

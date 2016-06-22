@@ -1,13 +1,9 @@
-// initilization
-fileName = getInfo("image.filename");
-outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
-// exchange previous line with your path
-
 // Process all images finishing with .tif 
 dir = getDirectory("Choose a Directory where the HeLa tif files are");
-dirresults = getDirectory("Choose a Directory where to save results (segmentations)");
+outPath = getDirectory("Choose a Directory where to save results (segmentations)");
 list = getFileList(dir);
 
+// in list elements are numbered from 0
 for (imagenumber=0;imagenumber<list.length;imagenumber++)
 {
 	if (endsWith(list[imagenumber],".tif")){
@@ -21,6 +17,7 @@ for (imagenumber=0;imagenumber<list.length;imagenumber++)
 		run("Analyze Particles...", "show=[Overlay Masks] display exclude");
 
 		// saving
+		fileName = getInfo("image.filename");
 		saveAs("Results", outPath + "Results-" + fileName + ".txt");
 	}
 }
