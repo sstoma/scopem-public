@@ -1,9 +1,8 @@
 * export settings						   :noexport:
-#+TITLE:     Introduction to FIJI - workflows v. 1.4
+#+TITLE:     Introduction to FIJI - workflows v. 1.5
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2016-06-22 Wed>
-#+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
+#+DATE:      <2017-04-24 Mon>
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
 #+LANGUAGE:  en
@@ -15,6 +14,8 @@
 #+LINK_UP:   
 #+LINK_HOME: 
 #+XSLT:
+#+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
+
 * working with single channel images 
 ** opening the image and basic info
    1. file > open > HeLa (IJ:26.2)
@@ -100,6 +101,20 @@
    6. file > save as > tiff : blobs2.tif (IJ:26.10.1)
 	  - load again to check the difference (e.g. check info)
 
+** LUT and calibration bar
+   1. *target:* verrify that images "looking" alike might be different
+   1. file > open samples > blobs (shift-b) (IJ:26.4)
+   2. inspect pixel values (IJ:p.28:Toolbar)
+   3. image > lookup table > invert LUT (IJ:28.15.1)
+   4. change color lookup table
+	  - Image > Look up table > Fire
+   5. analyze > tools > calibration bar (IJ:30.14.7)
+
+   6. file > open > [blobs16bit.tif] (IJ:26.2)
+   7. change color lookup table
+	  - Image > Look up table > Fire
+   8. analyze > tools > calibration bar (IJ:30.14.7)
+
 ** 8-bit and 16-bit pseudocolor images
    1. file > open samples > blobs (shift-b) (IJ:26.4)
    2. inspect pixel values (IJ:p.28:Toolbar)
@@ -149,34 +164,54 @@
 	  - compare RGB space with e.g. LAB
 
 ** histogram operations
-   1. file > open samples > blobs (shift-b) (IJ:26.4)
-   2. image > lookup tables > invert LUT (IJ:28.15.1)
-   3. analyze > histogram (IJ:30.10)
+
+   1. *target:* familiarize with manual histogram adjustment and some
+      built in rutines making this task easier
+   2. file > open samples > blobs (shift-b) (IJ:26.4)
+   3. image > lookup tables > invert LUT (IJ:28.15.1)
+   4. analyze > histogram (IJ:30.10)
 	  - mark live
-   4. select line tool (IJ:19.2) (IJ:p.28:Interface)
-   5. analyze > plot profile (IJ:30.11)
+   5. select line tool (IJ:19.2) (IJ:p.28:Interface)
+   6. analyze > plot profile (IJ:30.11)
 	  - mark Live
 	  - move line
 	  - double click on line icon
 	  - change line thickness (move line)
-   6. edit > selection > select none 
-   7. image > adjust > brightness/contrast (IJ:28.2.1)
+   7. edit > selection > select none 
+   8. image > adjust > brightness/contrast (IJ:28.2.1)
 	  - play with settings to achieve white blobs and black background (actually you almost thresholded image)
 	  - apply when finished (note: pixel values are altered)
-
-   8. file > open samples > M51 galaxy (IJ:26.4)
-   9. (2x) image > duplicate (IJ:28.9)
-   10. (3x) analyze > histogram (IJ:30.10)
+   9. file > open samples > M51 galaxy (IJ:26.4)
+   10. (2x) image > duplicate (IJ:28.9)
+   11. (3x) analyze > histogram (IJ:30.10)
 	   - mark live
 	   - check log button
-   11. on each image
+   12. on each image
 	   - process > enhance contrast (IJ:29.5)
 		 - equalize checked
 	   - process > enhance contrast (IJ:29.5)
 		 - normalize checked
 	   - process > enhance local contrast (CLAHE)
 		 - http://fiji.sc/wiki/index.php/Enhance_Local_Contrast_(CLAHE)
-   12. compare the results
+   13. compare the results
+
+** histogram adjustments
+   1. *target:* familiarize with manual histogram adjustment and HiLo
+      LUT
+   2. file > open > [dudes.jpg] (IJ:26.2)
+   3. analyze > histogram (IJ:30.10)
+	  - mark live
+   4. image > lookup tables > invert LUT (IJ:28.15.1)
+   5. image > adjust > brightness/contrast (IJ:28.2.1)
+	  - play with settings to increase contrast in the image (actually
+        you almost thresholded image)
+	  - apply when finished (note: pixel values are altered; see
+        histogram)
+   6. process > enhance contrast (IJ:29.5)
+	  - equalize un-checked
+	  - normalize un-checked
+   7. What is happening when saturated pixels is equal to 5%?
+
 
 ** using 16 bit images to increase precision
    1. file > open samples > M51 galaxy (IJ:26.4)
@@ -580,7 +615,6 @@
    2. test code:
       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v2.ijm  example
 
-
 ** user input via GUI
    1. *target:* prepare the evenly distributed selection over the image v.3
    2. test code:
@@ -765,3 +799,6 @@
   8. view > record 360 degree rotation
   9. file > save as > avi % try the different compression options uncompressed, jpg, and png 
 
+** preparing images for publications
+- FigureJ plugin:
+  - http://imagejdocu.tudor.lu/doku.php?id=plugin:utilities:figurej:start#installation_for_fiji

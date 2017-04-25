@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Introduction to FIJI - workflows v. 1.4</title>
-<!-- 2016-06-22 Wed 08:15 -->
+<title>Introduction to FIJI - workflows v. 1.5</title>
+<!-- 2017-04-25 Tue 10:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Simon Noerrelykke &amp; Szymon Stoma" />
@@ -144,7 +144,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Introduction to FIJI - workflows v. 1.4</h1>
+<h1 class="title">Introduction to FIJI - workflows v. 1.5</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -156,11 +156,13 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-3">1.3. copy pasting from image to image</a></li>
 <li><a href="#sec-1-4">1.4. file handling and non-invasive editing</a></li>
 <li><a href="#sec-1-5">1.5. file handling and invasive editing</a></li>
-<li><a href="#sec-1-6">1.6. 8-bit and 16-bit pseudocolor images</a></li>
-<li><a href="#sec-1-7">1.7. pseudocolor image to RGB conversion</a></li>
-<li><a href="#sec-1-8">1.8. color spaces</a></li>
-<li><a href="#sec-1-9">1.9. histogram operations</a></li>
-<li><a href="#sec-1-10">1.10. using 16 bit images to increase precision</a></li>
+<li><a href="#sec-1-6">1.6. LUT and calibration bar</a></li>
+<li><a href="#sec-1-7">1.7. 8-bit and 16-bit pseudocolor images</a></li>
+<li><a href="#sec-1-8">1.8. pseudocolor image to RGB conversion</a></li>
+<li><a href="#sec-1-9">1.9. color spaces</a></li>
+<li><a href="#sec-1-10">1.10. histogram operations</a></li>
+<li><a href="#sec-1-11">1.11. histogram adjustments</a></li>
+<li><a href="#sec-1-12">1.12. using 16 bit images to increase precision</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">2. working with multichannel images</a>
@@ -241,6 +243,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-10-1">10.1. installing plugins</a></li>
 <li><a href="#sec-10-2">10.2. using line selection to make a "straighten" image</a></li>
 <li><a href="#sec-10-3">10.3. using 3D viewer</a></li>
+<li><a href="#sec-10-4">10.4. preparing images for publications</a></li>
 </ul>
 </li>
 </ul>
@@ -473,8 +476,43 @@ elegance-fig.tif); for each ROI from original image:
 </div>
 
 <div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6"><span class="section-number-3">1.6</span> 8-bit and 16-bit pseudocolor images</h3>
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> LUT and calibration bar</h3>
 <div class="outline-text-3" id="text-1-6">
+<ol class="org-ol">
+<li><b>target:</b> verrify that images "looking" alike might be different
+</li>
+<li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
+</li>
+<li>inspect pixel values (IJ:p.28:Toolbar)
+</li>
+<li>image &gt; lookup table &gt; invert LUT (IJ:28.15.1)
+</li>
+<li>change color lookup table
+<ul class="org-ul">
+<li>Image &gt; Look up table &gt; Fire
+</li>
+</ul>
+</li>
+<li>analyze &gt; tools &gt; calibration bar (IJ:30.14.7)
+</li>
+
+<li>file &gt; open &gt; [blobs16bit.tif] (IJ:26.2)
+</li>
+<li>change color lookup table
+<ul class="org-ul">
+<li>Image &gt; Look up table &gt; Fire
+</li>
+</ul>
+</li>
+<li>analyze &gt; tools &gt; calibration bar (IJ:30.14.7)
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> 8-bit and 16-bit pseudocolor images</h3>
+<div class="outline-text-3" id="text-1-7">
 <ol class="org-ol">
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
@@ -526,9 +564,9 @@ elegance-fig.tif); for each ROI from original image:
 </div>
 </div>
 
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7"><span class="section-number-3">1.7</span> pseudocolor image to RGB conversion</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> pseudocolor image to RGB conversion</h3>
+<div class="outline-text-3" id="text-1-8">
 <ol class="org-ol">
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
@@ -582,9 +620,9 @@ elegance-fig.tif); for each ROI from original image:
 </div>
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8"><span class="section-number-3">1.8</span> color spaces</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> color spaces</h3>
+<div class="outline-text-3" id="text-1-9">
 <ol class="org-ol">
 <li>file &gt; open : [blob-combined.tif] (IJ:26.2)
 </li>
@@ -602,10 +640,13 @@ elegance-fig.tif); for each ROI from original image:
 </div>
 </div>
 
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9"><span class="section-number-3">1.9</span> histogram operations</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> histogram operations</h3>
+<div class="outline-text-3" id="text-1-10">
 <ol class="org-ol">
+<li><b>target:</b> familiarize with manual histogram adjustment and some
+built in rutines making this task easier
+</li>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
 <li>image &gt; lookup tables &gt; invert LUT (IJ:28.15.1)
@@ -640,7 +681,6 @@ elegance-fig.tif); for each ROI from original image:
 </li>
 </ul>
 </li>
-
 <li>file &gt; open samples &gt; M51 galaxy (IJ:26.4)
 </li>
 <li>(2x) image &gt; duplicate (IJ:28.9)
@@ -681,9 +721,51 @@ elegance-fig.tif); for each ROI from original image:
 </div>
 </div>
 
-<div id="outline-container-sec-1-10" class="outline-3">
-<h3 id="sec-1-10"><span class="section-number-3">1.10</span> using 16 bit images to increase precision</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> histogram adjustments</h3>
+<div class="outline-text-3" id="text-1-11">
+<ol class="org-ol">
+<li><b>target:</b> familiarize with manual histogram adjustment and HiLo
+LUT
+</li>
+<li>file &gt; open &gt; [dudes.jpg] (IJ:26.2)
+</li>
+<li>analyze &gt; histogram (IJ:30.10)
+<ul class="org-ul">
+<li>mark live
+</li>
+</ul>
+</li>
+<li>image &gt; lookup tables &gt; invert LUT (IJ:28.15.1)
+</li>
+<li>image &gt; adjust &gt; brightness/contrast (IJ:28.2.1)
+<ul class="org-ul">
+<li>play with settings to increase contrast in the image (actually
+you almost thresholded image)
+</li>
+<li>apply when finished (note: pixel values are altered; see
+histogram)
+</li>
+</ul>
+</li>
+<li>process &gt; enhance contrast (IJ:29.5)
+<ul class="org-ul">
+<li>equalize un-checked
+</li>
+<li>normalize un-checked
+</li>
+</ul>
+</li>
+<li>What is happening when saturated pixels is equal to 5%?
+</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> using 16 bit images to increase precision</h3>
+<div class="outline-text-3" id="text-1-12">
 <ol class="org-ol">
 <li>file &gt; open samples &gt; M51 galaxy (IJ:26.4)
 </li>
@@ -1820,7 +1902,6 @@ saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
 </div>
 </div>
 
-
 <div id="outline-container-sec-7-8" class="outline-3">
 <h3 id="sec-7-8"><span class="section-number-3">7.8</span> user input via GUI</h3>
 <div class="outline-text-3" id="text-7-8">
@@ -2469,12 +2550,26 @@ to chromatin
 </ol>
 </div>
 </div>
+
+<div id="outline-container-sec-10-4" class="outline-3">
+<h3 id="sec-10-4"><span class="section-number-3">10.4</span> preparing images for publications</h3>
+<div class="outline-text-3" id="text-10-4">
+<ul class="org-ul">
+<li>FigureJ plugin:
+<ul class="org-ul">
+<li><a href="http://imagejdocu.tudor.lu/doku.php?id=plugin:utilities:figurej:start#installation_for_fiji">http://imagejdocu.tudor.lu/doku.php?id=plugin:utilities:figurej:start#installation_for_fiji</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2016-06-22 Wed&gt;</span></span></p>
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-04-24 Mon&gt;</span></span></p>
 <p class="author">Author: Simon Noerrelykke &amp; Szymon Stoma</p>
-<p class="date">Created: 2016-06-22 Wed 08:15</p>
+<p class="date">Created: 2017-04-25 Tue 10:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.4 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
