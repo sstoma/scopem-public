@@ -2,7 +2,7 @@
 #+TITLE:     Introduction to FIJI - workflows v. 1.5
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2017-04-24 Mon>
+#+DATE:      <2017-06-18 Mon>
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
 #+LANGUAGE:  en
@@ -771,6 +771,61 @@
 6. select the right ROI; analyze > measure (m) (IJ:29.12.1)
 7. move to next time point; repeat;...
 8. question: what are the issues with results?
+
+* workflow: scratch assay
+** part 1 
+1. *target:* estimate the area occupied by cells in single timepoint
+2. file > open : [scratch/control-single-frame.tif] (IJ:26.2)
+3. image > duplicate
+4. process > filters > gaussiab blur
+   1. sigma: 5
+5. threshold
+   1. Method: Moments
+   2. Background: Dark
+6. image > invert
+7. process > binary > Distance Map
+8. threshold
+   1. Method: Moments
+   2. Background: Dark
+9. select original image
+10. image > type > 8-bit
+11. image > color > merge channels
+	1. C1: original image (after conversion to 8-bit)
+	2. C4: mask
+	3. Create composite: True
+	4. Keep source images: True
+
+** part 2
+1. *target:* estimate the area occupied by cells in each time point
+   (extend part 1 and identify the main problem)
+2. file > open : [scratch/control.tif] (IJ:26.2)
+3. repeat steps from part 1 on the stack
+
+** part 3
+1. *target:* estimate the area occupied by cells in each time point
+2. file > open : [scratch/control.tif] (IJ:26.2)
+3. image > duplicate
+4. image > process > subtract background
+   1. Radius: 30
+   2. Preview: True
+5. process > filters > gaussiab blur
+   1. sigma: 5
+6. threshold
+   1. Method: Moments
+   2. Background: Dark
+7. image > invert
+8. process > binary > Distance Map
+9. threshold
+   1. Method: Moments
+   2. Background: Dark
+10. select original image
+11. image > type > 8-bit
+12. image > color > merge channels
+	1. C1: original image (after conversion to 8-bit)
+	2. C4: mask
+	3. Create composite: True
+	4. Keep source images: True
+
 * various useful tools
 ** installing plugins
    1. download plugin from webpage:
