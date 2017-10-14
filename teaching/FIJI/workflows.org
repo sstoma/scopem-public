@@ -14,7 +14,7 @@
 #+LINK_UP:   
 #+LINK_HOME: 
 #+XSLT:
-%%#+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
 
 * working with single channel images 
 ** opening the image and basic info
