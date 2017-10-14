@@ -6,18 +6,18 @@ list = getFileList(dir);
 // in list elements are numbered from 0
 for (imagenumber=0;imagenumber<list.length;imagenumber++)
 {
-	if (endsWith(list[imagenumber],".tif")){
-		open(dir+list[imagenumber]); 
-		run("Clear Results");
-		// processing
-		run("Gaussian Blur...", "sigma=2 stack");
-		setAutoThreshold("Triangle dark");
-		run("Convert to Mask");
-		run("Set Measurements...", "area mean display redirect=None decimal=9");
-		run("Analyze Particles...", "show=[Overlay Masks] display exclude");
+  if (endsWith(list[imagenumber],".tif")){
+    open(dir+list[imagenumber]); 
+    run("Clear Results");
+    // processing
+    run("Gaussian Blur...", "sigma=2 stack");
+    setAutoThreshold("Triangle dark");
+    run("Convert to Mask");
+    run("Set Measurements...", "area mean display redirect=None decimal=9");
+    run("Analyze Particles...", "show=[Overlay Masks] display exclude");
 
-		// saving
-		fileName = getInfo("image.filename");
-		saveAs("Results", outPath + "Results-" + fileName + ".txt");
-	}
+    // saving
+vfileName = getInfo("image.filename");
+    saveAs("Results", outPath + "Results-" + fileName + ".txt");
+  }
 }

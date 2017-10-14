@@ -1,8 +1,8 @@
 * export settings						   :noexport:
-#+TITLE:     Introduction to FIJI - workflows v. 1.5
+#+TITLE:     Introduction to FIJI - workflows v. 1.6
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2017-06-18 Mon>
+#+DATE:      <2017-10-14 Sat>
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
 #+LANGUAGE:  en
@@ -14,7 +14,7 @@
 #+LINK_UP:   
 #+LINK_HOME: 
 #+XSLT:
-#+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
+%%#+SETUPFILE: /Users/sstoma/src/org-html-themes/setup/theme-readtheorg.setup
 
 * working with single channel images 
 ** opening the image and basic info
@@ -549,10 +549,11 @@
    5. image > adjust > threshold (IJ:28.2.4)
       - select manually threshold such as the head is separated from background
 	  - ignore small holes
-	  -  uncheck box: calculate threshold for each image
+	  - uncheck box: calculate threshold for each image
    6. process > binary > fill holes (IJ:29.8.8)
    7. (optional) use analyze > set scale to calibrate the measurement units
 	  - 200 pixels is 25 cm
+   8. *Question:* What are the benefits of storing such a macro?
 
 ** macro recorder - repeating actions on stack
    1. *target:* calculate the volume of human skull  
