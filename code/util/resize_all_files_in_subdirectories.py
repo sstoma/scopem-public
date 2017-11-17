@@ -5,13 +5,27 @@ scale (default = 0.5) <= how much we downscale images e.g 0.5 makes images of 1/
 modify (default = True) <= are images changed in place (origs are overwritten)
 path (default = '.') <= where to look for images (with subdirectories)
 
-Requires to install xvfb to not block the screen
+Requires: 
+* xvfb to not block the screen
 
-requires python-3.2
+Python: 
+* requires python-3.2
+
+:bug:
+	None known.
+	
+:organization:
+	ETH
 """
-__version__ = 0.1
+__authors__="""Szymon Stoma"""
+__contact__="<Your contact>"
+__license__="Cecill-C"
+__date__="17-11-01"
+__version__="0.1"
+__docformat__= "restructuredtext en"
 
-# impoorts
+# ----------------------------------------------------------- imports
+
 import os
 from fnmatch import fnmatch
 import argparse
