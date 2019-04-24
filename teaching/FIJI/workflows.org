@@ -2,7 +2,7 @@
 #+TITLE:     Introduction to FIJI - workflows v. 1.6
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2017-10-14 Sat>
+#+DATE:      <2018-06-14 Thu>
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
 #+LANGUAGE:  en
