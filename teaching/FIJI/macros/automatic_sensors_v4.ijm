@@ -12,6 +12,7 @@ Dialog.show();
 size = Dialog.getNumber();
 
 // get the input for location from the image
+setBatchMode("show");
 waitForUser("Draw ROI, then hit OK"); 
 getBoundingRect(x, y, width, height)
 
