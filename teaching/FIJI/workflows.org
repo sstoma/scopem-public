@@ -2,7 +2,7 @@
 #+TITLE:     Introduction to FIJI - workflows v. 1.6
 #+AUTHOR:    Simon Noerrelykke & Szymon Stoma
 #+EMAIL:     [simon.noerrelykke|szymon.stoma]@scopem.ethz.ch 
-#+DATE:      <2018-06-14 Thu>
+#+DATE:      <2019-06-23 Sun>
 #+DESCRIPTION:
 #+KEYWORDS: fiji, imagej, teaching
 #+LANGUAGE:  en
@@ -620,7 +620,12 @@
    1. *target:* prepare the evenly distributed selection over the image v.3
    2. test code:
       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v3.ijm" example
-
+** user input via image window / selection
+   1. *target:* prepare the evenly distributed selection over the
+      image - add user selected zone of selection and prepare it to
+      work in the batch mode v.4
+   2. test code:
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic_sensors_v4.ijm" example
 ** batch mode - basics
    1. *target:* Create a macro to segment nuclei in a single
       frame. Your macro should input a row to the Results containing
