@@ -1,100 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Introduction to FIJI - workflows v. 1.6</title>
-<!-- 2019-06-23 Sun 11:50 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Simon Noerrelykke &amp; Szymon Stoma" />
-<meta  name="keywords" content="fiji, imagej, teaching" />
+<title>Introduction to FIJI - workflows v. 1.7</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Introduction to FIJI - workflows v. 1.7"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2022-05-03"/>
+<meta name="author" content="Simon Noerrelykke &amp; Szymon Stoma"/>
+<meta name="description" content=""/>
+<meta name="keywords" content="fiji, imagej, teaching"/>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { font-family: monospace; color: red; }
+  .todo   { color: red; }
   .done   { color: green; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
   }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
     background: #ffffcc;
   }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -141,129 +106,143 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+
 </head>
 <body>
+
+<div id="preamble">
+
+</div>
+
 <div id="content">
-<h1 class="title">Introduction to FIJI - workflows v. 1.6</h1>
+<h1 class="title">Introduction to FIJI - workflows v. 1.7</h1>
+
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. working with single channel images</a>
+<li><a href="#sec-1">1 working with single channel images</a>
 <ul>
-<li><a href="#sec-1-1">1.1. opening the image and basic info</a></li>
-<li><a href="#sec-1-2">1.2. opening the image and basic drawing</a></li>
-<li><a href="#sec-1-3">1.3. copy pasting from image to image</a></li>
-<li><a href="#sec-1-4">1.4. file handling and non-invasive editing</a></li>
-<li><a href="#sec-1-5">1.5. file handling and invasive editing</a></li>
-<li><a href="#sec-1-6">1.6. LUT and calibration bar</a></li>
-<li><a href="#sec-1-7">1.7. 8-bit and 16-bit pseudocolor images</a></li>
-<li><a href="#sec-1-8">1.8. pseudocolor image to RGB conversion</a></li>
-<li><a href="#sec-1-9">1.9. color spaces</a></li>
-<li><a href="#sec-1-10">1.10. histogram operations</a></li>
-<li><a href="#sec-1-11">1.11. histogram adjustments</a></li>
-<li><a href="#sec-1-12">1.12. using 16 bit images to increase precision</a></li>
+<li><a href="#sec-1-1">1.1 opening the image and basic info</a></li>
+<li><a href="#sec-1-2">1.2 opening the image and basic drawing</a></li>
+<li><a href="#sec-1-3">1.3 copy pasting from image to image</a></li>
+<li><a href="#sec-1-4">1.4 file handling and non-invasive editing</a></li>
+<li><a href="#sec-1-5">1.5 file handling and invasive editing</a></li>
+<li><a href="#sec-1-6">1.6 LUT and calibration bar</a></li>
+<li><a href="#sec-1-7">1.7 8-bit and 16-bit pseudocolor images</a></li>
+<li><a href="#sec-1-8">1.8 pseudocolor image to RGB conversion</a></li>
+<li><a href="#sec-1-9">1.9 color spaces</a></li>
+<li><a href="#sec-1-10">1.10 histogram operations</a></li>
+<li><a href="#sec-1-11">1.11 histogram adjustments</a></li>
+<li><a href="#sec-1-12">1.12 using 16 bit images to increase precision</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. working with multichannel images</a>
+<li><a href="#sec-2">2 working with multichannel images</a>
 <ul>
-<li><a href="#sec-2-1">2.1. create new image</a></li>
-<li><a href="#sec-2-2">2.2. composite images - splitting and merging</a></li>
-<li><a href="#sec-2-3">2.3. composite images - individual channel corrections</a></li>
-<li><a href="#sec-2-4">2.4. microscopy stacks handling</a></li>
+<li><a href="#sec-2-1">2.1 create new image</a></li>
+<li><a href="#sec-2-2">2.2 composite images - splitting and merging</a></li>
+<li><a href="#sec-2-3">2.3 composite images - individual channel corrections</a></li>
+<li><a href="#sec-2-4">2.4 microscopy stacks handling</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. image processing: thresholding &amp; filters</a>
+<li><a href="#sec-3">3 image processing: thresholding &amp; filters</a>
 <ul>
-<li><a href="#sec-3-1">3.1. basic concept of thresholding</a></li>
-<li><a href="#sec-3-2">3.2. basic concept of filtering: binary filters</a></li>
-<li><a href="#sec-3-3">3.3. basic concept of filters: sharpen</a></li>
-<li><a href="#sec-3-4">3.4. basics mathematical operations on single image</a></li>
-<li><a href="#sec-3-5">3.5. beyond the limits of bits</a></li>
-<li><a href="#sec-3-6">3.6. basics mathematical operations on two images</a></li>
-<li><a href="#sec-3-7">3.7. seeing JPEG artifacts</a></li>
+<li><a href="#sec-3-1">3.1 basic concept of thresholding</a></li>
+<li><a href="#sec-3-2">3.2 basic concept of filtering: binary filters</a></li>
+<li><a href="#sec-3-3">3.3 basic concept of filters: sharpen</a></li>
+<li><a href="#sec-3-4">3.4 basics mathematical operations on single image</a></li>
+<li><a href="#sec-3-5">3.5 beyond the limits of bits</a></li>
+<li><a href="#sec-3-6">3.6 basics mathematical operations on two images</a></li>
+<li><a href="#sec-3-7">3.7 seeing JPEG artifacts</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">4. background elimination</a>
+<li><a href="#sec-4">4 background elimination</a>
 <ul>
-<li><a href="#sec-4-1">4.1. dividing by background image</a></li>
-<li><a href="#sec-4-2">4.2. background elimination - flat field correction</a></li>
-<li><a href="#sec-4-3">4.3. background elimination - flat field correction using Image calculator</a></li>
+<li><a href="#sec-4-1">4.1 dividing by background image</a></li>
+<li><a href="#sec-4-2">4.2 background elimination - flat field correction</a></li>
+<li><a href="#sec-4-3">4.3 background elimination - flat field correction using Image calculator</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. manual measurements and working with rois</a>
+<li><a href="#sec-5">5 manual measurements and working with rois</a>
 <ul>
-<li><a href="#sec-5-1">5.1. measuring fluorescence within a selection</a></li>
-<li><a href="#sec-5-2">5.2. measuring geometrical properties in the image</a></li>
+<li><a href="#sec-5-1">5.1 measuring fluorescence within a selection</a></li>
+<li><a href="#sec-5-2">5.2 measuring geometrical properties in the image</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. automatic measurements</a>
+<li><a href="#sec-6">6 automatic measurements</a>
 <ul>
-<li><a href="#sec-6-1">6.1. identifying and measuring objects - basics</a></li>
-<li><a href="#sec-6-2">6.2. identifying and measuring objects - cells #1</a></li>
-<li><a href="#sec-6-3">6.3. identifying and measuring objects - cells #2</a></li>
+<li><a href="#sec-6-1">6.1 identifying and measuring objects - basics</a></li>
+<li><a href="#sec-6-2">6.2 identifying and measuring objects - cells #1</a></li>
+<li><a href="#sec-6-3">6.3 identifying and measuring objects - cells #2</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. scripting / macros / automation basics</a>
+<li><a href="#sec-7">7 scripting / macros / automation basics</a>
 <ul>
-<li><a href="#sec-7-1">7.1. macro recorder - reproducing edits</a></li>
-<li><a href="#sec-7-2">7.2. macro recorder - repeating actions on stack</a></li>
-<li><a href="#sec-7-3">7.3. automatic iteration</a></li>
-<li><a href="#sec-7-4">7.4. automatic iteration - introducing function for stop condition</a></li>
-<li><a href="#sec-7-5">7.5. adding macro to the menu</a></li>
-<li><a href="#sec-7-6">7.6. iterations and variables in the macro: multi-measurement</a></li>
-<li><a href="#sec-7-7">7.7. automatic measurement and saving to a file</a></li>
-<li><a href="#sec-7-8">7.8. user input via GUI</a></li>
-<li><a href="#sec-7-9">7.9. user input via image window / selection</a></li>
-<li><a href="#sec-7-10">7.10. batch mode - basics</a></li>
-<li><a href="#sec-7-11">7.11. batch mode - full control on processing files</a></li>
+<li><a href="#sec-7-1">7.1 macro recorder - reproducing edits</a></li>
+<li><a href="#sec-7-2">7.2 macro recorder - repeating actions on stack</a></li>
+<li><a href="#sec-7-3">7.3 automatic iteration</a></li>
+<li><a href="#sec-7-4">7.4 automatic iteration - introducing function for stop condition</a></li>
+<li><a href="#sec-7-5">7.5 adding macro to the menu</a></li>
+<li><a href="#sec-7-6">7.6 iterations and variables in the macro: multi-measurement</a></li>
+<li><a href="#sec-7-7">7.7 automatic measurement and saving to a file</a></li>
+<li><a href="#sec-7-8">7.8 user input via GUI</a></li>
+<li><a href="#sec-7-9">7.9 user input via image window / selection</a></li>
+<li><a href="#sec-7-10">7.10 batch mode - basics</a></li>
+<li><a href="#sec-7-11">7.11 batch mode - full control on processing files</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8. workflow: tracking</a>
+<li><a href="#sec-8">8 workflow: tracking</a>
 <ul>
-<li><a href="#sec-8-1">8.1. create image with moving dots</a></li>
-<li><a href="#sec-8-2">8.2. tracking: process single image</a></li>
-<li><a href="#sec-8-3">8.3. tracking: process whole stack</a></li>
-<li><a href="#sec-8-4">8.4. tracking: process whole stack - enabling linking of the objects</a></li>
+<li><a href="#sec-8-1">8.1 create image with moving dots</a></li>
+<li><a href="#sec-8-2">8.2 tracking: process single image</a></li>
+<li><a href="#sec-8-3">8.3 tracking: process whole stack</a></li>
+<li><a href="#sec-8-4">8.4 tracking: process whole stack - enabling linking of the objects</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">9. workflow: FRET</a>
+<li><a href="#sec-9">9 workflow: FRET</a>
 <ul>
-<li><a href="#sec-9-1">9.1. preparation part 1 - image import</a></li>
-<li><a href="#sec-9-2">9.2. preparation part 2 - averaging</a></li>
-<li><a href="#sec-9-3">9.3. preparation part 3 - masks</a></li>
-<li><a href="#sec-9-4">9.4. preparation part 4 - ratios</a></li>
-<li><a href="#sec-9-5">9.5. analysis - problem: cell population</a></li>
-<li><a href="#sec-9-6">9.6. preparation part 5 - cropping</a></li>
-<li><a href="#sec-9-7">9.7. analysis - problem: chromatin change</a></li>
-<li><a href="#sec-9-8">9.8. analysis - problem: manual labor</a></li>
+<li><a href="#sec-9-1">9.1 preparation part 1 - image import</a></li>
+<li><a href="#sec-9-2">9.2 preparation part 2 - averaging</a></li>
+<li><a href="#sec-9-3">9.3 preparation part 3 - masks</a></li>
+<li><a href="#sec-9-4">9.4 preparation part 4 - ratios</a></li>
+<li><a href="#sec-9-5">9.5 analysis - problem: cell population</a></li>
+<li><a href="#sec-9-6">9.6 preparation part 5 - cropping</a></li>
+<li><a href="#sec-9-7">9.7 analysis - problem: chromatin change</a></li>
+<li><a href="#sec-9-8">9.8 analysis - problem: manual labor</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10. workflow: scratch assay</a>
+<li><a href="#sec-10">10 workflow: scratch assay</a>
 <ul>
-<li><a href="#sec-10-1">10.1. part 1</a></li>
-<li><a href="#sec-10-2">10.2. part 2</a></li>
-<li><a href="#sec-10-3">10.3. part 3</a></li>
+<li><a href="#sec-10-1">10.1 part 1</a></li>
+<li><a href="#sec-10-2">10.2 part 2</a></li>
+<li><a href="#sec-10-3">10.3 part 3</a></li>
 </ul>
 </li>
-<li><a href="#sec-11">11. various useful tools</a>
+<li><a href="#sec-11">11 various useful tools</a>
 <ul>
-<li><a href="#sec-11-1">11.1. installing plugins</a></li>
-<li><a href="#sec-11-2">11.2. using line selection to make a "straighten" image</a></li>
-<li><a href="#sec-11-3">11.3. using 3D viewer</a></li>
-<li><a href="#sec-11-4">11.4. preparing images for publications</a></li>
+<li><a href="#sec-11-1">11.1 installing plugins</a></li>
+<li><a href="#sec-11-2">11.2 using line selection to make a "straighten" image</a></li>
+<li><a href="#sec-11-3">11.3 using 3D viewer</a></li>
+<li><a href="#sec-11-4">11.4 preparing images for publications</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
+
+<div id="outline-container-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> working with single channel images</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> opening the image and basic info</h3>
 <div class="outline-text-3" id="text-1-1">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open &gt; HeLa (IJ:26.2)
 </li>
 <li>image &gt; show info (ctrl-i) (IJ:28.3)
@@ -271,41 +250,48 @@ for the JavaScript code in this tag.
 <li>analyze &gt; tools &gt; scale bar (IJ:30.14.6)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> opening the image and basic drawing</h3>
 <div class="outline-text-3" id="text-1-2">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> "convert" [geometry-source.tif] into [geometry-target.tif]  
 </li>
 <li>file &gt; open : [geometry-source.tif] (IJ:26.2)
 </li>
 <li>use following tools to convert source into target:
-<ol class="org-ol">
+<ol>
 <li>[palete &gt; straight line] (IJ:19.12.1)
-<ul class="org-ul">
+<ul>
 <li>try shift
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; color picker] (IJ:19.11)
-<ul class="org-ul">
+<ul>
 <li>e.g. choose black as foreground
 </li>
 <li>try Draw (d) (IJ:27.9-10)
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; flood fill tool] (IJ:19.16)
-<ul class="org-ul">
+<ul>
 <li>use again: color or picker to choose right color for filling
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; wand tracking tool] (IJ:19.7)
-<ul class="org-ul">
+<ul>
 <li>use to select shapes
 </li>
 <li>apply Copy (ctrl-c), Paste (ctrl-v), Cut (ctrl-x)
@@ -313,30 +299,37 @@ for the JavaScript code in this tag.
 <li>alternatively select, move selection, choose color and try Fill (f), Draw (d), Clear tools (IJ:27.2 IJ:27.9-10) 
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; rectangular selection] (IJ:19.1)
-<ol class="org-ol">
+<ol>
 <li>select a rectangular shape around blue rectangle
 </li>
 <li>apply Copy (ctrl-c), Paste (ctrl-v)
 </li>
 </ol>
+
 </li>
 </ol>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
 <h3 id="sec-1-3"><span class="section-number-3">1.3</span> copy pasting from image to image</h3>
 <div class="outline-text-3" id="text-1-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> create a figure illustrating the difference in C. elegans
-phenotype (see elegance-fig.tif) based on elegans.tif example
+      phenotype (see elegance-fig.tif) based on elegans.tif example
 </li>
 <li>file &gt; new &gt; image (IJ:26.1)
-<ul class="org-ul">
+<ul>
 <li>Type: 8bit
 </li>
 <li>Slices: 1
@@ -344,53 +337,65 @@ phenotype (see elegance-fig.tif) based on elegans.tif example
 <li>Fill with: black
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; tif : my-elegance-fig.tif (IJ:26.10.1)
 </li>
 <li>[palete &gt; color picker] (IJ:19.11)
-<ul class="org-ul">
+<ul>
 <li>choose white as foreground and black as background
 </li>
 </ul>
+
 </li>
 <li>file &gt; open : [elegance.tif] (IJ:26.2)
 </li>
 <li>find two different phenotypes of a worm; for each worm
-<ol class="org-ol">
+<ol>
 <li>select worm with [palete &gt; rectangular selection]
-(IJ:19.1)
 </li>
+</ol>
+
+<p>         (IJ:19.1)
+</p><ol>
 <li>edit &gt; selection &gt; add to manager (ctrl-t) (IJ:27.12.22)
-<ul class="org-ul">
+<ul>
 <li>analyze &gt; tools &gt; ROI manager
 </li>
 </ul>
+
 </li>
 </ol>
+
 </li>
 <li>prepare the template as in elegance example (see elegance-fig.tif)
-<ol class="org-ol">
+<ol>
 <li>[palete &gt; straight line] (ctrl-click to select <b>straight</b> mode) (IJ:19.2)
-<ul class="org-ul">
+<ul>
 <li>use line selection to create two horizontal lines (use shift
-while drawing)
+                        while drawing)
 </li>
 <li>create line; Draw (d); move line down; Draw (d); add to
-selection for future
 </li>
 </ul>
-</li>
+
+<p>           selection for future
+</p></li>
 <li>[palete &gt; text tool] (IJ:19.8)
-<ul class="org-ul">
+<ul>
 <li>add text for "GFP" and "Brightfield"
 </li>
 <li>confirm with ctrl-d (or edit &gt; draw)
 </li>
 </ul>
+
 </li>
 <li>use ROI manager to put ROIs into right places (analogous to
-elegance-fig.tif); for each ROI from original image:
-<ul class="org-ul">
+</li>
+</ol>
+
+<p>         elegance-fig.tif); for each ROI from original image:
+</p><ul>
 <li>paste ROI into new image
 </li>
 <li>move it to desired location
@@ -398,11 +403,10 @@ elegance-fig.tif); for each ROI from original image:
 <li>add it to the ROI manager
 </li>
 </ul>
-</li>
-</ol>
+
 </li>
 <li>copy paste selected worms to the new images (two channel per worm)
-<ul class="org-ul">
+<ul>
 <li>use ROI to find a worm position
 </li>
 <li>choose channel: GFP or Brightfield
@@ -418,41 +422,52 @@ elegance-fig.tif); for each ROI from original image:
 <li>repeat procedure for all four images
 </li>
 </ul>
+
 </li>
 <li>file &gt; save (IJ:26.10.1)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
 <h3 id="sec-1-4"><span class="section-number-3">1.4</span> file handling and non-invasive editing</h3>
 <div class="outline-text-3" id="text-1-4">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
 <li>analyze &gt; tools &gt; scale bar (IJ:30.14.6)
-<ul class="org-ul">
+<ul>
 <li>set color, background, position
 </li>
 <li>check: overlay, bold
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; tiff : blobs1.tif (IJ:26.10.1)
-<ul class="org-ul">
+<ul>
 <li>saving the image as tiff keeps the scale bar as an overlay, so pixel-values below it are kept 
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-5" class="outline-3">
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
 <h3 id="sec-1-5"><span class="section-number-3">1.5</span> file handling and invasive editing</h3>
 <div class="outline-text-3" id="text-1-5">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open : [blobs1.tif] (IJ:26.2)
 </li>
 <li>image &gt; info (i) (IJ:28.3)
@@ -460,33 +475,40 @@ elegance-fig.tif); for each ROI from original image:
 <li>image &gt; overlay &gt; remove overlay (IJ:28.14.7)
 </li>
 <li>analyze &gt; set scale  (IJ:30.8)
-<ul class="org-ul">
+<ul>
 <li>set scale such as image is 100 um long in each dimension
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; tools &gt; scale bar (IJ:30.14.6)
-<ul class="org-ul">
+<ul>
 <li>set color, background, position
 </li>
 <li>check: NO overlay
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; tiff : blobs2.tif (IJ:26.10.1)
-<ul class="org-ul">
+<ul>
 <li>load again to check the difference (e.g. check info)
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-6" class="outline-3">
+</div>
+
+<div id="outline-container-1-6" class="outline-3">
 <h3 id="sec-1-6"><span class="section-number-3">1.6</span> LUT and calibration bar</h3>
 <div class="outline-text-3" id="text-1-6">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> verrify that images "looking" alike might be different
 </li>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
@@ -496,32 +518,38 @@ elegance-fig.tif); for each ROI from original image:
 <li>image &gt; lookup table &gt; invert LUT (IJ:28.15.1)
 </li>
 <li>change color lookup table
-<ul class="org-ul">
+<ul>
 <li>Image &gt; Look up table &gt; Fire
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; tools &gt; calibration bar (IJ:30.14.7)
-</li>
 
+</li>
 <li>file &gt; open &gt; [blobs16bit.tif] (IJ:26.2)
 </li>
 <li>change color lookup table
-<ul class="org-ul">
+<ul>
 <li>Image &gt; Look up table &gt; Fire
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; tools &gt; calibration bar (IJ:30.14.7)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-7" class="outline-3">
+</div>
+
+<div id="outline-container-1-7" class="outline-3">
 <h3 id="sec-1-7"><span class="section-number-3">1.7</span> 8-bit and 16-bit pseudocolor images</h3>
 <div class="outline-text-3" id="text-1-7">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
 <li>inspect pixel values (IJ:p.28:Toolbar)
@@ -529,23 +557,24 @@ elegance-fig.tif); for each ROI from original image:
 <li>image &gt; lookup table &gt; invert LUT (IJ:28.15.1)
 </li>
 <li>analyze &gt; tools &gt; calibration bar (IJ:30.14.7)
-</li>
 
+</li>
 <li>file &gt; open &gt; [blobs16bit.tif] (IJ:26.2)
 </li>
 <li>inspect pixel values (IJ:p.28:Toolbar)
-<ul class="org-ul">
+<ul>
 <li>alternatively use Pixel Inspector (IJ:19.20)
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; tools &gt; calibration bar (IJ:30.14.7)
-</li>
 
+</li>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
 <li>add arrow in overlay (IJ:19.13)
-<ul class="org-ul">
+<ul>
 <li>play with the look of the arrow (i.e. colors, thickness)
 </li>
 <li>indicate a blob which you like
@@ -553,85 +582,103 @@ elegance-fig.tif); for each ROI from original image:
 <li>confirm by ctrl-b (IJ:19.8)
 </li>
 </ul>
+
 </li>
 <li>add arrow in draw (IJ:19.13)
-<ul class="org-ul">
+<ul>
 <li>confirm by ctrl-d (IJ:19.8)
 </li>
 </ul>
+
 </li>
 <li>mark a part of image with overlay brush (IJ:19.18)
-<ul class="org-ul">
+<ul>
 <li>play with transparency
 </li>
 <li>cover blobs marked by arrows with red paint
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
+</div>
+
+<div id="outline-container-1-8" class="outline-3">
 <h3 id="sec-1-8"><span class="section-number-3">1.8</span> pseudocolor image to RGB conversion</h3>
 <div class="outline-text-3" id="text-1-8">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
 </li>
 <li>rename images: left and right
-<ul class="org-ul">
+<ul>
 <li>image &gt; rename (IJ:28.10)
 </li>
 </ul>
+
 </li>
 <li>change color lookup table for left and right
-<ul class="org-ul">
+<ul>
 <li>Image &gt; Look up table &gt; Fire | green
 </li>
 </ul>
+
 </li>
 <li>duplicate both images (IJ:28.9)
-<ul class="org-ul">
+<ul>
 <li>name them left-1 and right-1
 </li>
 </ul>
+
 </li>
 <li>image &gt; stack &gt; tools &gt; combine (IJ:28.6.15.1)
-<ul class="org-ul">
+<ul>
 <li>select left and right
 </li>
 </ul>
+
 </li>
 <li>select left-1
-<ul class="org-ul">
+<ul>
 <li>image &gt; type &gt; Color RGB (IJ:7)
 </li>
 <li>check with picker what are the values in pixels (IJ:p.28:Toolbar)
 </li>
 </ul>
+
 </li>
 <li>select left-2
-<ul class="org-ul">
+<ul>
 <li>image &gt; type &gt; Color RGB (IJ:7)
 </li>
 </ul>
+
 </li>
 <li>image &gt; stack &gt; tools &gt; combine (IJ:28.6.15.1)
-<ul class="org-ul">
+<ul>
 <li>select left-1 and right-1
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-9" class="outline-3">
+</div>
+
+<div id="outline-container-1-9" class="outline-3">
 <h3 id="sec-1-9"><span class="section-number-3">1.9</span> color spaces</h3>
 <div class="outline-text-3" id="text-1-9">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open : [blob-combined.tif] (IJ:26.2)
 </li>
 <li>plugins &gt; Color Inspector 3D
@@ -639,36 +686,43 @@ elegance-fig.tif); for each ROI from original image:
 <li>switch "Display mode" to histogram
 </li>
 <li>play with color: rotation | saturation | brightness
-<ul class="org-ul">
+<ul>
 <li>compare RGB space with e.g. LAB
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-10" class="outline-3">
+</div>
+
+<div id="outline-container-1-10" class="outline-3">
 <h3 id="sec-1-10"><span class="section-number-3">1.10</span> histogram operations</h3>
 <div class="outline-text-3" id="text-1-10">
-<ol class="org-ol">
+
+
+<ol>
 <li><b>target:</b> familiarize with manual histogram adjustment and some
-built in rutines making this task easier
+      built in rutines making this task easier
 </li>
 <li>file &gt; open samples &gt; blobs (shift-b) (IJ:26.4)
 </li>
 <li>image &gt; lookup tables &gt; invert LUT (IJ:28.15.1)
 </li>
 <li>analyze &gt; histogram (IJ:30.10)
-<ul class="org-ul">
+<ul>
 <li>mark live
 </li>
 </ul>
+
 </li>
 <li>select line tool (IJ:19.2) (IJ:p.28:Interface)
 </li>
 <li>analyze &gt; plot profile (IJ:30.11)
-<ul class="org-ul">
+<ul>
 <li>mark Live
 </li>
 <li>move line
@@ -678,103 +732,124 @@ built in rutines making this task easier
 <li>change line thickness (move line)
 </li>
 </ul>
+
 </li>
 <li>edit &gt; selection &gt; select none 
 </li>
 <li>image &gt; adjust &gt; brightness/contrast (IJ:28.2.1)
-<ul class="org-ul">
+<ul>
 <li>play with settings to achieve white blobs and black background (actually you almost thresholded image)
 </li>
 <li>apply when finished (note: pixel values are altered)
 </li>
 </ul>
+
 </li>
 <li>file &gt; open samples &gt; M51 galaxy (IJ:26.4)
 </li>
 <li>(2x) image &gt; duplicate (IJ:28.9)
 </li>
 <li>(3x) analyze &gt; histogram (IJ:30.10)
-<ul class="org-ul">
+<ul>
 <li>mark live
 </li>
 <li>check log button
 </li>
 </ul>
+
 </li>
 <li>on each image
-<ul class="org-ul">
+<ul>
 <li>process &gt; enhance contrast (IJ:29.5)
-<ul class="org-ul">
+<ul>
 <li>equalize checked
 </li>
 </ul>
+
 </li>
 <li>process &gt; enhance contrast (IJ:29.5)
-<ul class="org-ul">
+<ul>
 <li>normalize checked
 </li>
 </ul>
+
 </li>
 <li>process &gt; enhance local contrast (CLAHE)
-<ul class="org-ul">
+<ul>
 <li><a href="http://fiji.sc/wiki/index.php/Enhance_Local_Contrast_(CLAHE)">http://fiji.sc/wiki/index.php/Enhance_Local_Contrast_(CLAHE)</a>
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>compare the results
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-1-11" class="outline-3">
+</div>
+
+<div id="outline-container-1-11" class="outline-3">
 <h3 id="sec-1-11"><span class="section-number-3">1.11</span> histogram adjustments</h3>
 <div class="outline-text-3" id="text-1-11">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> familiarize with manual histogram adjustment and HiLo
-LUT
+      LUT
 </li>
 <li>file &gt; open &gt; [dudes.jpg] (IJ:26.2)
 </li>
 <li>analyze &gt; histogram (IJ:30.10)
-<ul class="org-ul">
+<ul>
 <li>mark live
 </li>
 </ul>
+
 </li>
 <li>image &gt; lookup tables &gt; invert LUT (IJ:28.15.1)
 </li>
 <li>image &gt; adjust &gt; brightness/contrast (IJ:28.2.1)
-<ul class="org-ul">
+<ul>
 <li>play with settings to increase contrast in the image (actually
-you almost thresholded image)
-</li>
-<li>apply when finished (note: pixel values are altered; see
-histogram)
 </li>
 </ul>
+
+<p>        you almost thresholded image)
+</p><ul>
+<li>apply when finished (note: pixel values are altered; see
 </li>
+</ul>
+
+<p>        histogram)
+</p></li>
 <li>process &gt; enhance contrast (IJ:29.5)
-<ul class="org-ul">
+<ul>
 <li>equalize un-checked
 </li>
 <li>normalize un-checked
 </li>
 </ul>
+
 </li>
 <li>What is happening when saturated pixels is equal to 5%?
 </li>
 </ol>
-</div>
-</div>
 
 
-<div id="outline-container-sec-1-12" class="outline-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-12" class="outline-3">
 <h3 id="sec-1-12"><span class="section-number-3">1.12</span> using 16 bit images to increase precision</h3>
 <div class="outline-text-3" id="text-1-12">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; M51 galaxy (IJ:26.4)
 </li>
 <li>image &gt; lookup tables &gt; fire (IJ:28.15)
@@ -782,42 +857,47 @@ histogram)
 <li>image &gt; duplicate (IJ:28.9)
 </li>
 <li>(2x) analyze &gt; histogram (IJ:30.10)
-<ul class="org-ul">
+<ul>
 <li>mark live
 </li>
 <li>check log button
 </li>
 </ul>
+
 </li>
 <li>on first image:
-<ul class="org-ul">
+<ul>
 <li>image &gt; type &gt; 8 bit
 </li>
 <li>process &gt; enhance contrast (IJ:29.5)
-<ul class="org-ul">
+<ul>
 <li>equalize checked
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>on second image:
-<ul class="org-ul">
+<ul>
 <li>process &gt; enhance contrast (IJ:29.5)
-<ul class="org-ul">
+<ul>
 <li>equalize checked
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>for both img.: image &gt; lookup tables &gt; fire (IJ:28.15)
 </li>
 <li>select center of the galaxy with [palete &gt; rectangular
-selection] (IJ:19.1)
+      selection] (IJ:19.1)
 </li>
 <li>edit &gt; selection &gt; add to manager (ctrl-t) (IJ:27.12.22)
-<ul class="org-ul">
+<ul>
 <li>analyze &gt; tools &gt; ROI manager
 </li>
 <li>switch window to second image
@@ -825,12 +905,14 @@ selection] (IJ:19.1)
 <li>click ROI you just added that it appears in the second image
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: mean gray value / standard deviation
 </li>
 </ul>
+
 </li>
 <li>for both img.: analyze &gt; measure (m) (IJ:29.12.1)
 </li>
@@ -839,21 +921,29 @@ selection] (IJ:19.1)
 <li>compare the results
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
+</div>
+
+<div id="outline-container-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> working with multichannel images</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> create new image</h3>
 <div class="outline-text-3" id="text-2-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> create a sketch of a cell as in [cell.tif]
 </li>
 <li>file &gt; new &gt; image (IJ:26.1)
-<ul class="org-ul">
+<ul>
 <li>Type: 8bit
 </li>
 <li>Slices: 2
@@ -861,61 +951,70 @@ selection] (IJ:19.1)
 <li>Fill with: black
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; brush] (IJ:19.4)
-<ul class="org-ul">
+<ul>
 <li>right click on the [palete &gt; brush]
-<ul class="org-ul">
+<ul>
 <li>uncheck: "Paint in overlay"
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; color picker] (IJ:19.11)
-<ul class="org-ul">
+<ul>
 <li>choose red as foreground
 </li>
 </ul>
+
 </li>
 <li>Draw an outline of a cell ;)
 </li>
 <li>image &gt; color &gt; channel tool (ctrl-z) (IJ:28.5.3)
-<ul class="org-ul">
+<ul>
 <li>make composite (IJ:28.5.5)
 </li>
 </ul>
+
 </li>
 <li>Switch a slice with a slider
 </li>
 <li>[palete &gt; color picker] (IJ:19.11)
-<ul class="org-ul">
+<ul>
 <li>choose blue as foreground
 </li>
 </ul>
+
 </li>
 <li>Draw cell nuclei
 </li>
 <li>[palete &gt; brush] (IJ:19.4)
-<ul class="org-ul">
+<ul>
 <li>right click on the [palete &gt; brush]
-<ul class="org-ul">
+<ul>
 <li>check: "Paint in overlay"
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; color picker] (IJ:19.11)
-<ul class="org-ul">
+<ul>
 <li>choose blue as foreground
 </li>
 </ul>
+
 </li>
 <li>Draw cell vesicles
 </li>
 <li>Inspect pixel values (IJ:p.28:Toolbar)
-<ul class="org-ul">
+<ul>
 <li>alternatively use Pixel Inspector (IJ:19.20)
 </li>
 <li>switch a slice with a slider
@@ -923,104 +1022,125 @@ selection] (IJ:19.1)
 <li>move inspector between: outline | nuclei | vesicles
 </li>
 </ul>
+
 </li>
 <li>image &gt; color &gt; channel tool (ctrl-z) (IJ:28.5.3)
-<ul class="org-ul">
+<ul>
 <li>switch between composite | color | grey
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; tif : my-cell.tif (IJ:26.10.1)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> composite images - splitting and merging</h3>
 <div class="outline-text-3" id="text-2-2">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; fluorescent cells (IJ:26.4)
 </li>
 <li>image &gt; color &gt; arrange channels 
-<ul class="org-ul">
+<ul>
 <li>click on New 1, and select magenta
 </li>
 </ul>
+
 </li>
 <li>image &gt; color &gt; split channels (IJ:28.5.1)
 </li>
 <li>merge channels to composite
-<ul class="org-ul">
+<ul>
 <li>image &gt; color &gt; channels tool (shift-z) (IJ:28.7.5)
 </li>
 <li>check "create composite" box (IJ:28.5.2)
 </li>
 </ul>
+
 </li>
 <li>color blindness
-<ul class="org-ul">
+<ul>
 <li>image &gt; color &gt; simulate color blindness 
 </li>
 <li>image &gt; color &gt; dichromacy
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
 <h3 id="sec-2-3"><span class="section-number-3">2.3</span> composite images - individual channel corrections</h3>
 <div class="outline-text-3" id="text-2-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> create an image with brightfield / red / cyan channels
-which shows locations with strongest expression of these fluorophores 
+      which shows locations with strongest expression of these fluorophores 
 </li>
 <li>file &gt; open samples &gt; neuron (IJ:26.4)
 </li>
 <li>image &gt; color &gt; channel tool (IJ:28.7.5)
 </li>
 <li>for each channel 
-<ul class="org-ul">
+<ul>
 <li>adjust contrast such as final image "conveys the message" (IJ:28.2.1)
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-2-4" class="outline-3">
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
 <h3 id="sec-2-4"><span class="section-number-3">2.4</span> microscopy stacks handling</h3>
 <div class="outline-text-3" id="text-2-4">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> make a video and a picture for publication showing progression of mitosis in time (see: mitosis-montage.tif)
 </li>
 <li>open : [mitosis-mixedStack.tif] (IJ:26.2)
 </li>
 <li>image &gt; hyperstacks &gt; reorder hyperstacks
-<ul class="org-ul">
+<ul>
 <li>swap z with t
 </li>
 </ul>
+
 </li>
 <li>image &gt; stacks &gt; tools &gt; make substack (IJ:28.6.15.7)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
-<ul class="org-ul">
+<ul>
 <li>check duplicate hyperstack
 </li>
 </ul>
+
 </li>
 <li>image &gt; color &gt; channels tool (shift-z) (IJ:28.7.5)
-<ul class="org-ul">
+<ul>
 <li>split channels (IJ:28.5.1)
 </li>
 </ul>
+
 </li>
 <li>for both C1 and C2 images
-<ul class="org-ul">
+<ul>
 <li>choose LUT Fire (IJ:19.7)
 </li>
 <li>create channel label (IJ:19.8)
@@ -1028,45 +1148,51 @@ which shows locations with strongest expression of these fluorophores
 <li>image &gt; type &gt; color RGB (IJ:7)
 </li>
 </ul>
+
 </li>
 <li>for original two channel image
-<ul class="org-ul">
+<ul>
 <li>image &gt; type &gt; color RGB (IJ:7)
 </li>
 </ul>
+
 </li>
 <li>image &gt; stacks &gt; tools &gt; combine (IJ:28.6.15.1)
-<ul class="org-ul">
+<ul>
 <li>choose left: 2 channel image
 </li>
 <li>choose right: C1
 </li>
 </ul>
+
 </li>
 <li>image &gt; stacks &gt; tools &gt; combine (IJ:28.6.15.1)
-<ul class="org-ul">
+<ul>
 <li>choose left: merged image
 </li>
 <li>choose right: C2
 </li>
 </ul>
+
 </li>
 <li>image &gt; stacks &gt; series labeller
-<ul class="org-ul">
+<ul>
 <li>select time and other options; use preview to peek
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; avi (IJ:26.10.1)
-<ul class="org-ul">
+<ul>
 <li>e.g. 10 frames per sec.
 </li>
 </ul>
+
 </li>
 <li>image &gt; stacks &gt; make montage (IJ:28.6.8)
-<ul class="org-ul">
+<ul>
 <li>play with settings:
-<ul class="org-ul">
+<ul>
 <li>columns 1
 </li>
 <li>rows 5
@@ -1074,27 +1200,37 @@ which shows locations with strongest expression of these fluorophores
 <li>increment 12
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; tiff (IJ:26.10.1)
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
+</div>
+
+<div id="outline-container-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> image processing: thresholding &amp; filters</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> basic concept of thresholding</h3>
 <div class="outline-text-3" id="text-3-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> Threshold blob.gif image to create a mask enabling
-segmentation of blob-like structures (i.e. create an image where the
-values of all pixels not belonging to blob-like structures are
-set to 0, and all other pixel values are equal to 255).
+      segmentation of blob-like structures (i.e. create an image where the
+      values of all pixels not belonging to blob-like structures are
+      set to 0, and all other pixel values are equal to 255).
 </li>
 <li>file &gt; open samples &gt; blobs (IJ:26.4)
 </li>
@@ -1103,28 +1239,34 @@ set to 0, and all other pixel values are equal to 255).
 <li>image &gt; duplicate (IJ:28.9)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>set up sliders and Dark background checkbox and threshold the
-image:
-<ul class="org-ul">
-<li>use 126 value as threshold
 </li>
 </ul>
+
+<p>        image:
+</p><ul>
+<li>use 126 value as threshold
 </li>
 <li>note: pixel values are altered
 </li>
 </ul>
+
 </li>
 <li>(optional) image &gt; adjust &gt; auto threshold
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> basic concept of filtering: binary filters</h3>
 <div class="outline-text-3" id="text-3-2">
-<ol class="org-ol">
+
+<ol>
 <li>open : [blobs-thr.tif] (IJ:26.2)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
@@ -1132,12 +1274,13 @@ image:
 <li>process &gt; binary &gt; watershed (IJ:29.8.12)
 </li>
 <li>process &gt; noise &gt; remove outliers (IJ:29.6.5)
-<ul class="org-ul">
+<ul>
 <li>check preview
 </li>
 <li>list bright
 </li>
 </ul>
+
 </li>
 <li>(process &gt; find maxima) (IJ:29.4)
 </li>
@@ -1148,82 +1291,103 @@ image:
 <li>process &gt; binary &gt; fill holes (IJ:29.8.8)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-3-3" class="outline-3">
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> basic concept of filters: sharpen</h3>
 <div class="outline-text-3" id="text-3-3">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; hela cells (IJ:26.4)
 </li>
 <li>process &gt; filters &gt; unsharp mask (IJ:29.11.8)
-<ul class="org-ul">
+<ul>
 <li>check how it behaves when image is composite / color (use channel tool for this purpose) (IJ:28.7.5)
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-3-4" class="outline-3">
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
 <h3 id="sec-3-4"><span class="section-number-3">3.4</span> basics mathematical operations on single image</h3>
 <div class="outline-text-3" id="text-3-4">
-<ol class="org-ol">
+
+<ol>
 <li>open : [f2.tif] (IJ:26.2)
 </li>
 <li>process &gt; math &gt; add (IJ:29.9.1)
-<ul class="org-ul">
+<ul>
 <li>play with different functions
 </li>
 <li>check what happens when image is 32 bit
 </li>
 </ul>
+
 </li>
 </ol>
+
 </div>
+
 </div>
-<div id="outline-container-sec-3-5" class="outline-3">
+
+<div id="outline-container-3-5" class="outline-3">
 <h3 id="sec-3-5"><span class="section-number-3">3.5</span> beyond the limits of bits</h3>
 <div class="outline-text-3" id="text-3-5">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> Perform consecutive addition and subtraction of the
-same value from an image. Compare the results with original image.
+      same value from an image. Compare the results with original image.
 </li>
 <li>open : [spooked<sub>16bit</sub>.tif] (IJ:29.9.1)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
-<ul class="org-ul">
+<ul>
 <li>work on the copy
 </li>
 </ul>
+
 </li>
 <li>process &gt; math &gt; add (IJ:29.9.1)
-<ul class="org-ul">
+<ul>
 <li>add value: 600 
 </li>
 </ul>
+
 </li>
 <li>process &gt; math &gt; subtract (IJ:29.9.2)
-<ul class="org-ul">
+<ul>
 <li>subtract value: 600
 </li>
 </ul>
+
 </li>
 <li>comapare the original and the copy: are they the same? What has happened?
 </li>
 </ol>
+
 </div>
+
 </div>
-<div id="outline-container-sec-3-6" class="outline-3">
+
+<div id="outline-container-3-6" class="outline-3">
 <h3 id="sec-3-6"><span class="section-number-3">3.6</span> basics mathematical operations on two images</h3>
 <div class="outline-text-3" id="text-3-6">
-<ol class="org-ol">
+
+<ol>
 <li>open : [f2.tif] and [f1.tif] (IJ:26.2)
 </li>
 <li>process &gt; calculator (IJ:29.13)
-<ul class="org-ul">
+<ul>
 <li>start with add
 </li>
 <li>check what happens when image is 32 bit
@@ -1231,47 +1395,56 @@ same value from an image. Compare the results with original image.
 <li>play with different functions
 </li>
 </ul>
+
 </li>
 </ol>
+
 </div>
+
 </div>
-<div id="outline-container-sec-3-7" class="outline-3">
+
+<div id="outline-container-3-7" class="outline-3">
 <h3 id="sec-3-7"><span class="section-number-3">3.7</span> seeing JPEG artifacts</h3>
 <div class="outline-text-3" id="text-3-7">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> Save the same image in TIFF and JPEG formats. Compare
-the differences
+      the differences
 </li>
 <li>file &gt; open : [tulip.tif] (IJ:26.2)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
-<ul class="org-ul">
+<ul>
 <li>work on the copy
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; jpg (IJ:26.10.3)
-<ul class="org-ul">
+<ul>
 <li>tulip.jpg
 </li>
 </ul>
+
 </li>
 <li>[palete &gt; pencil ] (IJ:19.19)
-<ul class="org-ul">
+<ul>
 <li>modify value of only one pixel
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; jpg (IJ:26.10.3)
-<ul class="org-ul">
+<ul>
 <li>tulip-1px.jpg
 </li>
 </ul>
+
 </li>
 <li>close all jpeg files and reopen them
 </li>
 <li>process &gt; calculator (IJ:29.13)
-<ul class="org-ul">
+<ul>
 <li>image1: tulip.tif
 </li>
 <li>operation: subtract
@@ -1283,9 +1456,10 @@ the differences
 <li>checked: 32 bit result
 </li>
 </ul>
+
 </li>
 <li>process &gt; calculator (IJ:29.13)
-<ul class="org-ul">
+<ul>
 <li>image1: tulip-1px.jpg
 </li>
 <li>operation: subtract
@@ -1297,37 +1471,47 @@ the differences
 <li>checked: 32 bit result
 </li>
 </ul>
+
 </li>
 <li><b>questions:</b>
-<ul class="org-ul">
+<ul>
 <li>What are the differences between images tif and jpg images? Why?
 </li>
 <li>How many pixels are affected by changing only 1 pixel in jpg
-image? Why? 
 </li>
 </ul>
-</li>
+
+<p>         image? Why? 
+</p></li>
 </ol>
+
 </div>
 </div>
+
 </div>
-<div id="outline-container-sec-4" class="outline-2">
+
+<div id="outline-container-4" class="outline-2">
 <h2 id="sec-4"><span class="section-number-2">4</span> background elimination</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
 <h3 id="sec-4-1"><span class="section-number-3">4.1</span> dividing by background image</h3>
 <div class="outline-text-3" id="text-4-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> Estimate the local ratio of increase by dividing the
-image by background. Check the impact of 32-bit image conversion
-on the quatlity of the result.
+      image by background. Check the impact of 32-bit image conversion
+      on the quatlity of the result.
 </li>
 <li>file &gt; open : [xxx.tif] (IJ:26.2)
 </li>
 <li>file &gt; open : [xxx<sub>background</sub>.tif] (IJ:26.2)
 </li>
 <li>process &gt; calculator (IJ:29.13)
-<ul class="org-ul">
+<ul>
 <li>image1: xxx.tif
 </li>
 <li>operation: subtract
@@ -1339,9 +1523,10 @@ on the quatlity of the result.
 <li>checked: 32 bit result
 </li>
 </ul>
+
 </li>
 <li>process &gt; calculator (IJ:29.13)
-<ul class="org-ul">
+<ul>
 <li>image1: xxx.tif
 </li>
 <li>operation: subtract
@@ -1353,29 +1538,35 @@ on the quatlity of the result.
 <li>unchecked: 32 bit result
 </li>
 </ul>
+
 </li>
 <li><b>question:</b> what is the reason of <a href="https://en.wikipedia.org/wiki/Posterization">posterization</a> ?
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
 <h3 id="sec-4-2"><span class="section-number-3">4.2</span> background elimination - flat field correction</h3>
 <div class="outline-text-3" id="text-4-2">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open &gt; cell colony (IJ:26.4)
 </li>
 <li>use selection to draw a horizontal line across the image (IJ:19.2)
 </li>
 <li>analyze &gt; plot profile
-<ul class="org-ul">
+<ul>
 <li>check live
 </li>
 </ul>
+
 </li>
 <li>process &gt; subtract background
-<ul class="org-ul">
+<ul>
 <li>click: preview
 </li>
 <li>click: create background
@@ -1385,15 +1576,20 @@ on the quatlity of the result.
 <li>try: sliding paraboloid
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-4-3" class="outline-3">
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
 <h3 id="sec-4-3"><span class="section-number-3">4.3</span> background elimination - flat field correction using Image calculator</h3>
 <div class="outline-text-3" id="text-4-3">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; cell colony (IJ:26.4)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
@@ -1405,62 +1601,76 @@ on the quatlity of the result.
 <li>process &gt; calculator plus &gt; divide (i1 = image, i2 = blurred image, k1 = mean, k2 = 0)
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
+</div>
+
+<div id="outline-container-5" class="outline-2">
 <h2 id="sec-5"><span class="section-number-2">5</span> manual measurements and working with rois</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
 <h3 id="sec-5-1"><span class="section-number-3">5.1</span> measuring fluorescence within a selection</h3>
 <div class="outline-text-3" id="text-5-1">
-<ol class="org-ol">
+
+<ol>
 <li>task : measure average flu. in Red channel in neuron
 </li>
 <li>file &gt; open samples &gt; neuron (IJ:26.4)
 </li>
 <li>image &gt; color &gt; channel tool (IJ:28.7.5)
-<ul class="org-ul">
+<ul>
 <li>split channels (IJ:28.5.1)
 </li>
 </ul>
+
 </li>
 <li>close all but green and red
 </li>
 <li>work on green image
-<ul class="org-ul">
+<ul>
 <li>image &gt; duplicate (IJ:28.9) 
 </li>
 <li>process &gt; filters &gt; gaussian blur (IJ:29.11.2)
-<ul class="org-ul">
+<ul>
 <li>use preview to set parameters
 </li>
 </ul>
+
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>threshold to create neuron mask (avoid false negatives)
 </li>
 </ul>
+
 </li>
 <li>use wand tool to select main part of the neuron (IJ:19.7)
 </li>
 <li>analyze &gt; tools &gt; roi manager (IJ:30.14.5)
-<ul class="org-ul">
+<ul>
 <li>roi manager &gt; add (t) (IJ:27.12.22)
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>choose second copy of green
-<ul class="org-ul">
+<ul>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>threshold to create neuron mask (avoid false negatives)
 </li>
 </ul>
+
 </li>
 <li>edit &gt; selection &gt; create selection (IJ:27.12.11)
 </li>
@@ -1469,27 +1679,30 @@ on the quatlity of the result.
 <li>edit &gt; selection &gt; select none (ctrl-shift-a) (IJ:27.12.2)
 </li>
 <li>process &gt; noise &gt; remove outliers (IJ:29.6.5)
-<ul class="org-ul">
+<ul>
 <li>use preview; remove some of the outliers outside of neuron
 </li>
 </ul>
+
 </li>
 <li>edit &gt; selection &gt; create selection (IJ:27.12.11)
 </li>
 <li>roi manager &gt; add (t) (IJ:27.12.22)
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: area / area fraction / mean gray value
 </li>
 </ul>
+
 </li>
 <li>work on red image
-<ul class="org-ul">
+<ul>
 <li>choose multi point tool (IJ:19.5)
-<ul class="org-ul">
+<ul>
 <li>select some points in the neuron
 </li>
 <li>edit &gt; selection &gt; enlarge (IJ:27.12.14)
@@ -1497,73 +1710,95 @@ on the quatlity of the result.
 <li>roi manager &gt; add (t) (IJ:27.12.22)
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>for each selection
-<ul class="org-ul">
+<ul>
 <li>analyze &gt; measure (m) (IJ:29.12.1)
 </li>
 </ul>
+
 </li>
 <li>roi manager &gt; more &gt; save selection (IJ:30.14.5)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-5-2" class="outline-3">
+</div>
+
+<div id="outline-container-5-2" class="outline-3">
 <h3 id="sec-5-2"><span class="section-number-3">5.2</span> measuring geometrical properties in the image</h3>
 <div class="outline-text-3" id="text-5-2">
-<ol class="org-ol">
+
+<ol>
 <li>task : measure average flu. in Red channel in neuron
 </li>
 <li>file &gt; open samples &gt; neuron (IJ:26.4)
 </li>
 <li>use polygon selection tool to measure cell body area (IJ:19.1.6)
-<ul class="org-ul">
+<ul>
 <li>use measure to get the read out after creating polygon (IJ:29.12.1)
-<ul class="org-ul">
+<ul>
 <li>roi manager &gt; add (t) (IJ:27.12.22)
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>use segmented line tool (IJ:19.2.2) to measure length of few
-dendrits
-<ul class="org-ul">
+          dendrits
+<ul>
 <li>test shift and alt while adding points (with mouse over a point)
 </li>
 <li>use measure to get the read out after creating a line
-(IJ:29.12.1)
 </li>
+</ul>
+
+<p>        (IJ:29.12.1)
+</p><ul>
 <li>roi manager &gt; add (t) (IJ:27.12.22)
 </li>
 </ul>
+
 </li>
 <li>use angle tool (IJ:19.2.2) to measure length of few dendrits
-<ul class="org-ul">
+<ul>
 <li>use measure to get the read out after creating an angle (IJ:29.12.1)
 </li>
 <li>roi manager &gt; add (t) (IJ:27.12.22)
 </li>
 </ul>
+
 </li>
 <li>roi manager &gt; more &gt; save selection (IJ:30.14.5)
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
+</div>
+
+<div id="outline-container-6" class="outline-2">
 <h2 id="sec-6"><span class="section-number-2">6</span> automatic measurements</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
 <h3 id="sec-6-1"><span class="section-number-3">6.1</span> identifying and measuring objects - basics</h3>
 <div class="outline-text-3" id="text-6-1">
-<ol class="org-ol">
+
+<ol>
 <li>open : [blobs-thr.tif] (IJ:26.2)
 </li>
 <li>image &gt; duplicate (IJ:28.9)
@@ -1571,102 +1806,126 @@ dendrits
 <li>process &gt; binary &gt; watershed (IJ:29.8.12)
 </li>
 <li>process &gt; noise &gt; remove outliers (IJ:29.6.5)
-<ul class="org-ul">
+<ul>
 <li>check preview
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: area / area fraction / mean gray value
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; analyze particles  (IJ:30.2)
-<ul class="org-ul">
+<ul>
 <li>test different options
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-6-2" class="outline-3">
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
 <h3 id="sec-6-2"><span class="section-number-3">6.2</span> identifying and measuring objects - cells #1</h3>
 <div class="outline-text-3" id="text-6-2">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> measure distribution of RFP signal inside nucleus across cell population
 </li>
 <li>open : [hela1.tif] (IJ:26.2)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>test different option to isolate cells
 </li>
 </ul>
+
 </li>
 <li><b>question:</b> What are the difficulties? 
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-6-3" class="outline-3">
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
 <h3 id="sec-6-3"><span class="section-number-3">6.3</span> identifying and measuring objects - cells #2</h3>
 <div class="outline-text-3" id="text-6-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> measure distribution of RFP signal inside nucleus
-across cell population
+      across cell population
 </li>
 <li>open : [hela2.tif] (IJ:26.2)
 </li>
 <li>image &gt; color &gt; split channel (IJ:28.5.1)
 </li>
 <li>work on blue channel (DAPI)
-<ul class="org-ul">
+<ul>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
 </li>
 <li>process &gt; binary &gt; watershed (IJ:29.8.12)
 </li>
 <li>process &gt; noise &gt; remove outliers (IJ:29.6.5)
-<ul class="org-ul">
+<ul>
 <li>check preview
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: area / area fraction / mean gray value
 </li>
 <li>redirect to: RFP
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; analyze particles  (IJ:30.2)
 </li>
 <li>analyze &gt; distribution (IJ:30.4)
-<ul class="org-ul">
+<ul>
 <li>choose: gray value
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
+</div>
+
+<div id="outline-container-7" class="outline-2">
 <h2 id="sec-7"><span class="section-number-2">7</span> scripting / macros / automation basics</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
 <h3 id="sec-7-1"><span class="section-number-3">7.1</span> macro recorder - reproducing edits</h3>
 <div class="outline-text-3" id="text-7-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> save the edit chain for later (to save work and to
-document parameters used by different filters)
+      document parameters used by different filters)
 </li>
 <li>plugins &gt; macro &gt; recorder (IJ:31.1.4)
 </li>
@@ -1675,58 +1934,73 @@ document parameters used by different filters)
 <li>process &gt; filters &gt; gaussian blur with sigma ~= 2 (IJ:29.11.2)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>select manually threshold such as the head is separated from background
-</li>
+<ul>
 <li>ignore small holes
 </li>
 <li>uncheck box: calculate threshold for each image
 </li>
 </ul>
+
+</li>
+</ul>
+
 </li>
 <li>process &gt; binary &gt; fill holes (IJ:29.8.8)
 </li>
 <li>(optional) use analyze &gt; set scale to calibrate the measurement units
-<ul class="org-ul">
+<ul>
 <li>200 pixels is 25 cm
 </li>
 </ul>
+
 </li>
 <li><b>Question:</b> What are the benefits of storing such a macro?
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-2" class="outline-3">
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
 <h3 id="sec-7-2"><span class="section-number-3">7.2</span> macro recorder - repeating actions on stack</h3>
 <div class="outline-text-3" id="text-7-2">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> calculate the volume of human skull  
 </li>
 <li>file &gt; open samples &gt; mri-stack (IJ:26.4)
-<ul class="org-ul">
+<ul>
 <li>use steps below or macro developed in previous excercise
 </li>
 </ul>
+
 </li>
 <li>process &gt; filters &gt; gaussian blur % sigma ~= 2 (IJ:29.11.2)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>select manually threshold such as the head is separated from background
-</li>
+<ul>
 <li>ignore small holes
 </li>
 </ul>
+
+</li>
+</ul>
+
 </li>
 <li>process &gt; binary &gt; fill holes (IJ:29.8.8)
 </li>
 <li>(optional) use set scale to calibrate the measurement units
-<ul class="org-ul">
+<ul>
 <li>200 pixels is 25 cm
 </li>
 </ul>
+
 </li>
 <li>plugins &gt; macro &gt; recorder (IJ:31.1.4)
 </li>
@@ -1737,575 +2011,373 @@ document parameters used by different filters)
 <li>in recorder click "create" button
 </li>
 <li>use copy paste to execute the same action many times:
-<pre class="example">
-run("Next Slice [&gt;]");
-run("Measure");
-run("Next Slice [&gt;]");
-run("Measure");
-run("Next Slice [&gt;]");
-run("Measure");
-run("Next Slice [&gt;]");
-run("Measure");
-</pre>
+       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring<sub>skull</sub><sub>volume</sub><sub>v1</sub>.ijm" example 
 </li>
 <li><b>Question:</b> how to compute volume of human skull based on the measurement?
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-3" class="outline-3">
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
 <h3 id="sec-7-3"><span class="section-number-3">7.3</span> automatic iteration</h3>
 <div class="outline-text-3" id="text-7-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> avoid copy pasting - use iteration instead
 </li>
 <li>continue from last example or open preprocessed file
-<ul class="org-ul">
+<ul>
 <li>file &gt; open &gt; [mri-stack-binary] (IJ:26.4)
 </li>
 </ul>
+
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-for (currentStep=0; currentStep&lt;100;currentStep++){
-  run("Next Slice [&gt;]");
-  run("Measure");
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring<sub>skull</sub><sub>volume</sub><sub>v2</sub>.ijm" example
 </li>
 <li><b>Question:</b> what is the issue with this approach?
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-4" class="outline-3">
+</div>
+
+<div id="outline-container-7-4" class="outline-3">
 <h3 id="sec-7-4"><span class="section-number-3">7.4</span> automatic iteration - introducing function for stop condition</h3>
 <div class="outline-text-3" id="text-7-4">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> avoid fixed stop condition and exchange it by more
-accurate mechanism
+      accurate mechanism
 </li>
 <li>continue from last example or open preprocessed file
-<ul class="org-ul">
+<ul>
 <li>file &gt; open &gt; [mri-stack-binary] (IJ:26.4)
 </li>
 </ul>
+
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-for (currentStep=1; currentStep&lt;=nSlices();currentStep++){
-  setSlice(currentStep);
-  run("Measure");
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring<sub>skull</sub><sub>volume</sub><sub>v3</sub>.ijm" example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-5" class="outline-3">
+</div>
+
+<div id="outline-container-7-5" class="outline-3">
 <h3 id="sec-7-5"><span class="section-number-3">7.5</span> adding macro to the menu</h3>
 <div class="outline-text-3" id="text-7-5">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> add macro to the menu
 </li>
 <li>continue from last example or open preprocessed file
-<ul class="org-ul">
+<ul>
 <li>file &gt; open &gt; [mri-stack-binary] (IJ:26.4)
 </li>
 </ul>
+
 </li>
 <li>switch to code editor and make sure that the code looks in the
-following way:
-<pre class="example">
-macro "measure stack" {
-  for (currentStep=1; currentStep&lt;=nSlices();currentStep++){
-    setSlice(currentStep);
-    run("Measure");
-  }
-}
-</pre>
+      following way:
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/measuring<sub>skull</sub><sub>volume</sub><sub>v4</sub>.ijm" example
 </li>
 <li>language &gt; ImageJ Macro
 </li>
 <li>save &gt; .ijm
 </li>
-<li>plugins &gt; macros &gt; install&#x2026; (IJ:31.1.1) 
-<ul class="org-ul">
+<li>plugins &gt; macros &gt; install&hellip; (IJ:31.1.1) 
+<ul>
 <li>select the macro you just saved
 </li>
 </ul>
+
 </li>
 <li>(optional) test following FIJI tool
-<ul class="org-ul">
-<li>image &gt; stacks &gt; plot z axis profile (IJ:28.6.13)       
+<ul>
+<li>image &gt; stacks &gt; plot z axis profile (IJ:28.6.13)      
 </li>
 </ul>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-6" class="outline-3">
+</div>
+
+<div id="outline-container-7-6" class="outline-3">
 <h3 id="sec-7-6"><span class="section-number-3">7.6</span> iterations and variables in the macro: multi-measurement</h3>
 <div class="outline-text-3" id="text-7-6">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare the evenly distributed selection over the
-image v.1 This can be used e.g. in FRAP experiment analysis.
+      image v.1 This can be used e.g. in FRAP experiment analysis.
 </li>
 <li>open : [frap.tif] (IJ:26.2)
 </li>
 <li>test code:
-<pre class="example">
-// initialization
-x = 20;
-y = 20;
-
-// iterations
-for (nbr_x=0;nbr_x&lt;5;nbr_x++){
-  for (nbr_y=0;nbr_y&lt;5;nbr_y++){
-    makePoint(x+x*nbr_x, y+y*nbr_y);
-    run("Enlarge...", "enlarge=5 pixel");
-    roiManager("Add");
-  }
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic<sub>sensors</sub><sub>v1</sub>.ijm" example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-7" class="outline-3">
+</div>
+
+<div id="outline-container-7-7" class="outline-3">
 <h3 id="sec-7-7"><span class="section-number-3">7.7</span> automatic measurement and saving to a file</h3>
 <div class="outline-text-3" id="text-7-7">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare the evenly distributed selection over the image v.2
 </li>
 <li>test code:
-<pre class="example">
-// initialization
-roiManager("reset");
-x = 220;
-y = 110;
-nbr_sensors = 4;
-delta = 12;
-
-// iterations to create selection
-for (nbr_x=0;nbr_x&lt;nbr_sensors;nbr_x++){
-  for (nbr_y=0;nbr_y&lt;nbr_sensors;nbr_y++){
-    makePoint(x+delta*nbr_x, y+delta*nbr_y);
-    run("Enlarge...", "enlarge=5 pixel");
-    roiManager("Add");
-  }
-}
-
-// measurement and save results
-roiManager("Multi Measure");
-fn = getInfo("image.filename");
-saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
-// exchange previous line with your path
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic<sub>sensors</sub><sub>v2</sub>.ijm  example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-8" class="outline-3">
+</div>
+
+<div id="outline-container-7-8" class="outline-3">
 <h3 id="sec-7-8"><span class="section-number-3">7.8</span> user input via GUI</h3>
 <div class="outline-text-3" id="text-7-8">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare the evenly distributed selection over the image v.3
 </li>
 <li>test code:
-<pre class="example">
-// initialization
-roiManager("reset");
-x = 20;
-y = 20;
-nbr_sensors = 4;
-delta = 12;
-
-// GUI
-Dialog.create("Please specify parameters:");
-Dialog.addNumber("Size [px]: ", 5);
-Dialog.show();
-size = Dialog.getNumber();
-
-// iterations to create selection
-for (nbr_x=0;nbr_x&lt;nbr_sensors;nbr_x++){
-  for (nbr_y=0;nbr_y&lt;nbr_sensors;nbr_y++){
-    makePoint(x+delta*nbr_x, y+delta*nbr_y);
-    run("Enlarge...", "enlarge="+ size +" pixel");
-    roiManager("Add");
-  }
-}
-
-// measurement and save results
-roiManager("Multi Measure");
-fn = getInfo("image.filename");
-saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
-// exchange previous line with your path
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic<sub>sensors</sub><sub>v3</sub>.ijm" example
 </li>
 </ol>
+
 </div>
+
 </div>
-<div id="outline-container-sec-7-9" class="outline-3">
+
+<div id="outline-container-7-9" class="outline-3">
 <h3 id="sec-7-9"><span class="section-number-3">7.9</span> user input via image window / selection</h3>
 <div class="outline-text-3" id="text-7-9">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare the evenly distributed selection over the
-image - add user selected zone of selection and prepare it to
-work in the batch mode v.4
+      image - add user selected zone of selection and prepare it to
+      work in the batch mode v.4
 </li>
 <li>test code:
-<pre class="example">
-// initialization
-roiManager("reset");
-x = 20;
-y = 20;
-nbr_sensors = 4;
-delta = 12;
-
-// GUI
-Dialog.create("Please specify parameters:");
-Dialog.addNumber("Size [px]: ", 5);
-Dialog.show();
-size = Dialog.getNumber();
-
-// get the input for location from the image
-setBatchMode("show");
-waitForUser("Draw ROI, then hit OK"); 
-getBoundingRect(x, y, width, height)
-
-// iterations to create selection
-for (nbr_x=0;nbr_x&lt;nbr_sensors;nbr_x++){
-  for (nbr_y=0;nbr_y&lt;nbr_sensors;nbr_y++){
-    makePoint(x+delta*nbr_x, y+delta*nbr_y);
-    run("Enlarge...", "enlarge="+ size +" pixel");
-    roiManager("Add");
-  }
-}
-
-// measurement and save results
-roiManager("Multi Measure");
-fn = getInfo("image.filename");
-saveAs("Results", "/Users/sstoma/Desktop/Results-"+ fn +".txt");
-// exchange previous line with your path
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/automatic<sub>sensors</sub><sub>v4</sub>.ijm" example
 </li>
 </ol>
+
 </div>
+
 </div>
-<div id="outline-container-sec-7-10" class="outline-3">
+
+<div id="outline-container-7-10" class="outline-3">
 <h3 id="sec-7-10"><span class="section-number-3">7.10</span> batch mode - basics</h3>
 <div class="outline-text-3" id="text-7-10">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> Create a macro to segment nuclei in a single
-frame. Your macro should input a row to the Results containing
-area for each nuclei in the image. Process all files in the hela
-folder. 
+      frame. Your macro should input a row to the Results containing
+      area for each nuclei in the image. Process all files in the hela
+      folder. 
 </li>
 <li>open : [hela/hela-1.tif] (IJ:26.2)
 </li>
 <li>plugins &gt; macro &gt; recorder (IJ:31.1.4)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>select: triangle
 </li>
 <li>check: dark background
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; analyze particles  (IJ:30.2)
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-// processing
-run("Gaussian Blur...", "sigma=2 stack");
-setAutoThreshold("Triangle dark");
-run("Convert to Mask");
-run("Set Measurements...", "area mean display redirect=None decimal=9");
-run("Analyze Particles...", "show=[Overlay Masks] display exclude");
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch<sub>segmentation</sub><sub>v0</sub>.ijm" example
 </li>
 <li>process &gt; batch &gt; macro
-<ul class="org-ul">
+<ul>
 <li>input: select folder containing [hela-1.tif]-[hela-4.tif]
 </li>
 <li>output: select folder out in the folder containing [hela-1.tif]-[hela-4.tif]
 </li>
 </ul>
+
 </li>
 <li>click process
 </li>
 <li>modify to save results
-<pre class="example">
-// initialization
-outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
-// exchange previous line with your path
-
-// processing
-run("Gaussian Blur...", "sigma=2 stack");
-setAutoThreshold("Triangle dark");
-run("Convert to Mask");
-run("Set Measurements...", "area mean display redirect=None decimal=9");
-run("Analyze Particles...", "show=[Overlay Masks] display exclude");
-
-// saving
-saveAs("Results", outPath+"Results.txt");
-</pre>
+          #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch<sub>segmentation</sub><sub>v1</sub>.ijm" example
 </li>
 <li>modify the code (<b>target:</b> save each result in separated file):
-<pre class="example">
-// initilization
-fileName = getInfo("image.filename");
-outPath = "/Users/sstoma/Desktop/materials/images/hela/out/"; 
-// exchange previous line with your path
-
-// Process all images finishing with .tif 
-dir = getDirectory("Choose a Directory where the HeLa tif files are");
-dirresults = getDirectory("Choose a Directory where to save results (segmentations)");
-list = getFileList(dir);
-
-for (imagenumber=0;imagenumber&lt;list.length;imagenumber++)
-{
-  if (endsWith(list[imagenumber],".tif")){
-    open(dir+list[imagenumber]); 
-    run("Clear Results");
-    // processing
-    run("Gaussian Blur...", "sigma=2 stack");
-    setAutoThreshold("Triangle dark");
-    run("Convert to Mask");
-    run("Set Measurements...", "area mean display redirect=None decimal=9");
-    run("Analyze Particles...", "show=[Overlay Masks] display exclude");
-
-    // saving
-    saveAs("Results", outPath + "Results-" + fileName + ".txt");
-  }
-}
-</pre>
+       #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch<sub>segmentation</sub><sub>v2</sub>.ijm" example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-7-11" class="outline-3">
+</div>
+
+<div id="outline-container-7-11" class="outline-3">
 <h3 id="sec-7-11"><span class="section-number-3">7.11</span> batch mode - full control on processing files</h3>
 <div class="outline-text-3" id="text-7-11">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> Create a macro to segment nuclei in a single
-frame. Your macro should input a row to the Results containing
-area for each nuclei in the image. Process all files in the hela
-folder. Do not use the batch execution in FIJI - iterate on
-files in the folder instead.
+      frame. Your macro should input a row to the Results containing
+      area for each nuclei in the image. Process all files in the hela
+      folder. Do not use the batch execution in FIJI - iterate on
+      files in the folder instead.
 </li>
 <li>open : [hela/hela-1.tif] (IJ:26.2)
 </li>
 <li>plugins &gt; macro &gt; recorder (IJ:31.1.4)
 </li>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>select: triangle
 </li>
 <li>check: dark background
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; analyze particles  (IJ:30.2)
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-// Process all images finishing with .tif 
-dir = getDirectory("Choose a Directory where the HeLa tif files are");
-outPath = getDirectory("Choose a Directory where to save results (segmentations)");
-list = getFileList(dir);
-
-// in list elements are numbered from 0
-for (imagenumber=0;imagenumber&lt;list.length;imagenumber++)
-{
-  if (endsWith(list[imagenumber],".tif")){
-    open(dir+list[imagenumber]); 
-    run("Clear Results");
-    // processing
-    run("Gaussian Blur...", "sigma=2 stack");
-    setAutoThreshold("Triangle dark");
-    run("Convert to Mask");
-    run("Set Measurements...", "area mean display redirect=None decimal=9");
-    run("Analyze Particles...", "show=[Overlay Masks] display exclude");
-
-    // saving
-vfileName = getInfo("image.filename");
-    saveAs("Results", outPath + "Results-" + fileName + ".txt");
-  }
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/batch<sub>segmentation</sub><sub>v3</sub>.ijm" example 
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
+</div>
+
+<div id="outline-container-8" class="outline-2">
 <h2 id="sec-8"><span class="section-number-2">8</span> workflow: tracking</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-8-1" class="outline-3">
 <h3 id="sec-8-1"><span class="section-number-3">8.1</span> create image with moving dots</h3>
 <div class="outline-text-3" id="text-8-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> create an image with moving objects (dots)
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-macro "create_image_with_moving_objects"{
-  // initial variables
-  nbr_frames = 40; // number of frames in the image
-  color1 = 150; // color of first obj.
-  color2 = 250; // color of sec. obj.
-  canvas_size = 200; // size of the image
-  step = 4; // progress in x between frames
-  delta = 15; // difference in position between two objects in x
-  x = 5; // initial position x of object
-  y = 5;  // initial position y of object
-  width = 10; // baseline size of object in x
-  height = 10; // baseline size of object in y
-
-  // empty image with noise
-  newImage("Image", "8-bit black", canvas_size, canvas_size, nbr_frames); // image will be named "Image"
-  run("Salt and Pepper", "stack");
-
-  for(i=1;i&lt;=nbr_frames;i++){
-    setSlice(i);
-    // first dot
-    setColor(color1,color1,color1);
-    fillOval(x+i*step, y+i*step, width, height);
-    // second dot
-    setColor(color2,color2,color2);
-    fillOval(delta+x+i*step, canvas_size-(y+i*step), width*2, height*2);
-  }
-  run("glasbey");
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/create<sub>image</sub><sub>with</sub><sub>moving</sub><sub>objects</sub>.ijm" example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-8-2" class="outline-3">
+</div>
+
+<div id="outline-container-8-2" class="outline-3">
 <h3 id="sec-8-2"><span class="section-number-3">8.2</span> tracking: process single image</h3>
 <div class="outline-text-3" id="text-8-2">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> for <b>current</b> frame of the stack find the x, y of the
-center of the dot
+      center of the dot
 </li>
 <li>make sure that the code looks in the following way
-<pre class="example">
-macro "tracking_process_single_image"{
-  run("Median...", "radius=2 slice");
-  setThreshold(0, 100);
-  run("Convert to Mask", "method=Otsu background=Light only");
-  run("glasbey");
-  run("Find Maxima...", "noise=25 output=List light");
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking<sub>process</sub><sub>single</sub><sub>image</sub>.ijm"  example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-8-3" class="outline-3">
+</div>
+
+<div id="outline-container-8-3" class="outline-3">
 <h3 id="sec-8-3"><span class="section-number-3">8.3</span> tracking: process whole stack</h3>
 <div class="outline-text-3" id="text-8-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> for <b>all</b> frames of the stack find the x, y of the
-center of the dot
+      center of the dot
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-macro "tracking_process_stack_v1"{
-  r = newArray();
-  for (i=1;i&lt;=nSlices();i++){
-    setSlice(i);
-    run("Median...", "radius=2 slice");
-    setThreshold(0, 100);
-    run("Convert to Mask", "method=Otsu background=Light only");
-    run("glasbey");
-    run("Find Maxima...", "noise=25 output=List light");
-    run("Next Slice [&gt;]");
-
-  // workaround for Find maxima overwriting results at each step
-    for (j=0;j&lt;nResults();j++){
-      x = getResult("X", j);
-      y = getResult("Y", j);
-      print(x, y, i);
-      temp = newArray(x, y);
-      r = Array.concat(r, temp);
-    }
-  }
-  Array.show( r );
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking<sub>process</sub><sub>stack</sub><sub>v1</sub>.ijm" example
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-8-4" class="outline-3">
+</div>
+
+<div id="outline-container-8-4" class="outline-3">
 <h3 id="sec-8-4"><span class="section-number-3">8.4</span> tracking: process whole stack - enabling linking of the objects</h3>
 <div class="outline-text-3" id="text-8-4">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> for <b>all</b> frames of the stack find the x, y of the
-center of the dot as well as some object features (i.e. size,
-mean grey value).
+      center of the dot as well as some object features (i.e. size,
+      mean grey value).
 </li>
 <li>make sure that the code looks in the following way:
-<pre class="example">
-macro "tracking_process_stack_v2"{
-  // clearing previous result and preparing image copy
-  run("Clear Results"); 
-  rename("Image");
-  run("Duplicate...", "duplicate");
-  rename("orig");
-  selectWindow("Image");
-
-  // iterating for each slice in the stack
-  for (i=1;i&lt;=nSlices();i++){
-    setSlice(i);
-    run("Median...", "radius=2 slice"); // removing noise
-    setThreshold(0, 100); // hardcoded thr. for image
-    run("Convert to Mask", "method=Otsu background=Light only");
-    run("glasbey"); // changing LUT to get false collors to better distinguish objects
-    run("Set Measurements...", "area mean standard center median skewness area_fraction stack redirect=orig decimal=2");
-    run("Analyze Particles...", "display slice");
-    run("Next Slice [&gt;]");
-  }
-}
-</pre>
+      #+INCLUDE: "/Users/sstoma/src/scopem-public/teaching/FIJI/macros/tracking<sub>process</sub><sub>stack</sub><sub>v2</sub>.ijm" example
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-9" class="outline-2">
+</div>
+
+<div id="outline-container-9" class="outline-2">
 <h2 id="sec-9"><span class="section-number-2">9</span> workflow: FRET</h2>
 <div class="outline-text-2" id="text-9">
-</div><div id="outline-container-sec-9-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-9-1" class="outline-3">
 <h3 id="sec-9-1"><span class="section-number-3">9.1</span> preparation part 1 - image import</h3>
 <div class="outline-text-3" id="text-9-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> open .lif image and prepare it for further editing
 </li>
 <li>file &gt; open : [FRET<sub>biosensor</sub>.lif] (IJ:26.2)
-<ul class="org-ul">
+<ul>
 <li>configure the importer
 </li>
 <li>disable: all series 
 </li>
 </ul>
+
 </li>
 <li>choose 3rd serie
 </li>
@@ -2314,199 +2386,239 @@ macro "tracking_process_stack_v2"{
 <li>image &gt; color &gt; split channel (IJ:28.5.1)
 </li>
 <li>select blue channel (ch0) 
-<ol class="org-ol">
+<ol>
 <li>file &gt; save as &gt; tif : cfp.tif (IJ:26.10.1)
 </li>
 </ol>
+
 </li>
 <li>select yellow channel (ch1) 
-<ol class="org-ol">
+<ol>
 <li>file &gt; save as &gt; tif : yfp.tif (IJ:26.10.1)
 </li>
 </ol>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-2" class="outline-3">
+</div>
+
+<div id="outline-container-9-2" class="outline-3">
 <h3 id="sec-9-2"><span class="section-number-3">9.2</span> preparation part 2 - averaging</h3>
 <div class="outline-text-3" id="text-9-2">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare images for further editing
 </li>
 <li>file &gt; open : [cfp.tif and yfp.tif] (IJ:26.2)
 </li>
 <li>select blue channel (cfp.tif)
-<ol class="org-ol">
+<ol>
 <li>process &gt; filters &gt; gaussian blur % sigma ~= 2 (IJ:29.11.2) 
 </li>
 <li>file &gt; save as &gt; tif : cfp-smoothed.tif (IJ:26.10.1)
 </li>
 </ol>
+
 </li>
 <li>select yellow channel (yfp.tif)
-<ol class="org-ol">
+<ol>
 <li>process &gt; filters &gt; gaussian blur % sigma ~= 2 (IJ:29.11.2)
 </li>
 <li>file &gt; save as &gt; tif : yfp-smoothed.tif (IJ:26.10.1)
 </li>
 </ol>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-3" class="outline-3">
+</div>
+
+<div id="outline-container-9-3" class="outline-3">
 <h3 id="sec-9-3"><span class="section-number-3">9.3</span> preparation part 3 - masks</h3>
 <div class="outline-text-3" id="text-9-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare masks
 </li>
 </ol>
-<p>
-!2. file &gt; open : [yfp-smoothed.tif] (IJ:26.2)
-</p>
-<ol class="org-ol">
+
+<p>!2. file &gt; open : [yfp-smoothed.tif] (IJ:26.2)
+</p><ol>
 <li>image &gt; adjust &gt; threshold (IJ:28.2.4)
-<ul class="org-ul">
+<ul>
 <li>test different option to isolate chromatine
 </li>
 </ul>
+
 </li>
 <li>file &gt; save as &gt; tif : mask.tif (IJ:26.10.1)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-4" class="outline-3">
+</div>
+
+<div id="outline-container-9-4" class="outline-3">
 <h3 id="sec-9-4"><span class="section-number-3">9.4</span> preparation part 4 - ratios</h3>
 <div class="outline-text-3" id="text-9-4">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare image with ratios
 </li>
 <li>file &gt; open : [cfp-smoothed.tif and yfp-smoothed.tif] (IJ:26.2)
 </li>
 <li>process &gt; calculator plus &gt; divide (i1 = yfp, i2 = cfp, k1 = 1, k2
-= 0)
+   = 0)
 </li>
 <li>file &gt; save as &gt; tif : ratio.tif (IJ:26.10.1)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-5" class="outline-3">
+</div>
+
+<div id="outline-container-9-5" class="outline-3">
 <h3 id="sec-9-5"><span class="section-number-3">9.5</span> analysis - problem: cell population</h3>
 <div class="outline-text-3" id="text-9-5">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> measure the change of signal in ratio.tif image
 </li>
 <li>file &gt; open : [ratio.tif] (IJ:26.2)
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: mean gray value / standard deviation
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; measure (m) (IJ:29.12.1)
 </li>
-<li>move to next time point; repeat;&#x2026;
+<li>move to next time point; repeat;&hellip;
 </li>
 <li>image &gt; stacks &gt; plot z axis profile (IJ:28.6.13)
-<ul class="org-ul">
+<ul>
 <li>if does not work: image &gt; hyperstacks &gt; re-order hyperstack
-<ul class="org-ul">
+<ul>
 <li>swap t with z
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>question:  what is the problem with results?
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-6" class="outline-3">
+</div>
+
+<div id="outline-container-9-6" class="outline-3">
 <h3 id="sec-9-6"><span class="section-number-3">9.6</span> preparation part 5 - cropping</h3>
 <div class="outline-text-3" id="text-9-6">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> prepare image with ratios
 </li>
 <li>file &gt; open : [all previously prepared images] (IJ:26.2)
 </li>
 <li>choose a cell in transition to anaphase - make sure the field of
-view keeps only this cell during all time-points
-<ul class="org-ul">
+   view keeps only this cell during all time-points
+<ul>
 <li>[palette &gt; rectangular selection] (IJ:19.1)
 </li>
 <li>edit &gt; selection &gt; add to manager (ctrl-t) (IJ:27.12.22)
 </li>
 <li>use roi manager to move selection between images
-<ul class="org-ul">
+<ul>
 <li>analyze &gt; tools &gt; ROI manager
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>image &gt; crop (IJ:28.8)
 </li>
 <li>save all files adding "-crop" postfix
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-7" class="outline-3">
+</div>
+
+<div id="outline-container-9-7" class="outline-3">
 <h3 id="sec-9-7"><span class="section-number-3">9.7</span> analysis - problem: chromatin change</h3>
 <div class="outline-text-3" id="text-9-7">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> measure the change of signal in ratio-crop.tif image
 </li>
 <li>file &gt; open : [ratio-crop.tif] (IJ:26.2)
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: mean gray value / standard deviation
 </li>
 </ul>
+
 </li>
 <li>analyze &gt; measure (m) (IJ:29.12.1)
 </li>
-<li>move to next time point; repeat;&#x2026;
+<li>move to next time point; repeat;&hellip;
 </li>
 <li>image &gt; stacks &gt; plot z axis profile (IJ:28.6.13)
-<ul class="org-ul">
+<ul>
 <li>if does not work: image &gt; hyperstacks &gt; re-order hyperstack
-<ul class="org-ul">
+<ul>
 <li>swap t with z
 </li>
 </ul>
+
 </li>
 </ul>
+
 </li>
 <li>question: what are the issues with results?
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-9-8" class="outline-3">
+</div>
+
+<div id="outline-container-9-8" class="outline-3">
 <h3 id="sec-9-8"><span class="section-number-3">9.8</span> analysis - problem: manual labor</h3>
 <div class="outline-text-3" id="text-9-8">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> measure the change of signal in ratio-crop.tif image limited
-to chromatin
+   to chromatin
 </li>
 <li>file &gt; open : [mask-crop.tif] (IJ:26.2)
 </li>
 <li>[palette &gt; wand selection] (IJ:19.7)
-<ul class="org-ul">
+<ul>
 <li>add chromatin from current time-point
 </li>
 <li>edit &gt; selection &gt; add to manager (ctrl-t) (IJ:27.12.22)
@@ -2516,33 +2628,43 @@ to chromatin
 <li>repeat
 </li>
 </ul>
+
 </li>
 <li>file &gt; open : [ratio-crop.tif] (IJ:26.2)
 </li>
 <li>analyze &gt; set measurements (IJ:30.7)
-<ul class="org-ul">
+<ul>
 <li>check: mean gray value / standard deviation
 </li>
 </ul>
+
 </li>
 <li>select the right ROI; analyze &gt; measure (m) (IJ:29.12.1)
 </li>
-<li>move to next time point; repeat;&#x2026;
+<li>move to next time point; repeat;&hellip;
 </li>
 <li>question: what are the issues with results?
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-10" class="outline-2">
+</div>
+
+<div id="outline-container-10" class="outline-2">
 <h2 id="sec-10"><span class="section-number-2">10</span> workflow: scratch assay</h2>
 <div class="outline-text-2" id="text-10">
-</div><div id="outline-container-sec-10-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-10-1" class="outline-3">
 <h3 id="sec-10-1"><span class="section-number-3">10.1</span> part 1</h3>
 <div class="outline-text-3" id="text-10-1">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> estimate the area occupied by cells in single timepoint
 </li>
 <li>file &gt; open : [scratch/control-single-frame.tif] (IJ:26.2)
@@ -2550,37 +2672,40 @@ to chromatin
 <li>image &gt; duplicate
 </li>
 <li>process &gt; filters &gt; gaussiab blur
-<ol class="org-ol">
+<ol>
 <li>sigma: 5
 </li>
 </ol>
+
 </li>
 <li>threshold
-<ol class="org-ol">
+<ol>
 <li>Method: Moments
 </li>
 <li>Background: Dark
 </li>
 </ol>
+
 </li>
 <li>image &gt; invert
 </li>
 <li>process &gt; binary &gt; Distance Map
 </li>
 <li>threshold
-<ol class="org-ol">
+<ol>
 <li>Method: Moments
 </li>
 <li>Background: Dark
 </li>
 </ol>
+
 </li>
 <li>select original image
 </li>
 <li>image &gt; type &gt; 8-bit
 </li>
 <li>image &gt; color &gt; merge channels
-<ol class="org-ol">
+<ol>
 <li>C1: original image (after conversion to 8-bit)
 </li>
 <li>C4: mask
@@ -2590,30 +2715,39 @@ to chromatin
 <li>Keep source images: True
 </li>
 </ol>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-10-2" class="outline-3">
+</div>
+
+<div id="outline-container-10-2" class="outline-3">
 <h3 id="sec-10-2"><span class="section-number-3">10.2</span> part 2</h3>
 <div class="outline-text-3" id="text-10-2">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> estimate the area occupied by cells in each time point
-(extend part 1 and identify the main problem)
+   (extend part 1 and identify the main problem)
 </li>
 <li>file &gt; open : [scratch/control.tif] (IJ:26.2)
 </li>
 <li>repeat steps from part 1 on the stack
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-10-3" class="outline-3">
+</div>
+
+<div id="outline-container-10-3" class="outline-3">
 <h3 id="sec-10-3"><span class="section-number-3">10.3</span> part 3</h3>
 <div class="outline-text-3" id="text-10-3">
-<ol class="org-ol">
+
+<ol>
 <li><b>target:</b> estimate the area occupied by cells in each time point
 </li>
 <li>file &gt; open : [scratch/control.tif] (IJ:26.2)
@@ -2621,45 +2755,49 @@ to chromatin
 <li>image &gt; duplicate
 </li>
 <li>image &gt; process &gt; subtract background
-<ol class="org-ol">
+<ol>
 <li>Radius: 30
 </li>
 <li>Preview: True
 </li>
 </ol>
+
 </li>
 <li>process &gt; filters &gt; gaussiab blur
-<ol class="org-ol">
+<ol>
 <li>sigma: 5
 </li>
 </ol>
+
 </li>
 <li>threshold
-<ol class="org-ol">
+<ol>
 <li>Method: Moments
 </li>
 <li>Background: Dark
 </li>
 </ol>
+
 </li>
 <li>image &gt; invert
 </li>
 <li>process &gt; binary &gt; Distance Map
 </li>
 <li>threshold
-<ol class="org-ol">
+<ol>
 <li>Method: Moments
 </li>
 <li>Background: Dark
 </li>
 </ol>
+
 </li>
 <li>select original image
 </li>
 <li>image &gt; type &gt; 8-bit
 </li>
 <li>image &gt; color &gt; merge channels
-<ol class="org-ol">
+<ol>
 <li>C1: original image (after conversion to 8-bit)
 </li>
 <li>C4: mask
@@ -2669,21 +2807,30 @@ to chromatin
 <li>Keep source images: True
 </li>
 </ol>
+
 </li>
 </ol>
-</div>
+
+
 </div>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
+</div>
+
+<div id="outline-container-11" class="outline-2">
 <h2 id="sec-11"><span class="section-number-2">11</span> various useful tools</h2>
 <div class="outline-text-2" id="text-11">
-</div><div id="outline-container-sec-11-1" class="outline-3">
+
+
+</div>
+
+<div id="outline-container-11-1" class="outline-3">
 <h3 id="sec-11-1"><span class="section-number-3">11.1</span> installing plugins</h3>
 <div class="outline-text-3" id="text-11-1">
-<ol class="org-ol">
+
+<ol>
 <li>download plugin from webpage:
-<a href="http://bigwww.epfl.ch/algorithms/esnake/">http://bigwww.epfl.ch/algorithms/esnake/</a>
+      <a href="http://bigwww.epfl.ch/algorithms/esnake/">http://bigwww.epfl.ch/algorithms/esnake/</a>
 </li>
 <li>unzip, drag and drop to FIJI
 </li>
@@ -2692,39 +2839,49 @@ to chromatin
 <li>draw two white discs on black background
 </li>
 <li>plugins &gt; ESnake
-<ul class="org-ul">
+<ul>
 <li>target brightness: bright
 </li>
 </ul>
+
 </li>
 <li>click OK
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-11-2" class="outline-3">
+</div>
+
+<div id="outline-container-11-2" class="outline-3">
 <h3 id="sec-11-2"><span class="section-number-3">11.2</span> using line selection to make a "straighten" image</h3>
 <div class="outline-text-3" id="text-11-2">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; nile bend (IJ:26.4)
 </li>
 <li>use selection tool for freehand selection
-<ul class="org-ul">
+<ul>
 <li>make the line thickness adjusted to cover whole river
 </li>
 </ul>
+
 </li>
 <li>edit &gt; selection &gt; straighten (IJ:27.12.17)
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-11-3" class="outline-3">
+</div>
+
+<div id="outline-container-11-3" class="outline-3">
 <h3 id="sec-11-3"><span class="section-number-3">11.3</span> using 3D viewer</h3>
 <div class="outline-text-3" id="text-11-3">
-<ol class="org-ol">
+
+<ol>
 <li>file &gt; open samples &gt; confocal series (IJ:26.4)
 </li>
 <li>image &gt; properties &gt; voxel depth x10 % to get decent aspect ratio
@@ -2744,30 +2901,37 @@ to chromatin
 <li>file &gt; save as &gt; avi % try the different compression options uncompressed, jpg, and png 
 </li>
 </ol>
-</div>
+
+
 </div>
 
-<div id="outline-container-sec-11-4" class="outline-3">
+</div>
+
+<div id="outline-container-11-4" class="outline-3">
 <h3 id="sec-11-4"><span class="section-number-3">11.4</span> preparing images for publications</h3>
 <div class="outline-text-3" id="text-11-4">
-<ul class="org-ul">
+
+<ul>
 <li>FigureJ plugin:
-<ul class="org-ul">
+<ul>
 <li><a href="http://imagejdocu.tudor.lu/doku.php?id=plugin:utilities:figurej:start#installation_for_fiji">http://imagejdocu.tudor.lu/doku.php?id=plugin:utilities:figurej:start#installation_for_fiji</a>
 </li>
 </ul>
+
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2019-06-23 Sun&gt;</span></span></p>
+
+<div id="postamble">
+<p class="date">Date: 2022-05-03</p>
 <p class="author">Author: Simon Noerrelykke &amp; Szymon Stoma</p>
-<p class="date">Created: 2019-06-23 Sun 11:50</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
 </div>
 </body>
 </html>
