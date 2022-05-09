@@ -18,7 +18,7 @@
 
 * working with single channel images 
 ** opening the image and basic info
-   1. file > open > HeLa (IJ:26.2)
+   1. file > open samples > HeLa (IJ:26.2)
    2. image > show info (ctrl-i) (IJ:28.3)
    3. analyze > tools > scale bar (IJ:30.14.6)
 
@@ -297,8 +297,9 @@
    1. *target:* make a video and a picture for publication showing progression of mitosis in time (see: mitosis-montage.tif)
    2. open : [mitosis-mixedStack.tif] (IJ:26.2)
    3. image > hyperstacks > reorder hyperstacks
-	  - swap z with t
+	  - swap z with t (it is to overcome issues with make montages)
    4. image > stacks > tools > make substack (IJ:28.6.15.7)
+          - choose only one z slice e.g. 3rd one
    5. image > duplicate (IJ:28.9)
 	  - check duplicate hyperstack
    6. image > color > channels tool (shift-z) (IJ:28.7.5)
